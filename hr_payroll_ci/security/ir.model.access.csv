@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_payslip,hr.payslip,model_hr_payslip,base.group_user,1,1,1,1
+access_hr_days,hr.days,model_hr_days,base.group_user,1,1,1,1
+access_hr_holidays_days,hr.holidays.days,model_hr_leaves_days,base.group_user,1,1,1,1
+access_hr_type_attribution_holidays,hr.type.attribution.holidays,model_hr_type_attribution_holidays,base.group_user,1,1,1,1
+access_hr_payslip_run_user,hr.payslip.run.user,hr_payroll.model_hr_payslip_run,hr_payroll.group_hr_payroll_user,1,1,1,1

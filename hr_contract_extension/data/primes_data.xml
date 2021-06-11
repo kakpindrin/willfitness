@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<record model="hr.payslip.input.type" id="prime_transport">
+             <field name="name">Prime de transport</field>
+             <field name="code">TRSP</field>
+         </record>
+         <record model="hr.payslip.input.type" id="indemite_logement">
+             <field name="name">Indemnité de logement</field>
+             <field name="code">INDML</field>
+         </record>
+         <record model="hr.payslip.input.type" id="prime_assurance">
+             <field name="name">Prime d'assurance</field>
+             <field name="code">ASSUR</field>
+         </record>
+         <record model="hr.payslip.input.type" id="prime_fonction">
+             <field name="name">Prime de fonction</field>
+             <field name="code">FONCT</field>
+         </record>
+         <record model="hr.payslip.input.type" id="prime_responsabilite">
+             <field name="name">Prime de responsabilité</field>
+             <field name="code">PRES</field>
+         </record>
+         <record model="hr.payslip.input.type" id="prime_caburant">
+             <field name="name">Prime de caburant</field>
+             <field name="code">CARBU</field>
+         </record>
+         <record model="hr.payslip.input.type" id="prime_gratification">
+             <field name="name">Gratification</field>
+             <field name="code">GRATIF</field>
+         </record>
+         <record model="hr.payslip.input.type" id="avantage_nature">
+             <field name="name">Avantage en nature</field>
+             <field name="code">AVTGN</field>
+         </record>
+        <record model="hr.payslip.input.type" id="TRSP_IMP">
+             <field name="name">Prime de transport imposable</field>
+             <field name="code">TRSP_IMP</field>
+         </record>
+        <record model="hr.payslip.input.type" id="EMPRUNT">
+             <field name="name">Gestion des emprunts</field>
+             <field name="code">EMPRUNT</field>
+         </record>
+    </data>
+</odoo>

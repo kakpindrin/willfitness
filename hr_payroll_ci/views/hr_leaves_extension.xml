@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_hr_leaves_extension" name="Extensions paramètres congés" parent="hr.menu_human_resources_configuration" groups="hr.group_hr_manager"/>
+    <record model="ir.ui.view" id="hr_leave_type_form_view">
+            <field name="name">hr.leave.type.form</field>
+            <field name="model">hr.leave.type</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="number_of_days"/>
+                </field>
+            </field>
+    </record>
+    <record model="ir.ui.view" id="hr_holidays_form_view">
+                <field name="name">hr.leave.form</field>
+                <field name="model">hr.leave</field>
+                <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
+                <field name="arch" type="xml">
+                    <field name="name" position="after">
+                        <group attrs="{'invisible': [('state','!=','confirm')]}">
+                            <label for="conge_non_exceptionne"/>
+                            <div>
+                                <field name="conge_non_exceptionne" class="oe_inline"/>
+                            </div>
+                            <label for="montant_conge"/>
+                            <div>
+                                <field name="montant_conge" class="oe_inline"/>
+                            </div>
+                            <label for="motif_conge"/>
+                            <div>
+                                <field name="motif_conge" class="oe_inline"/>
+                            </div>
+                        </group>
+                    </field>
+                </field>
+            </record>
+        <!-- les jours du calandrier -->
+    <record model="ir.ui.view" id="hr_days_tree_view">
+        <field name="name">hr.days.tree</field>
+        <field name="model">hr.days</field>
+        <field name="arch" type="xml">
+            <tree string="Les Jours">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+       <record model="ir.ui.view" id="hr_days_form_view">
+            <field name="name">hr.days.form</field>
+            <field name="model">hr.days</field>
+            <field name="arch" type="xml">
+                <form string="Jours">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" select="1"/>
+                            </group>
+                            <group>
+                                <field name="sequence"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+       </record>
+
+        <record model="ir.actions.act_window" id="action_hr_days_tree_view">
+            <field name="name">Jours de la semaine</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.days</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="hr_days_tree_view"/>
+        </record>
+
+        <menuitem id="hr_days_menu"
+                  name="Jours de la semaine"
+                  parent="menu_hr_leaves_extension"
+                  action="action_hr_days_tree_view"
+                  groups="hr.group_hr_manager"/>
+
+    <!-- Les types d'attribution de congés -->
+        <record model="ir.ui.view" id="hr_type_attribution_holidays_form_view2">
+            <field name="name">hr.type.attribution.holidays.form</field>
+            <field name="model">hr.type.attribution.holidays</field>
+            <field name="arch" type="xml">
+                <form string="Type d'attribution">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" select="1"/>
+                            </group>
+                            <group>
+                                <field name="taux" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hr_type_attribution_holidays_tree_view">
+            <field name="name">hr.type.attribution.holidays.tree</field>
+            <field name="model">hr.type.attribution.holidays</field>
+            <field name="arch" type="xml">
+                <tree string="Type d'attribution">
+                    <field name="name"/>
+                    <field name="taux" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_hr_type_attribution_holidays_tree_view">
+            <field name="name">Type d'attributions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.type.attribution.holidays</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="hr_type_attribution_holidays_tree_view"/>
+        </record>
+
+        <menuitem id="type_attribution_menu"
+                  action="action_hr_type_attribution_holidays_tree_view"
+                  name="Type d'attribution"
+                  parent="menu_hr_leaves_extension"
+                  />
+
+    <!-- les fours fériés -->
+    	<record model="ir.ui.view" id="hr_leaves_days_tree_view">
+            <field name="name">hr.leaves.days.tree</field>
+            <field name="model">hr.leaves.days</field>
+            <field name="arch" type="xml">
+                <tree string="Jours fériés">
+                    <field name="name"/>
+                    <field name="date_holidays" />
+                </tree>
+            </field>
+      	</record>
+
+    <record model="ir.ui.view" id="hr_leaves_days_form_view">
+        <field name="name">hr.leaves.days.form</field>
+        <field name="model">hr.leaves.days</field>
+        <field name="arch" type="xml">
+            <form string="Les Jours fériés">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" select="1"/>
+                        </group>
+                        <group>
+                            <field name="date_holidays"/>
+                        </group>
+                    </group>
+                    <field name="description" placeholder="Description" colspan="4"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_hr_leaves_days_tree_view">
+        <field name="name">Les Jours fériés</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.leaves.days</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="hr_leaves_days_tree_view"/>
+    </record>
+
+    <menuitem id="holidays_days_menu"
+              name="Jours fériés"
+              parent="menu_hr_leaves_extension"
+              action="action_hr_leaves_days_tree_view"/>
+
+    <record model="ir.ui.view" id="resources_calandar_form_view">
+        <field name="name">resource.calendar.form</field>
+        <field name="model">resource.calendar</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="resource.resource_calendar_form"/>
+        <field name="arch" type="xml">
+            <field name="attendance_ids" position="before">
+                <group>
+                    <field name="days_ids" string="Jours de congés" widget="many2many_tags"/>
+                </group>
+            </field>
+        </field>
+    </record>
+</odoo>

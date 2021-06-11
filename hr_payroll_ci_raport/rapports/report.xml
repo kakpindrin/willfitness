@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<report 
+            string="Livre de paie" 
+            id="report_hr_payroll" 
+            model="hr.payroll" 
+            report_type="qweb-pdf"
+            name="hr_payroll_ci_raport.report_payroll" 
+            file="hr_payroll_ci_raport.report_payroll" 
+        />
+<!--        <record id="action_report_paperformat_euro_land" model="ir.actions.report">-->
+<!--            <field name="paperformat_id" ref="hr_payroll_ci_raport.paperformat_euro_land"/>-->
+<!--        </record>-->
+		
+		<report 
+            string="Etat Résumé des Cotisations Mensuelle"
+            id="hr_etat_resume_report"
+            model="hr.etat.cotisation.mensuelle"
+            report_type="qweb-pdf"
+            name="hr_payroll_ci_raport.cotisation_mensuelle_report"
+            file="hr_payroll_ci_raport.cotisation_mensuelle_report"
+        />
+
+        <report
+            string="Rapport DISA"
+            id="hr_disa_report_id"
+            model="hr.disa"
+            report_type="qweb-pdf"
+            name="hr_payroll_ci_raport.report_disa"
+            file="hr_payroll_ci_raport.report_disa"
+        />
+    </data>
+</odoo>

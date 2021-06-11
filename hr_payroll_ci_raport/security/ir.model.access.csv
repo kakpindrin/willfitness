@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_payroll_user,hr.payroll,model_hr_payroll,hr_payroll.group_hr_payroll_user,1,1,1,1
+access_hr_payroll,hr.payroll,model_hr_payroll,hr_payroll.group_hr_payroll_manager,1,1,1,1
+access_hr_payroll_line_user,hr.payroll.line,model_hr_payroll_line,hr_payroll.group_hr_payroll_user,1,1,1,1
+access_hr_payroll_line,hr.payroll.line,model_hr_payroll_line,hr_payroll.group_hr_payroll_manager,1,1,1,1
+access_hr_etat_cotisation_mensuelle,hr.etat.cotisation.mensuelle,model_hr_etat_cotisation_mensuelle,,1,1,1,1

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+            <!-- les ajouts eu niveu employé -->
+            <record model="ir.ui.view" id="hr_employee_holidays_extension_form_view2">
+                <field name="name">hr.employee.form</field>
+                <field name="model">hr.employee</field>
+<!--                <field name="type">form</field>-->
+                <field name="inherit_id" ref="hr.view_employee_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//header" position="inside">
+                        <button class="oe_stat_button" name="main_function" string="Calcul paramètre RH &amp; Congés" type="object" icon="fa-cogs"/>
+<!--                        <button class="oe_stat_button" name="get_jour_conge" string="Test fonction" type="object" icon="fa-cogs"/>-->
+                    </xpath>
+                	<!--<xpath expr="//group[@string='Leaves']" position="inside" groups="hr.group_hr_manager">-->
+                    <xpath expr="//page[@name='hr_settings']" position="after">
+                        <page string="Paramètres Congés" groups="hr.group_hr_manager, base.group_user">
+                            <group>
+                                <group>
+                                    <label for="nombre_jour_attribue"/>
+                                    <div>
+                                        <field name="nombre_jour_attribue" class="oe_inline"/> Jours
+                                    </div>
+                                    <label for="taken_days_number"/>
+                                    <div>
+                                        <field name="taken_days_number" class="oe_inline"/> Jours
+                                        <field name="taken_days_number_year" invisible="1"/>
+                                    </div>
+                                    <label for="remaining_leaves"/>
+                                    <div>
+                                        <field name="remaining_leaves" class="oe_inline"/> Jours
+                                    </div>
+                                </group>
+<!--                                <group attrs="{'invisible': True}">-->
+                                <group>
+                                    <label for="conge_exceptionnel"/>
+                                    <div>
+                                        <field name="conge_exceptionnel" class="oe_inline"/> Jours
+                                    </div>
+                                    <field name="conge_non_exceptionnel"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+<!--                                    <label for="max_leaves" invisible="1"/>-->
+<!--                                    <field name="max_leaves" nolabel="1" invisible="1"/>-->
+<!--                                    <label for="taken_leaves" invisible="1"/>-->
+<!--                                    <field name="taken_leaves" nolabel="1" invisible="1"/>-->
+<!--                                    <label for="date_next_attribution" />-->
+<!--                                    <field name="date_next_attribution" nolabel="1"/>-->
+                                    <field name="date_depart_conge"/>
+                                    <field name="date_retour_conge"/>
+                                    <!--<field name="nombre_jour_pris" />-->
+                                </group>
+                                <group>
+                                    <field name="is_prime_trsp" invisible="1"/>
+                                    <field name="is_prime_avtgn" invisible="1"/>
+                                    <field name="is_prime_idml" invisible="1"/>
+                                    <field name="is_prime_assur" invisible="1"/>
+                                    <field name="is_prime_fonct" invisible="1"/>
+                                    <field name="is_prime_resp" invisible="1"/>
+                                    <field name="is_prime_carbu" invisible="1"/>
+                                    <field name="is_prime_gratif" invisible="1"/>
+                                    <field name="prime_trsp2" invisible="1"/>
+                                    <field name="prime_idml" invisible="1"/>
+                                    <field name="prime_assur" invisible="1"/>
+                                    <field name="prime_fonct" invisible="1"/>
+                                    <field name="prime_resp" invisible="1"/>
+                                    <field name="prime_carbu" invisible="1"/>
+                                    <field name="prime_gratif" invisible="1"/>
+                                    <field name="prime_avtgn" invisible="1"/>
+                                    <field name="montant_moyen_mensuel"/>
+                                    <field name="montant_moyen_journalier" invisible="1"/>
+                                    <field name="allocation_conge"/>
+                                    <field name="montant_alloue"/>
+                                    <field name="ecart_conge"/>
+                                    <field name="ecart_conge2" invisible="1"/>
+                                    <field name="allocation_conge2" invisible="1"/>
+                                    <field name="jour_conge"/>
+                                    <field name="conge_paye" invisible="1"/>
+                                    <field name="cmu_employe" invisible="1"/>
+                                    <field name="cmu_employe2" />
+                                    <field name="cmu_employeur" invisible="1"/>
+                                    <field name="cmu_employeur2" />
+                                    <field name="prime_gratification" invisible="1"/>
+                                    <field name="prime_gratification2" invisible="1"/>
+                                </group>
+                            </group>
+                        </page>
+                	</xpath>
+                </field>
+            </record>
+            <record model="ir.ui.view" id="hr_employee_licencement_form_view">
+                <field name="name">hr.employee.form</field>
+                <field name="model">hr.employee</field>
+<!--                <field name="type">form</field>-->
+                <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
+                <field name="arch" type="xml">
+					<xpath expr="//group[@name='active_group']" position="after">
+                        <group string="Rupture de contrat" groups="hr.group_hr_manager">
+                            <field name="debut_rupture"/>
+                            <field name="debut_decompte"/>
+
+                            <field name="demission_by_dibi" />
+                            <field name="montant_preavis_by_dibi" attrs="{'invisible': [('demission_by_dibi','=',False)]}"/>
+
+							<field name="indemnite_licencement"/>
+                            <field name="indemnite_licencement2" invisible="1"/>
+                            <field name="indemnite_fin_cdd" attrs="{'invisible': [('contract_type','!=','CDD')]}"/>
+                            <field name="indemnite_fin_cdd2" invisible="1"/>
+                            <field name="indemnite_retraite"/>
+                            <field name="indemnite_retraite2" invisible="1"/>
+                            <field name="indemnite_deces"/>
+                            <field name="indemnite_deces2" invisible="1"/>
+                            <field name="is_retraite"/>
+                            <field name="is_deces"/>
+                            <field name="date_end" invisible="1"/>
+                            <field name="contract_type" invisible="1"/>
+                            <field name="contracts" invisible="1"/>
+                        </group>
+                    </xpath>
+				</field>
+			</record>
+
+            <!-- HR Kanban View  -->
+
+<!--            <record model="ir.ui.view" id="hr_kanban_view_employees2">-->
+<!--                <field name="name">HR - Employess Kanban</field>-->
+<!--                <field name="model">hr.employee</field>-->
+<!--                <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>-->
+<!--                <field name="priority">10</field>-->
+<!--                <field name="arch" type="xml">-->
+<!--                    <xpath expr="/kanban/templates/t[@t-name='kanban-box']/div[@class='oe_kanban_global_click']/div[@class='oe_kanban_details']/div[@class='o_kanban_button']" position="before">-->
+<!--                        <div>-->
+<!--                            <group groups="hr.group_hr_manager">-->
+<!--                                <ul class="list-group">-->
+<!--                                    <li t-if="record.date_end.raw_value" class="text-center"-->
+<!--                                        style="color: #b32400;display: block;width: 60%;font-size:15px;">-->
+<!--                                        <span class="oe_unfollow">Fin CDD</span>-->
+<!--                                    </li>-->
+<!--                                    <li t-if="record.date_end.raw_value"-->
+<!--                                        type="button" class="btn btn-danger text-center"-->
+<!--                                        style="color: #ffffff;background-color: #b32400;display: block;width: 68%;font-size:15px;">-->
+<!--                                        <field name="date_end" widget="mail_followers"/></li>-->
+<!--                                </ul>-->
+<!--                            </group>-->
+<!--                        </div>-->
+<!--                    </xpath>-->
+<!--                </field>-->
+<!--            </record>-->
+<!--            <record id="action_view_employee_cdd" model="ir.actions.act_window">-->
+<!--                <field name="name">Fin CDD</field>-->
+<!--                <field name="res_model">hr.employee</field>-->
+<!--                <field name="view_type">tree</field>-->
+<!--                <field name="view_mode">kanban,tree</field>-->
+<!--                <field name="domain">[('date_end', '!=', False)]</field>-->
+<!--                <field name="context">{}</field>-->
+<!--            </record>-->
+<!--            <menuitem id="menu_compte_employee_in_cdd" parent="hr.menu_hr_main" name="Fin Contrats" action="action_view_employee_cdd"-->
+<!--            groups="hr.group_hr_manager"/>-->
+
+<!--           <record model="ir.ui.view" id="hr_contract_inh_extension_form">-->
+<!--                <field name="name">hr.contract.form</field>-->
+<!--                <field name="model">hr.contract</field>-->
+<!--                <field name="type">form</field>-->
+<!--                <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>-->
+<!--                <field name="arch" type="xml">-->
+<!--                    <field name="job_id" position="after">-->
+<!--                        <field name="contract_mail" invisible="1"/>-->
+<!--                        <field name="manger_mail" invisible="1"/>-->
+<!--                        <field name="mail_destination" invisible="1"/>-->
+<!--                    </field>-->
+<!--                </field>-->
+<!--           </record>-->
+    </data>
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hr_payslip_prorata_view">
+            <field name="name">hr.reverse.contract.form</field>
+            <field name="model">hr.payslip.prorata</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Calcul au prorata">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="prorata_number" />
+                            </group>
+                        </group>
+                    </sheet>
+                    <shooter>
+                        <button name="compute_prorata" type="object" string="Calculer"/>
+                    </shooter>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_hr_payslip_prorata_form_view">
+            <field name="name">Calcul au prorata</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.payslip.prorata</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="hr_payslip_prorata_view"/>
+        </record>
+    </data>
+</odoo>

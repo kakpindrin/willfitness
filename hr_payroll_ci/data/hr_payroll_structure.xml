@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="0">
+        <record id="structure_type_employee2" model="hr.payroll.structure.type">
+            <field name="name">Employee</field>
+            <field name="country_id" eval="False"/>
+        </record>
+		<record id="structure_cdd" model="hr.payroll.structure">
+            <field name="name">Bulletin Mensuel</field>
+            <field eval="[(6, 0, [ref('hr_salary_rule0'),ref('hr_salary_rule1'),ref('hr_salary_rule2'),ref('hr_salary_rule3'),ref('hr_salary_rule4'),ref('hr_salary_rule5'),ref('hr_salary_rule6')
+            ,ref('hr_salary_rule7'),ref('hr_salary_rule8'),ref('hr_salary_rule9'),ref('hr_salary_rule10'),ref('hr_salary_rule11'),ref('hr_salary_rule12'),ref('hr_salary_rule13')
+            ,ref('hr_salary_rule14'),ref('hr_salary_rule15'),ref('hr_salary_rule16'),ref('hr_salary_rule17'),ref('hr_salary_rule18'),ref('hr_salary_rule19'),ref('hr_salary_rule20')
+            ,ref('hr_salary_rule21'),ref('hr_salary_rule22'),ref('hr_salary_rule23'),ref('hr_salary_rule24'),ref('hr_salary_rule25'),ref('hr_salary_rule26'),ref('hr_salary_rule27')
+            ,ref('hr_salary_rule28'),ref('hr_salary_rule29'),ref('hr_salary_rule30'),ref('hr_salary_rule31'),ref('hr_salary_rule32'),ref('hr_salary_rule33'),ref('hr_salary_rule34')
+            ,ref('hr_salary_rule35'),ref('hr_salary_rule36'),ref('hr_salary_rule37'),ref('hr_salary_rule38'),ref('hr_salary_rule39'),ref('hr_salary_rule40'),ref('hr_salary_rule41')
+            ,ref('hr_salary_rule42'),ref('hr_salary_rule43'),ref('hr_salary_rule44'),ref('hr_salary_rule45'),ref('hr_salary_rule46'),ref('hr_salary_rule47'),ref('hr_salary_rule48')
+            ,ref('hr_salary_rule49'),ref('hr_salary_rule50'),ref('hr_salary_rule51'),ref('hr_salary_rule52'),ref('hr_salary_rule53'),ref('hr_salary_rule54'),ref('hr_salary_rule55')
+            ,ref('hr_salary_rule56'),ref('hr_salary_rule57'),ref('hr_salary_rule58'),ref('hr_salary_rule59'),ref('hr_salary_rule60'),ref('hr_salary_rule61'),ref('hr_salary_rule62')
+            ,ref('hr_salary_rule63'),ref('hr_salary_rule64'),ref('hr_salary_rule65'),ref('hr_salary_rule66'),ref('hr_salary_rule67'),ref('hr_salary_rule68'),ref('hr_salary_rule69')
+            ,ref('hr_salary_rule70'),ref('hr_salary_rule71'),ref('hr_salary_rule72')])]" name="rule_ids"/>
+            <field name="type_id" ref="structure_type_employee2"/>
+        </record>
+	</data>
+</odoo>

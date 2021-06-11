@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_disa">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="5"/>
+                <t t-set="data_report_margin_left" t-value="2"/>
+                <t t-set="data_report_margin_rigth" t-value="2"/>
+                <t t-set="data_report_header_spacing" t-value="2"/>
+                <t t-set="data_report_dpi" t-value="110"/>
+
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table class="table table-condensed" width="100%">
+                                    <tr>
+                                        <td style="border:solid black 1px;white-space: nowrap;background-color:rgb(198, 184, 231);text-align:center;">EXERCICE</td>
+                                        <td style="border:solid black 1px;white-space: nowrap;background-color:rgb(247, 227, 115);text-align:center;"><span t-field="o.year"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:solid black 1px;white-space: nowrap;background-color:rgb(198, 184, 231);text-align:center;">CNPS</td>
+                                        <td style="border:solid black 1px;white-space: nowrap;background-color:rgb(247, 227, 115);text-align:center;"><span t-field="o.company_id.num_cnps"/></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;background-color:rgb(198, 184, 231);text-align:center;">RAISON SOCIALE</td>
+                                        <td style="border:solid black 1px;white-space: nowrap;background-color:rgb(247, 227, 115);text-align:center;"><span t-field="o.company_id"/></td>
+                                        <td style="border-top: none;
+                                                border-left: solid black 1px;
+                                                border-right: none;
+                                                border-bottom: solid black 1px;
+                                                white-space: nowrap;"></td>
+                                        <td style="border-top: none;
+                                        border-left: none;
+                                        border-right: none;
+                                        border-bottom: solid black 1px;
+                                        white-space: nowrap;"></td>
+                                        <td style="border-top: none;
+                                        border-left: none;
+                                        border-right: none;
+                                        border-bottom: solid black 1px;
+                                        white-space: nowrap;"></td>
+                                        <td style="border-top: none;
+                                        border-left: none;
+                                        border-right: none;
+                                        border-bottom: solid black 1px;
+                                        white-space: nowrap;"></td>
+                                        <td style="border-top: none;
+                                        border-left: none;
+                                        border-right: none;
+                                        border-bottom: solid black 1px;
+                                        white-space: nowrap;"></td>
+                                        <td style="border-top: none;
+                                        border-left: none;
+                                        border-right: none;
+                                        border-bottom: solid black 1px;
+                                        white-space: nowrap;"></td>
+                                        <td style="border-top: none;
+                                        border-left: none;
+                                        border-right: none;
+                                        border-bottom: solid black 1px;
+                                        white-space: nowrap;"></td>
+                                        <td style="border-top: none;
+                                        border-left: none;
+                                        border-right: none;
+                                        border-bottom: solid black 1px;
+                                        white-space: nowrap;"></td>
+                                    </tr>
+                                    <tr style="background-color:rgb(198, 184, 231);">
+                                        <th style="border:solid black 1px;white-space: nowrap;text-align:center;">NUM ORDRE</th>
+                                        <th style="border:solid black 1px;white-space: nowrap;text-align:center;">NOM &amp; PRENOM</th>
+                                        <th style="border:solid black 1px;white-space: nowrap;text-align:center;">NUM CNPS</th>
+                                        <th style="border:solid black 1px;white-space: nowrap;text-align:center;">ANNEE NAISS.</th>
+                                        <th style="border:solid black 1px;white-space: nowrap;text-align:center;">DATE EMBAUCHE</th>
+                                        <th style="border:solid black 1px;white-space: nowrap;text-align:center;">DATE DEPART</th>
+                                        <th style="border:solid black 1px;white-space: nowrap;text-align:center;">TYPE SALARIE</th>
+                                        <th style="border:solid black 1px;white-space: nowrap;text-align:center;">SALAIRE BRUT</th>
+                                        <th style="border:solid black 1px;white-space: nowrap;text-align:center;">DUREE ACTIVITE</th>
+                                        <th style="border:solid black 1px;white-space: nowrap;text-align:center;">MONTANT PF/AT.</th>
+                                        <th style="border:solid black 1px;white-space: nowrap;text-align:center;">MONTANT RETRAITE</th>
+                                        <th style="border:solid black 1px;white-space: nowrap;text-align:center;">REGIME</th>
+                                        <th style="border:solid black 1px;white-space: nowrap;text-align:center;">OBSERVATION</th>
+                                    </tr>
+                                    <tr  t-foreach="o.line_ids" t-as="l" >
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align:center;"><span t-field="l.num_order"/></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align:center;"><span t-field="l.nom"/></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align:center;"><span t-field="l.num_cnps"/></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align:center;"><span t-field="l.date_naiss"/></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align:center;"><span t-field="l.date_embauche"/></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align:center;"><span t-field="l.date_depart"/></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align:center;"><span t-field="l.type_salarie"/></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align:center;"><span t-field="l.salaire_brute"/></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align:center;"><span t-field="l.duree_activite"/></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align:center;"><span t-field="l.montant_pf_at"/></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align:center;"><span t-field="l.montant_retraite"/></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align:center;"><span t-field="l.regime"/></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align:center;"><span t-field="l.observation"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align: center;text-align:center;">TOTAL</td>
+                                        <td colspan="6"></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align: center;text-align:center;"><span t-field="o.total_salaire_brut_annuel"/></td>
+                                        <td style="border-top: solid black 1px;
+                                                border-left: solid black 1px;
+                                                border-right: none;
+                                                border-bottom: none;
+                                                white-space: nowrap;"></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align: center;text-align:center;"><span t-field="o.total_montant_pf_at"/></td>
+                                        <td style="border:solid black 1px;white-space: nowrap;text-align: center;text-align:center;"><span t-field="o.total_montant_retraite"/></td>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

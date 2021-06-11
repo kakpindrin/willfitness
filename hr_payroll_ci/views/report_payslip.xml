@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="hr_payroll_ci.report_payslip">
+    <t t-call="web.html_container">
+		<t t-set="data_report_margin_top" t-value="5"/>
+		<t t-set="data_report_margin_left" t-value="1"/>
+		<t t-set="data_report_margin_rigth" t-value="1"/>
+		<t t-set="data_report_header_spacing" t-value="10"/>
+        <t t-foreach="docs" t-as="o">
+<!--            <div class="header">-->
+<!--            	<style type="text/css">-->
+<!--					h1  {font-weight:bold;}-->
+<!--					div#item1 {float: left;width: 50%;}-->
+<!--					table {-->
+<!--							border-collapse: collapse;-->
+<!--							font-size: 12px;-->
+<!--							width: 100%;-->
+<!--						}-->
+<!--					td {-->
+<!--							border: 1px solid gray;-->
+<!--						}-->
+<!--					td#title_part {-->
+<!--							width: 50%;-->
+<!--							font-size: 35px;-->
+<!--							font-style: italic;-->
+<!--						}-->
+<!--					td#company{-->
+<!--							font-size: 12px;-->
+<!--							padding-left: 5px;-->
+
+<!--						}-->
+
+<!--				</style>-->
+<!--				<table id="header_p">-->
+<!--					<tr>-->
+<!--						<td id="title_part" colspan="2">-->
+<!--&lt;!&ndash;							<img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % o.company_id.logo" style="height: 70px; width: 200px;"/>&ndash;&gt;-->
+<!--							<img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="height: 70px; width: 200px;" alt="Logo"/>-->
+<!--						</td>-->
+<!--						<td id="title_part" colspan="3"><h1>BULLETIN DE PAIE</h1></td>-->
+<!--					</tr>-->
+<!--					<tr>-->
+<!--						<td id="company"><span t-field="o.company_id.zip"/></td>-->
+<!--						<td id="company">CNPS : <span t-field="o.company_id.num_cnps"/></td>-->
+<!--						<td colspan="2" align="center"><strong>Période de paie</strong></td>-->
+<!--						<td align="center"><strong> Date de paie </strong></td>-->
+<!--					</tr>-->
+<!--					<tr>-->
+<!--						<td></td>-->
+<!--						<td id="company">N° Contribuable : <span t-field="o.company_id.num_contribuable"/></td>-->
+<!--						<td align="center">Du : <span t-field="o.date_from"/></td>-->
+<!--						<td align="center">  Au : <span t-field="o.date_to"/></td>-->
+<!--						<td align="center"><span t-field="o.date_to"/></td>-->
+<!--					</tr>-->
+<!--				</table>-->
+<!--			</div>-->
+			<div class="page">
+				<style type="text/css">
+					h2  {font-weight:bold;}
+					div#item1 {float: left;width: 50%;}
+					table {
+							border-collapse: collapse;
+							width: 100%;
+							font-size: 12px;
+							font-family: "Times New Roman", Arial;
+							border-radius: 10px 10px 10px 10px;
+						}
+					tr#sous_total {
+							color: #B9121B;
+						}
+					th {
+							border: 1px solid gray;
+							text-align: center;
+							background-color: #E6ECEB;
+							height: 20px;
+						}
+
+					th#col1 {
+							width: 10%;
+						}
+					th#col2 {
+							width: 40%;
+						}
+					th#col3 {
+							width: 10%;
+						}
+					th#col4 {
+							width: 15%;
+						}
+
+					td {
+							border: 1px solid gray;
+							margin: 0px;
+							padding-left: 5px;
+							padding-right: 5px;
+						}
+					td#parttotal{
+							border-bottom-style: dashed;
+							border-top-style: dashed;
+						}
+
+					td#colpart2 {border-left: 0px; width:20%; }
+					td#colpart1 { border-right: 0px; width: 20%;}
+					td#colpart3 {
+							border-top: 0px;
+							border-bottom:0px;
+						}
+					td#colpart5 {border-top: 0px; }
+					td#colpart4 {
+							text-align: center;
+							background-color: #E6ECEB;
+							width: 60%;
+						}
+					td#colpart6 {
+							border-top: 0px;
+							border-bottom:0px;
+							font-size: 20px;
+							font-style: bold;
+							text-align: center;
+							vertical-align:middle;
+						}
+					td#blank {
+							border-top: 0px;
+							border-bottom: 0px;
+							border-right: 0px;
+							border-left: 0px;
+							width: 70%;
+						}
+					td#blank1 {
+							background-color: #E6ECEB;
+							font-size: 12px;
+							font-style: bold;
+							text-align: center;
+							width: 30%;
+						}
+					td#blank2 {
+							font-size: 20px;
+							font-style: bold;
+							text-align: center;
+							width: 30%;
+						}
+					tr#part_row {
+							background-color: #E6ECEB;
+							text-align: center;
+							width: 25%;
+						}
+					tr#part_second {
+							text-align: center;
+							width: 25%;
+						}
+				</style>
+				<style type="text/css">
+					h1  {font-weight:bold;}
+					div#item1 {float: left;width: 50%;}
+					table {
+							border-collapse: collapse;
+							font-size: 12px;
+							width: 100%;
+						}
+					td {
+							border: 1px solid gray;
+						}
+					td#title_part {
+							width: 50%;
+							font-size: 25px;
+							font-style: italic;
+						}
+					td#title_part2 {
+							width: 50%;
+							font-size: 20px;
+							font-style: italic;
+						}
+					td#company{
+							font-size: 12px;
+							padding-left: 5px;
+
+						}
+
+				</style>
+				<div>
+				<table>
+					<tr>
+						<td id="title_part" colspan="2">
+<!--							<img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % o.company_id.logo" style="height: 70px; width: 200px;"/>-->
+							<img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="height: 70px; width: 200px;" alt="Logo"/>
+						</td>
+						<td id="title_part2" colspan="3"><h1>BULLETIN DE PAIE</h1></td>
+					</tr>
+					<tr>
+						<td id="company"><span t-field="o.company_id.zip"/></td>
+						<td id="company">CNPS : <span t-field="o.company_id.num_cnps"/></td>
+						<td colspan="2" align="center"><strong>Période de paie</strong></td>
+						<td align="center"><strong> Date de paie </strong></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td id="company">N° Contribuable : <span t-field="o.company_id.num_contribuable"/></td>
+						<td align="center">Du : <span t-field="o.date_from"/></td>
+						<td align="center">  Au : <span t-field="o.date_to"/></td>
+						<td align="center"><span t-field="o.date_to"/></td>
+					</tr>
+				</table>
+				</div>
+				<div class="row" style="width: 1%; padding:3%"></div>
+				<table class="table">
+					<tr>
+						<td id="colpart1" >Matricule </td>
+						<td id="colpart2" ><span t-field="o.employee_id.identification_id"/></td>
+						<td id="colpart4" colspan="3">NOM ET PRENOMS</td>
+					</tr>
+					<tr>
+						<td id="colpart1">Catégorie salariale </td>
+						<td id="colpart2"><span t-field="o.contract_id.categorie_salariale_id.name"/></td>
+						<td id="colpart6" colspan="5"><strong><span t-field="o.employee_id.name"/></strong></td>
+					</tr>
+					<tr>
+						<td id="colpart1">Part IGR </td>
+						<td id="colpart2"><span t-field="o.employee_id.part_igr"/></td>
+						<td id="colpart3" align="center" colspan="3"><span t-field="o.employee_id.address_home_id.zip"/></td>
+					</tr>
+					<tr>
+						<td id="colpart1">Nationalité </td>
+						<td id="colpart2"><span t-field="o.employee_id.country_id"/></td>
+						<td id="colpart3" colspan="3"></td>
+					</tr>
+					<tr>
+						<td id="colpart1">Jours de congés</td>
+						<td id="colpart2"><span t-field="o.employee_id.remaining_leaves"/></td>
+						<td id="colpart3" colspan="3"></td>
+					</tr>
+					<tr>
+						<td id="colpart1">Date début <t t-if="o.contract_id.date_end"> et fin </t>embauche</td>
+						<td id="colpart2"><span t-field="o.contract_id.date_start"/> <t t-if="o.contract_id.date_end"> - <span t-field="o.contract_id.date_end"/></t></td>
+						<td id="colpart3" colspan="3"></td>
+					</tr>
+					<tr>
+						<td id="colpart1">Situation matrimoniale</td>
+						<td id="colpart2"><span t-field="o.employee_id.marital"/></td>
+						<td id="colpart3" colspan="3"></td>
+					</tr>
+					<tr>
+						<td id="colpart1">Nombre d'enfant</td>
+						<td id="colpart2"><span t-field="o.employee_id.children"/></td>
+						<td id="colpart3" colspan="3"></td>
+					</tr>
+					<tr>
+						<td id="colpart1">Anciennété </td>
+						<td id="colpart2"><t t-if="o.payslip_an_anciennete != 0"><span t-field="o.payslip_an_anciennete"/> ans </t> <span t-field="o.payslip_mois_anciennete"/> mois</td>
+						<td id="colpart1">Département </td>
+						<td id="colpart2" colspan="2"><span t-field="o.employee_id.department_id.name"></span></td>
+					</tr>
+					<tr>
+						<td id="colpart1">CNPS </td>
+						<td id="colpart2"><span t-field="o.employee_id.matricule_cnps"/></td>
+						<td id="colpart1">Emploi </td>
+						<td id="colpart2" colspan="2"><span t-field="o.contract_id.job_id.name"/></td>
+					</tr>
+				</table>
+				<br/>
+				<table id="line_ids">
+                        <thead>
+                            <tr>
+                                <th id="col1">Code</th>
+                                <th id="col2">Rubrique</th>
+                                <th id="col3">Base</th>
+                                <th id="col3">Quantité/<br/>Taux</th>
+                                <th id="col4">Gains</th>
+                                <th id="col4">Retenues</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="p">
+                            	<td id="colpart3" t-if="299 > p.sequence " align="right"><span t-field="p.sequence"/></td>
+	                            <td id="colpart3" t-if="299 > p .sequence "><span t-field="p.name"/></td>
+	                            <td id="colpart3" t-if="299 > p.sequence " align="right"><span t-esc="format_amount('%i', p.amount)"/></td>
+	                            <td id="colpart3" t-if="299 > p.sequence " align="right"><span t-field="p.quantity"/></td>
+	                            <td id="colpart3" t-if="299 > p.sequence " align="right"><span t-esc="format_amount('%i', p.total)"/></td>
+	                            <td id="colpart3" t-if="299 > p.sequence " align="right"></td>
+                            </tr>
+                            <tr t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="q">
+                            	<td id="colpart3" t-if="299 == q.sequence " align="right"><span t-field="q.sequence"/></td>
+	                            <td id="colpart3" t-if="299 == q .sequence "><span t-field="q.name"/></td>
+	                            <td id="colpart3" t-if="299 == q.sequence " align="right"><span t-esc="format_amount('%i', q.amount)"/></td>
+	                            <td id="colpart3" t-if="299 == q.sequence " align="right"><span t-field="q.quantity"/></td>
+	                            <td id="colpart3" t-if="299 == q.sequence " align="right"></td>
+	                            <td id="colpart3" t-if="299 == q.sequence " align="right"><span t-esc="format_amount('%i', q.total)"/></td>
+                            </tr>
+                            <tr id="sous_total" t-foreach="o.line_ids" t-as="l">
+                            	<td id="parttotal" t-if="l.sequence == 300" colspan="4" align="center">Sous total</td>
+                            	<td id="parttotal" t-if="l.sequence == 300" align="right"><span t-esc="format_amount('%i', l.total)"/></td>
+                            	<td id="parttotal" t-if="l.sequence == 300" align="right"><span t-esc="format_amount('%i', get_amount_rubrique(o,'ABS'))"/></td>
+                            </tr>
+                            <tr t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="j">
+                            	<td id="colpart3" t-if="404 >=j.sequence and j.sequence >=400 " align="right"><span t-field="j.sequence"/></td>
+	                            <td id="colpart3" t-if="404 >=j.sequence and j.sequence >=400 "><span t-field="j.name"/></td>
+	                            <td id="colpart3" t-if="404 >=j.sequence and j.sequence >=400 " align="right"><span t-esc="format_amount('%i', j.amount)"/></td>
+	                            <td id="colpart3" t-if="404 >=j.sequence and j.sequence >=400 " align="right"><span t-field="j.quantity"/></td>
+	                            <td id="colpart3" t-if="404 >=j.sequence and j.sequence >=400 " align="right"></td>
+	                            <td id="colpart3" t-if="404 >=j.sequence and j.sequence >=400 " align="right"><span t-esc="format_amount('%i', j.total)"/></td>
+                            </tr>
+                            <tr id="sous_total" t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="k">
+	                            <td id="parttotal" align="center" t-if="k.sequence ==499 " colspan="4">Sous Total</td>
+	                            <td id="parttotal" t-if="k.sequence ==499 " align="right">0</td>
+	                            <td id="parttotal" t-if="k.sequence ==499 " align="right"><span t-esc="format_amount('%i', k.total)"/></td>
+                            </tr>
+                            <tr t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="m">
+								<t t-if='m.amount != 0'>
+									<td id="colpart3" t-if="599 >=m.sequence and m.sequence >= 500 " align="right"><span t-field="m.sequence"/></td>
+									<td id="colpart3" t-if="599 >=m.sequence and m.sequence >= 500 "><span t-field="m.name"/></td>
+									<td id="colpart3" t-if="599 >=m.sequence and m.sequence >= 500 " align="right"><span t-esc="format_amount('%i', m.amount)"/></td>
+									<td id="colpart3" t-if="599 >=m.sequence and m.sequence >= 500 " align="right"><span t-field="m.quantity"/></td>
+									<td id="colpart3" t-if="599 >=m.sequence and m.sequence >= 500 " align="right"><span t-esc="format_amount('%i', m.total)"/></td>
+									<td id="colpart3" t-if="599 >=m.sequence and m.sequence >= 500 " align="right"></td>
+								</t>
+                            </tr>
+                            <tr t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="n">
+								<t t-if='n.amount != 0'>
+									<td id="colpart3" t-if="699 >=n.sequence and n.sequence >= 600 " align="right"><span t-field="n.sequence"/></td>
+									<td id="colpart3" t-if="699 >=n.sequence and n.sequence >= 600 "><span t-field="n.name"/></td>
+									<td id="colpart3" t-if="699 >=n.sequence and n.sequence >= 600 " align="right"><span t-esc="format_amount('%i', n.amount)"/></td>
+									<td id="colpart3" t-if="699 >=n.sequence and n.sequence >= 600 " align="right"><span t-field="n.quantity"/></td>
+									<td id="colpart3" t-if="699 >=n.sequence and n.sequence >= 600 " align="right"></td>
+									<td id="colpart3" t-if="699 >=n.sequence and n.sequence >= 600 " align="right"><span t-esc="format_amount('%i', n.total)"/></td>
+								</t>
+                            </tr>
+                            <tr t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="n">
+                            	<td id="colpart3" t-if="799 >=n.sequence and n.sequence >= 700 " align="right"><span t-field="n.sequence"/></td>
+	                            <td id="colpart3" t-if="799 >=n.sequence and n.sequence >= 700 "><span t-field="n.name"/></td>
+	                            <td id="colpart3" t-if="799 >=n.sequence and n.sequence >= 700 " align="right"><span t-esc="format_amount('%i', n.amount)"/></td>
+	                            <td id="colpart3" t-if="799 >=n.sequence and n.sequence >= 700 " align="right"><span t-field="n.quantity"/></td>
+	                            <td id="colpart3" t-if="799 >=n.sequence and n.sequence >= 700 " align="right"></td>
+	                            <td id="colpart3" t-if="799 >=n.sequence and n.sequence >= 700 " align="right"><span t-esc="format_amount('%i', n.total)"/></td>
+                            </tr>
+                            <tr>
+                        		<td id="colpart5" height="150px"></td>
+                        		<td id="colpart5" height="150px"></td>
+                        		<td id="colpart5" height="150px"></td>
+                        		<td id="colpart5" height="150px"></td>
+                        		<td id="colpart5" height="150px"></td>
+                        		<td id="colpart5" height="150px"></td>
+                        	</tr>
+                        </tbody>
+
+                </table>
+                <div id="container">
+                    	<div>
+                    		<table>
+		                    	<tr>
+		                    		<td id="blank" ></td>
+		                    		<td id="blank1" ><strong>NET A PAYER</strong></td>
+		                    	</tr>
+		                    	<tr>
+		                    		<td id="blank" ></td>
+		                    		<td id="blank2">
+										<strong>
+											<span t-esc="format_amount('%i', get_amount_rubrique(o,'NET'))"/>
+										</strong>
+									</td>
+		                    	</tr>
+		                    </table>
+                    	</div>
+                    	<div align="center"><strong>Cumuls Annuels</strong></div>
+                    	<div>
+                    		<table>
+		                    	<tr id="part_row">
+		                    		<td>Brut Impossable</td>
+		                    		<td>Impôt sur salaire</td>
+		                    		<td>Contribution Nationale</td>
+		                    		<td>I.G.R.</td>
+		                    	</tr>
+		                    	<tr id="part_second">
+		                    		<td><span t-esc="format_amount('%i', get_somme_rubrique(o,'BRUT'))"/></td>
+		                    		<td><span t-esc="format_amount('%i', get_somme_rubrique(o,'ITS'))"/></td>
+		                    		<td><span t-esc="format_amount('%i', get_somme_rubrique(o,'CN'))"/></td>
+		                    		<td><span t-esc="format_amount('%i', get_somme_rubrique(o,'IGR'))"/></td>
+		                    	</tr>
+		                    	<tr id="part_row">
+		                    		<td>CNPS</td>
+		                    		<td>Brut CNPS</td>
+		                    		<td>Brut Impossable</td>
+		                    		<td>Jours de Congés à Prendre</td>
+		                    	</tr>
+		                    	<tr id="part_second">
+		                    		<td><span t-esc="format_amount('%i', get_somme_rubrique(o,'CNPS'))"/></td>
+		                    		<td><span t-esc="format_amount('%i', get_somme_rubrique(o,'BASE_CNPS'))"/></td>
+		                    		<td><span t-esc="format_amount('%i', get_somme_rubrique(o,'BASE_IMP'))"/></td>
+		                    		<td><span t-field="o.employee_id.remaining_leaves"/></td>
+		                    	</tr>
+		                    	<tr id="part_row">
+		                    		<td>Jours Congés Pris</td>
+		                    		<td>Total jours congés annuels</td>
+		                    		<td>Date de retour congés</td>
+									<td>Allocation congé</td>
+		                    	</tr>
+		                    	<tr id="part_second">
+<!--		                    		<td><span t-field="o.employee_id.taken_leaves"/></td>-->
+		                    		<td></td>
+<!--		                    		<td><span t-field="o.employee_id.max_leaves"/></td>-->
+		                    		<td></td>
+<!--		                    		<td><span t-field="o.employee_id.leave_date_to"/></td>-->
+		                    		<td></td>
+									<td><span t-esc="format_amount('%i', o.employee_id.allocation_conge)"/></td>
+		                    	</tr>
+		                    </table>
+                    	</div>
+				</div>
+				<div class="row" style="width: 1%; padding:8%"></div>
+			</div>
+
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="report_payroll">
+			<t t-call="web.html_container">
+				<t t-set="data_report_margin_top" t-value="12"/>
+				<t t-set="data_report_header_spacing" t-value="9"/>
+				<t t-set="data_report_dpi" t-value="110"/>
+				<div class="page">
+					 <t t-foreach="docs" t-as="o">
+							<style type="text/css">
+								h1  {font-weight:bold;}
+								div#item1 {float: left;width: 50%;}
+								table {
+										border-collapse: collapse;
+										font-size: 12px;
+										width: 100%;
+									}
+								td {
+										border: 1px solid gray;
+										font-size: 10px;
+									}
+								td#title_part {
+										font-style: italic;
+										white-space: nowrap;
+									}
+								td#company{
+										font-size: 12px;
+										padding-left: 5px;
+
+									}
+
+							</style>
+							 <h6>Livre de paie de la période du&#032;&#032;&#032;<span t-field="o.date_from"/>&#032;au&#032;<span t-field="o.date_to" /></h6>
+							 <table id="table1" width="100%" >
+								<tr>
+									<td id="title_part" rowspan="2" width="20%">Noms et Prénoms</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">Salaire de base</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">Sursalaire</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">Primes imposables</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">Prime d'ancienneté</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">HS</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">Avantages en natures</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">S. brut imposables</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">Salaire brut</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">Abattemnt 10%</td>
+									<td id="title_part" colspan="5" width="24%" style="text-align: center;">RETENUES</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">TOTAL Retenues</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">Avances et Acomptes</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">Autres retenues</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">Indemn. non imposables</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">Prime de transport</td>
+									<td id="title_part" rowspan="2" width="6%" style="text-align: center;">Net à payer</td>
+
+								</tr>
+								<tr>
+									<td width="6%" style="text-align: center;">IS</td>
+									<td width="6%" style="text-align: center;">IGR</td>
+									<td width="6%" style="text-align: center;">CN</td>
+									<td width="6%" style="text-align: center;">CNPS</td>
+									<td width="6%" style="text-align: center;">CMU</td>
+								</tr>
+								<tr t-foreach="o.line_ids" t-as="p">
+									<td ><span t-field="p.name"/></td>
+									<td style="text-align: center;"><span t-esc="format_amount('%i',p.salaire_base)"/></td>
+									<td style="text-align: center;"><span t-esc="format_amount('%i',p.sursalaire)"/></td>
+									<td style="text-align: center;"><span t-esc="format_amount('%i',p.prime_imposable)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.prime_anciennete)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.hs)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.avantage_nature)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.salbrut_imposable)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.salbrut)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.abattement)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.its)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.igr)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.cn)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.cnps)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.cmu)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.total_retenues)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.avance)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.autre_retenue)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.indem_non_impo)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.trsp)"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i',p.net_a_paye)"/></td>
+								</tr>
+								<tr >
+									<td >Totaux :</td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'salaire_base'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'sursalaire'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'prime_imposable'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'prime_anciennete'))"/></td>
+<!--									<td style="text-align: center;" >HS</td>-->
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'hs'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'avantage_nature'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'salbrut_imposable'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'salbrut'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'abattement'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'its'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'igr'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'cn'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'cnps'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'cmu'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'total_retenues'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'avance'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'autre_retenue'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'indem_non_impo'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'trsp'))"/></td>
+									<td style="text-align: center;" ><span t-esc="format_amount('%i', get_total_line_by_code(o,'net_a_paye'))"/></td>
+								</tr>
+							</table>
+					</t>
+				</div>
+			</t>
+		</template>
+	</data>
+</odoo>

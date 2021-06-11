@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    	<record model="prime.non.imposable" id="prime_risque">
+             <field name="name">Prime de Risque</field>
+             <field name="code">PR</field>
+             <field name="description">Prime de Risque</field>
+        </record>
+        <record model="prime.non.imposable" id="prime_assiduite">
+             <field name="name">Prime d'assiduité</field>
+             <field name="code">PA</field>
+             <field name="description">Prime d'assiduité</field>
+        </record>
+        <record model="prime.non.imposable" id="prime_caisse">
+             <field name="name">Prime de Caisse</field>
+             <field name="code">PC</field>
+             <field name="description">Prime de Caisse</field>
+        </record>
+        <record model="prime.non.imposable" id="prime_technicite">
+             <field name="name">Prime de Technicité</field>
+             <field name="code">PT</field>
+             <field name="description">Prime de Technicité</field>
+        </record>
+        <record model="prime.non.imposable" id="prime_salissure">
+             <field name="name">Prime de Salissure</field>
+             <field name="code">PS</field>
+             <field name="description">Prime de Salissure</field>
+        </record>
+        <record model="prime.non.imposable" id="prime_panier">
+             <field name="name">Prime de Panier</field>
+             <field name="code">PP</field>
+             <field name="description">Prime de Panier</field>
+        </record>
+        <record model="prime.non.imposable" id="prime_outillage">
+             <field name="name">Prime de Outillage</field>
+             <field name="code">PO</field>
+             <field name="description">Prime de Outillage</field>
+        </record>
+        <record model="prime.non.imposable" id="prime_fonction_non">
+             <field name="name">Prime de fonction</field>
+             <field name="code">PF</field>
+             <field name="description">Prime de fonction</field>
+        </record>
+    </data>
+</openerp>

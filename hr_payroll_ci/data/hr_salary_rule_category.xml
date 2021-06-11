@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="0">
+		<record id="hr_salary_rule_category0" model="hr.salary.rule.category">
+			<field name="code">RETENUES</field>
+			<field name="name">Total Retenues</field>
+			
+		</record>
+		<record id="hr_salary_rule_category1" model="hr.salary.rule.category">
+			<field name="code">INDM</field>
+			<field name="name">Indemnite</field>
+			
+		</record>
+		<record id="hr_salary_rule_category2" model="hr.salary.rule.category">
+			<field name="code">INDMNI</field>
+			<field name="name">Indemnite Non Imposable</field>
+			
+		</record>
+		<record id="hr_salary_rule_category3" model="hr.salary.rule.category">
+			<field name="code">SALC</field>
+			<field name="name">Total Charges Salariales</field>
+			
+		</record>
+		<record id="hr_salary_rule_category4" model="hr.salary.rule.category">
+			<field name="code">NET</field>
+			<field name="name">Net</field>
+			
+		</record>
+		<record id="hr_salary_rule_category5" model="hr.salary.rule.category">
+			<field name="code">BASE</field>
+			<field name="name">Salaire de base</field>
+			
+		</record>
+		<record id="hr_salary_rule_category6" model="hr.salary.rule.category">
+			<field name="code">BRUT</field>
+			<field name="name">Salaire Brut</field>
+			
+		</record>
+		<record id="hr_salary_rule_category7" model="hr.salary.rule.category">
+			<field name="code">INDM</field>
+			<field name="name">Indemnite</field>
+			
+		</record>
+		<record id="hr_salary_rule_category8" model="hr.salary.rule.category">
+			<field name="code">DED</field>
+			<field name="name">Deduction</field>
+			
+		</record>
+		<record id="hr_salary_rule_category9" model="hr.salary.rule.category">
+			<field name="code">SURSALAIRE</field>
+			<field name="name">Sursalaire</field>
+		</record>
+		<record id="hr_salary_rule_category10" model="hr.salary.rule.category">
+			<field name="code">SALC</field>
+			<field name="name">Total Charges Salariales</field>
+			<field name="parent_id" ref="hr_salary_rule_category0"/>
+		</record>
+		<record id="hr_salary_rule_category11" model="hr.salary.rule.category">
+			<field name="code">TOTAL</field>
+			<field name="name">Cout total pour l'entreprise</field>
+		</record>
+		<record id="hr_salary_rule_category12" model="hr.salary.rule.category">
+			<field name="code">O_TOTALS</field>
+			<field name="name">Autres Totaux</field>
+		</record>
+		<record id="hr_salary_rule_category13" model="hr.salary.rule.category">
+			<field name="code">C_IMP</field>
+			<field name="name">Net Imposable</field>
+		</record>
+		<record id="hr_salary_rule_category14" model="hr.salary.rule.category">
+			<field name="code">RET_EMP</field>
+			<field name="name">Retenues employés</field>
+		</record>
+		<record id="hr_salary_rule_category15" model="hr.salary.rule.category">
+			<field name="code">IMP_EMP</field>
+			<field name="name">Impôts employeurs</field>
+		</record>
+		<record id="hr_salary_rule_category16" model="hr.salary.rule.category">
+			<field name="code">TRETR</field>
+			<field name="name">Total Cotisations Rétraite</field>
+		</record>
+		<record id="hr_salary_rule_category17" model="hr.salary.rule.category">
+			<field name="code">ARETE</field>
+			<field name="name">Autres retenues</field>
+			
+		</record>
+		<record id="hr_salary_rule_category18" model="hr.salary.rule.category">
+			<field name="code">CPATR</field>
+			<field name="name">Cotisations Patronales</field>
+			
+		</record>
+		<record id="hr_salary_rule_category19" model="hr.salary.rule.category">
+			<field name="code">ALLO</field>
+			<field name="create_date">2018-11-30</field>
+			<field name="name">Allocation congé</field>
+			
+		</record>
+		<record id="hr_salary_rule_category20" model="hr.salary.rule.category">
+			<field name="code">INDEM_L</field>
+			<field name="name">Indemnité licencement</field>
+			
+		</record>
+		<record id="hr_salary_rule_category21" model="hr.salary.rule.category">
+			<field name="code">INDEM_CDD</field>
+			<field name="name">Indemnité CDD</field>
+			
+		</record>
+		<record id="hr_salary_rule_category22" model="hr.salary.rule.category">
+			<field name="code">INDEM_R</field>
+			<field name="name">Indemnité retraite</field>
+			
+		</record>
+		<record id="hr_salary_rule_category23" model="hr.salary.rule.category">
+			<field name="code">INDEM_DECES</field>
+			<field name="name">Indemnité décès</field>
+			
+		</record>
+		<record id="hr_salary_rule_category24" model="hr.salary.rule.category">
+			<field name="code">CMU_EMPLOYE</field>
+			<field name="name">CMU Employe</field>
+			
+		</record>
+		<record id="hr_salary_rule_category25" model="hr.salary.rule.category">
+			<field name="code">CMU_EMPLOYEUR</field>
+			<field name="name">CMU Employeur</field>
+			
+		</record>
+		<record id="hr_salary_rule_category26" model="hr.salary.rule.category">
+			<field name="code">GRATIF</field>
+			<field name="name">GRATIFICATION</field>
+			
+		</record>
+		<record id="hr_salary_rule_category27" model="hr.salary.rule.category">
+			<field name="code">ASSUR</field>
+			<field name="name">ASSURANCE</field>
+			
+		</record>
+		<record id="hr_salary_rule_category28" model="hr.salary.rule.category">
+			<field name="code">FONCT</field>
+			<field name="name">Prime de Fonction</field>
+			
+		</record>
+		<record id="hr_salary_rule_category29" model="hr.salary.rule.category">
+			<field name="code">TRSP_IMP</field>
+			<field name="name">Prime de transport imposable</field>
+			
+		</record>
+		<record id="hr_salary_rule_category29" model="hr.salary.rule.category">
+			<field name="code">TRSP_IMP</field>
+			<field name="name">Prime de transport imposable</field>
+			
+		</record>
+		<record id="hr_salary_rule_category30" model="hr.salary.rule.category">
+			<field name="code">ABB</field>
+			<field name="name">Abattement de 10%</field>
+			
+		</record>
+		<record id="hr_salary_rule_category31" model="hr.salary.rule.category">
+			<field name="code">PIMP</field>
+			<field name="name">Prime imposables</field>
+			
+		</record>
+		<record id="hr_salary_rule_category32" model="hr.salary.rule.category">
+			<field name="code">prime_risque</field>
+			<field name="name">Prime Risque</field>
+			
+		</record>
+		<record id="hr_salary_rule_category33" model="hr.salary.rule.category">
+			<field name="code">prime_assiduite</field>
+			<field name="name">Prime assiduité</field>
+			
+		</record>
+		<record id="hr_salary_rule_category34" model="hr.salary.rule.category">
+			<field name="code">prime_caisse</field>
+			<field name="name">Prime caisse</field>
+			
+		</record>
+		<record id="hr_salary_rule_category35" model="hr.salary.rule.category">
+			<field name="code">prime_technicite</field>
+			<field name="name">Prime technicité</field>
+			
+		</record>
+		<record id="hr_salary_rule_category36" model="hr.salary.rule.category">
+			<field name="code">prime_salissure</field>
+			<field name="name">Prime salissure</field>
+			
+		</record>
+		<record id="hr_salary_rule_category37" model="hr.salary.rule.category">
+			<field name="code">prime_panier</field>
+			<field name="name">Prime salissure</field>
+			
+		</record>
+		<record id="hr_salary_rule_category38" model="hr.salary.rule.category">
+			<field name="code">prime_outillage</field>
+			<field name="name">Prime outillage</field>
+			
+		</record>
+		<record id="hr_salary_rule_category39" model="hr.salary.rule.category">
+			<field name="code">prime_fonction_non</field>
+			<field name="name">Prime fonction</field>
+			
+		</record>
+		<record id="hr_salary_rule_category40" model="hr.salary.rule.category">
+			<field name="code">C_PNIMP</field>
+			<field name="name">Cumul Prime non imposable</field>
+			
+		</record>
+		<record id="hr_salary_rule_category41" model="hr.salary.rule.category">
+			<field name="code">INDML</field>
+			<field name="name">Indemnité de logement</field>
+			
+		</record>
+		<record id="hr_salary_rule_category42" model="hr.salary.rule.category">
+			<field name="code">P_TRSP</field>
+			<field name="name">Prime Transport</field>
+		</record>
+		<record id="hr_salary_rule_category43" model="hr.salary.rule.category">
+			<field name="code">RETUNUE</field>
+			<field name="name">Retenues</field>
+		</record>
+	</data>
+</odoo>

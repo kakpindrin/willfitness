@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+		<record model="ir.ui.view" id="hr_etat_resume_cotisation_mensuelle_form_view">
+			<field name="name">hr.etat.resume.cotisation.mensuelle.form</field>
+			<field name="model">hr.etat.cotisation.mensuelle</field>
+			<field name="arch" type="xml">
+				<form string="Etat Résumé des Cotisations Mensuelle">
+					<sheet>
+						<group>
+							<group>
+								<field name="date_from"/>
+							</group>
+							<group>
+								<field name="date_to"/>
+								<field name="cn" invisible="1"/>
+								<field name="igr" invisible="1"/>
+								<field name="IS" invisible="1"/>
+								<field name="part_is_locaux" invisible="1"/>
+								<field name="crtci_cnps" invisible="1"/>
+								<field name="retraite_generale" invisible="1"/>
+								<field name="prestation_familiale" invisible="1"/>
+								<field name="accident_travail" invisible="1"/>
+								<field name="taxe_fpc" invisible="1"/>
+								<field name="taxe_apprentissage" invisible="1"/>
+								<field name="salaire_brut" invisible="1"/>
+								<field name="base_cnps" invisible="1"/>
+								<field name="total_montant_salarial_impot" invisible="1"/>
+								<field name="total_montant_patronal_impot" invisible="1"/>
+								<field name="montant_global_impot" invisible="1"/>
+								<field name="total_montant_salarial_cnps" invisible="1"/>
+								<field name="total_montant_patronal_cnps" invisible="1"/>
+								<field name="montant_global_cnps" invisible="1"/>
+								<field name="total_montant_salarial_fpc" invisible="1"/>
+								<field name="total_montant_patronal_fpc" invisible="1"/>
+								<field name="montant_global_fpc" invisible="1"/>
+								<field name="total_montant_salarial_fdfp" invisible="1"/>
+								<field name="total_montant_patronal_fdfp" invisible="1"/>
+								<field name="montant_global_fdfp" invisible="1"/>
+								<field name="total_salarial" invisible="1"/>
+								<field name="total_patronal" invisible="1"/>
+								<field name="total_montant_global" invisible="1"/>
+								<field name="cmu_employe" invisible="1"/>
+								<field name="cmu_employeur" invisible="1"/>
+								<field name="male" invisible="1"/>
+								<field name="female" invisible="1"/>
+								<field name="assiette_pf" invisible="1"/>
+								<field name="base_pf" invisible="1"/>
+								<field name="assiette_at" invisible="1"/>
+								<field name="assiette_cmu" invisible="1"/>
+								<field name="base_cmu" invisible="1"/>
+							</group>
+							<group>
+								<field name="company"/>
+							</group>
+						</group>
+					</sheet>
+					<footer>
+					<button name="print_etat_mensuelle" string="Imprimer" type="object" class="oe_highlight"/>
+					<button string="Annuler" class="btn-default" special="cancel"/>
+				</footer>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_etat_resume_cotisation_mensuelle_form_view">
+			<field name="name">Etat Résumé des Cotisations Mensuelle</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.etat.cotisation.mensuelle</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="hr_etat_resume_cotisation_mensuelle_form_view"/>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem id="etat_cotisation_mensuelle_menu" name="Etat Résumé des Cotisations Mensuelle" parent="hr_payroll_id" sequence="2" action="action_etat_resume_cotisation_mensuelle_form_view"/>
+
+    </data>
+</odoo>

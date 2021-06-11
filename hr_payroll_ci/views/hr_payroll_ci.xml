@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hr_payslip_ci_form_view">
+            <field name="name">hr.payslip.form</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/header/button[@name='compute_sheet']" position="after" >
+                    <button name="%(action_hr_payslip_prorata_form_view)d" type="action" string="Calcul au prorata"/>
+                </xpath>
+                <field name='name' position="after">
+                    <label for="payslip_an_anciennete" string="Ancienneté"/>
+                    <div>
+                        <field name="payslip_an_anciennete" class="oe_inline"/>Ans-<field name="payslip_mois_anciennete" class="oe_inline"/>Mois
+                    </div>
+                </field>
+                <field name="note" position="after">
+                    <group colspan="2">
+                        <group>
+                            <field name="payment_method"/>
+                            <field name="cumul_base_impot" invisible="1"/>
+                            <field name="cumul_cn" invisible="1"/>
+                            <field name="cumul_igr" invisible="1"/>
+                            <field name="cumul_worked_days" invisible="1"/>
+                        </group>
+                    </group>
+                </field>
+                <field name="credit_note" position="after">
+                    <field name="allocation"/>
+                    <field name="is_prorata"/>
+                    <field name="fin_ccd"/>
+                    <field name="retraite"/>
+                    <field name="base_prorata" invisible="1"/>
+                    <field name="sursa_prorata" invisible="1"/>
+                    <field name="panc_prorata" invisible="1"/>
+                    <field name="repr_prorata" invisible="1"/>
+                    <field name="pres_prorata" invisible="1"/>
+                    <field name="indml_prorata" invisible="1"/>
+                    <field name="carbu_prorata" invisible="1"/>
+                    <field name="trsp_imp_prorata" invisible="1"/>
+                    <field name="trsp_prorata" invisible="1"/>
+                </field>
+            </field>
+        </record>
+        <record id="hr_payroll.view_hr_employee_grade_form" model="ir.ui.view">
+        <field name="name">hr.payroll.structure.form</field>
+        <field name="model">hr.payroll.structure</field>
+        <field name="arch" type="xml">
+            <form string="Employee Function">
+            <sheet>
+                <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                <div class="oe_title">
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name" class="oe_inline"/></h1>
+                </div>
+                <group>
+                    <group name="salary_details">
+                        <field name="active" invisible="1"/>
+                        <field name="id" invisible="1"/>
+                        <field name="type_id"/>
+                        <field name="use_worked_day_lines"/>
+                        <field name="country_id" options="{'no_create': True}"/>
+                    </group>
+                    <group>
+                        <field name="report_id"/>
+                        <field name="regular_pay"/>
+                        <field name="schedule_pay"/>
+                    </group>
+                </group>
+                <notebook colspan="4">
+                     <page name="salary_rules" string="Salary Rules">
+                       <field name="rule_ids">
+                         <tree>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="category_id"/>
+                            <field name="sequence" invisible="1"/>
+                            <field name="partner_id"/>
+                         </tree>
+                      </field>
+                     </page>
+                     <page string="Unpaid Work Entry Types">
+                       <field name="unpaid_work_entry_type_ids"/>
+                     </page>
+                     <page name="other_input" string="Other Input">
+                       <field name="input_line_type_ids">
+                         <tree>
+                            <field name="name"/>
+                            <field name="code"/>
+                         </tree>
+                      </field>
+                     </page>
+                </notebook>
+            </sheet>
+            </form>
+        </field>
+    </record>
+    </data>
+</odoo>

@@ -1,0 +1,1074 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="cotisation_mensuelle_report">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="12"/>
+                <t t-set="data_report_header_spacing" t-value="9"/>
+                <t t-set="data_report_dpi" t-value="110"/>
+                 <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <div class="row" style="border: black solid 1px;background-color:rgb(175, 218, 112);">
+                            <div class="col-xs-12">
+                                <div class="col-xs-4">Date du jour : <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d - %m - %Y %H:%M')"/></div>
+                                <div class="col-xs-6"></div>
+                                <div class="col-xs-2">Page: 1</div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-4"></div>
+                                <div class="col-xs-6" style="text-align:center; margin-left:-10%"><h3><strong>Etat Résumé des Cotisations M E N S U E L</strong></h3></div>
+                                <div class="col-xs-2"></div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-4">Edition en : <span t-field="o.company.currency_id.symbol"/></div>
+                                <div class="col-xs-4">Période du <span t-field="o.date_from"/> au <span t-field="o.date_to"/></div>
+                                <div class="col-xs-4"></div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="col-xs-4">Société : <span t-field="o.company"/></div>
+                                <div class="col-xs-4"></div>
+                                <div class="col-xs-4"></div>
+                            </div>
+                        </div>
+                        <br/>
+<!--                        <div class="row" style="border: black solid 1px;padding:1%">-->
+<!--                            <div class="col-xs-12">-->
+<!--                                <div class="col-xs-4">Matricule</div>-->
+<!--                                <div class="col-xs-4">a</div>-->
+<!--                                <div class="col-xs-4">zzzzzz</div>-->
+<!--                            </div>-->
+<!--                            <div class="col-xs-12" style="padding:1%"></div>-->
+<!--                            <div class="col-xs-12">-->
+<!--                                <div class="col-xs-4">Total</div>-->
+<!--                                <div class="col-xs-4"></div>-->
+<!--                                <div class="col-xs-4"></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="row">
+                                <table class="table table-condensed" width="100%">
+                                    <tr style="background-color:rgb(175, 218, 112);">
+                                        <th colspan="2" rowspan="2" style="border:solid black 1px;">Rubriques de cotisations</th>
+                                        <th rowspan="2" style="border:solid black 1px;white-space: nowrap;">Taux salarial</th>
+                                        <th rowspan="2" style="border:solid black 1px;white-space: nowrap;">Taux patronal</th>
+                                        <th rowspan="2" style="border:solid black 1px;white-space: nowrap;">Taux global</th>
+                                        <th rowspan="2" style="border:solid black 1px;white-space: nowrap;">Assiette de cotisation</th>
+                                        <th rowspan="2" style="border:solid black 1px;white-space: nowrap;">Base</th>
+                                        <th rowspan="2" style="border:solid black 1px;white-space: nowrap;">Montant salarial</th>
+                                        <th rowspan="2" style="border:solid black 1px;white-space: nowrap;">Montant patronal</th>
+                                        <th rowspan="2" style="border:solid black 1px;white-space: nowrap;">Montant global</th>
+                                        <th colspan="3" style="border:solid black 1px;white-space: nowrap;">Effectifs</th>
+                                    </tr>
+                                        <tr>
+                                            <td style="border:solid black 1px;background-color:rgb(175, 218, 112);">H</td>
+                                            <td style="border:solid black 1px;background-color:rgb(175, 218, 112);">F</td>
+                                        </tr>
+                                    <tr>
+                                        <td style="border-top: solid black 1px;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">401</td>
+                                        <td style="border-top: solid black 1px;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;
+                                                    white-space: nowrap;
+                                                    ">CONTRIBUTION NATIONALE (CN)</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;
+                                                    white-space: nowrap;
+                                                    text-align:right;
+                                                    "></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;
+                                                    white-space: nowrap;
+                                                    text-align:right;
+                                                    "></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;
+                                                    white-space: nowrap;
+                                                    text-align:right;
+                                                    "></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;
+                                                    white-space: nowrap;
+                                                    text-align:right;
+                                                    "><span t-field="o.salaire_brut"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;
+                                                    white-space: nowrap;
+                                                    text-align:right;
+                                                    "></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;
+                                                    white-space: nowrap;
+                                                    text-align:right;
+                                                    "><span t-field="o.cn"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;
+                                                    white-space: nowrap;
+                                                    text-align:right;
+                                                    "></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;
+                                                    white-space: nowrap;
+                                                    text-align:right;
+                                                    "><span t-field="o.cn"/></td>
+                                        <td style="border-top: solid black 1px;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;
+                                                    text-align:right;
+                                                "><span t-field="o.male"/></td>
+                                        <td style="border-top: solid black 1px;
+                                        border-left: solid black 1px;
+                                        border-right: solid black 1px;
+                                        text-align:right;
+                                        border-bottom: none;"><span t-field="o.female"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">403</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">IGR</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.salaire_brut"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.igr"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.igr"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.male"/></td>
+                                        <td style="border-top: none;
+                                        border-left: solid black 1px;
+                                        border-right: solid black 1px;
+                                        text-align:right;
+                                        border-bottom: none;"><span t-field="o.female"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">401</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">I.S</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">1,2</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">0,00</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">1,2</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.salaire_brut"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.salaire_brut"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.IS"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.IS"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.male"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.female"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">401</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">PART PATRONALE I.S LOCAUX</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">0,00</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">1,20</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">1,20</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.salaire_brut"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.salaire_brut"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.part_is_locaux"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.part_is_locaux"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.male"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.female"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    background-color:yellow;
+                                                    border-bottom: none;">Total IMPOT</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    background-color:yellow;
+                                                    border-bottom: none;"><span t-field="o.total_montant_salarial_impot"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    background-color:yellow;
+                                                    border-bottom: none;"><span t-field="o.total_montant_patronal_impot"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    background-color:yellow;
+                                                    border-bottom: none;"><span t-field="o.montant_global_impot"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">221</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">Retraite C.N.P.S employé</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">6,30</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">0,00</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">6,30</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.base_cnps"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.base_cnps"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.crtci_cnps"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.crtci_cnps"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.male"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.female"/></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">221</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">RETRAITE GENERALE</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">0,00</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">7,70</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">7,70</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.base_cnps"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.base_cnps"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.retraite_generale"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.retraite_generale"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.male"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.female"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">402</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">PRESTATION FAMILIALE</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">0,00</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">5,75</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">5,75</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.assiette_pf"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.base_pf"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.prestation_familiale"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.prestation_familiale"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.male"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.female"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">402</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">ACCIDENT DE TRAVAIL</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">0,00</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">3</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">3</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.assiette_at"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.base_at"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.accident_travail"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.accident_travail"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.male"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.female"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">403</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">CMU</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">50</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">50</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">100</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.assiette_cmu"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.base_cmu"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.cmu_employe"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.cmu_employeur"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.male"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.female"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    background-color:yellow;
+                                                    border-bottom: none;">Total C.N.P.S</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    background-color:yellow;
+                                                    border-bottom: none;"><span t-field="o.total_montant_salarial_cnps"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    background-color:yellow;
+                                                    border-bottom: none;"><span t-field="o.total_montant_patronal_cnps"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    background-color:yellow;
+                                                    border-bottom: none;"><span t-field="o.montant_global_cnps"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">403</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">TAXE F.P.C</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">0,00</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">0,60</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">0,60</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.salaire_brut"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.salaire_brut"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.taxe_fpc"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.taxe_fpc"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.male"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.female"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    background-color:yellow;
+                                                    border-bottom: none;">Total F.P.C</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    background-color:yellow;
+                                                    border-bottom: none;"><span t-field="o.total_montant_salarial_fpc"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    background-color:yellow;
+                                                    border-bottom: none;"><span t-field="o.total_montant_patronal_fpc"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    background-color:yellow;
+                                                    border-bottom: none;"><span t-field="o.montant_global_fpc"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">404</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;">TAXE D'APPRENTISSAGE</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">0,00</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">0,40</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;">0,40</td>
+                                         <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.salaire_brut"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.salaire_brut"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.taxe_apprentissage"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.taxe_apprentissage"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.male"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.female"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    background-color:yellow;
+                                                    border-bottom: none;">Total F.D.F.P</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    background-color:yellow;
+                                                    border-bottom: none;"><span t-field="o.total_montant_salarial_fdfp"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    background-color:yellow;
+                                                    border-bottom: none;"><span t-field="o.total_montant_patronal_fdfp"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                     background-color:yellow;
+                                                    text-align:right;
+                                                    border-bottom: none;"><span t-field="o.montant_global_fdfp"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: solid black 1px;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    background-color:yellow;
+                                                    border-bottom: solid black 1px;">Total</td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    ext-align:right;
+                                                    border-bottom: solid black 1px;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: solid black 1px;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: solid black 1px;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    border-bottom: solid black 1px;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: solid black 1px;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    background-color:yellow;
+                                                    border-bottom: solid black 1px;"><span t-field="o.total_salarial"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    background-color:yellow;
+                                                    text-align:right;
+                                                    border-bottom: solid black 1px;"><span t-field="o.total_patronal"/></td>
+                                          <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    background-color:yellow;
+                                                    border-bottom: solid black 1px;"><span t-field="o.total_montant_global"/></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: solid black 1px;"></td>
+                                        <td style="border-top: none;
+                                                    border-left: solid black 1px;
+                                                    border-right: solid black 1px;
+                                                    text-align:right;
+                                                    border-bottom: solid black 1px;"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
