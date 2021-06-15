@@ -4,15 +4,17 @@
         <field name="name">res.partner.inherit.form.will.fitness.view</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
-        <field name="function" position="after">
-            <field name="prenom"/>
-            <field name="date_naissance"/>
-            <field name="adresse_postale"/>
-            <field name="poids"/>
-            <field name="taille"/>
-            <field name="antecedent_medical"/>
-            <field name="contact_urgence"/>
-        </field>
+        <field name="arch" type="xml">
+            <field name="function" position="after">
+                <field name="prenom"/>
+                <field name="date_naissance"/>
+                <field name="adresse_postale"/>
+                <field name="poids"/>
+                <field name="taille"/>
+                <field name="antecedent_medical"/>
+                <field name="contact_urgence"/>
+            </field>
+         </field>
     </record>
 
     <record model="ir.actions.act_window" id="action_will_fitness_clients_window">
