@@ -14,7 +14,20 @@
                 <field name="antecedent_medical" attrs="{'invisible': [('company_type','!=','person')]}"/>
                 <field name="contact_urgence" attrs="{'invisible': [('company_type','!=','person')]}"/>
             </field>
-         </field>
+        </field>
+
+        <field name="arch" type="xml">
+            <notebook>
+                <page string="Badge">
+                    <label for="barcode"/>
+                    <div class="o_row">
+                        <field name="barcode"/>
+                        <button string="Generate" class="btn btn-link" type="object" name="generate_random_barcode" attrs="{'invisible': [('barcode', '!=', False)]}"/>
+                        <button name="%(will_contact_print_badge)d" string="Print Badge" class="btn btn-link" type="action" attrs="{'invisible': [('barcode', '=', False)]}"/>
+                    </div>
+                </page>
+            </notebook>
+        </field>
     </record>
 
     <record model="ir.actions.act_window" id="action_will_fitness_clients_window">
@@ -26,4 +39,3 @@
     </record>
     <menuitem name="Clients" id="will_fitness.clients" parent="will_fitness.client" action="will_fitness.action_will_fitness_clients_window"/>
 </odoo>
-
