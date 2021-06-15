@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sequences for will.fitness.presence.sequence -->
+        <record id="seq_will_fitness_presence" model="ir.sequence">
+            <field name="name">Présence sequence</field>
+            <field name="code">will.fitness.presence.sequence</field>
+            <field name="prefix">_</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

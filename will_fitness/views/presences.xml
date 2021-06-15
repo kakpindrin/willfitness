@@ -7,7 +7,7 @@
         <form string="presence">
           <sheet>
             <group>
-                <field name="name"/>
+                <!-- <field name="name"/> -->
                 <field name="client"/>
                 <field name="arrivee"/>
                 <field name="sortie"/>
@@ -22,7 +22,7 @@
       <field name="model">will.fitness.presence</field>
       <field name="arch" type="xml">
         <tree string="La liste des présences">
-            <field name="name"/>
+            <!-- <field name="name"/> -->
             <field name="client"/>
             <field name="arrivee"/>
             <field name="sortie"/>

@@ -12,3 +12,11 @@ class will_fitness_presence(models.Model):
     arrivee = fields.Datetime(string='Arrivée', default=fields.Datetime.now,)
     sortie = fields.Datetime(string='Sortie', default=fields.Datetime.now,)
     duree_de_travail = fields.Float(string='Durée de travail',)
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', _('New')) == _('New'):
+            vals['name'] = self.env['ir.sequence'].next_by_code('will.fitness.presence.sequence',) or _('New')
+        result = super(will_fitness_presence, self).create(vals)
+    
+        return result
