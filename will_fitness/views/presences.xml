@@ -1,0 +1,40 @@
+<odoo>
+  <data>
+    <record id="will_fitness_presences_form" model="ir.ui.view">
+      <field name="name">will.fitness.presence.form</field>
+      <field name="model">will.fitness.presence</field>
+      <field name="arch" type="xml">
+        <form string="presence">
+          <sheet>
+            <group>
+                <field name="name"/>
+                <field name="client"/>
+                <field name="arrivee"/>
+                <field name="sortie"/>
+                <field name="duree_de_travail"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="will_fitness.presences_view_tree" model="ir.ui.view">
+      <field name="name">will.fitness.presence.tree</field>
+      <field name="model">will.fitness.presence</field>
+      <field name="arch" type="xml">
+        <tree string="La liste des présences">
+            <field name="name"/>
+            <field name="client"/>
+            <field name="arrivee"/>
+            <field name="sortie"/>
+            <field name="duree_de_travail"/>
+        </tree>
+      </field>
+    </record>
+    <record id="action_presences_window" model="ir.actions.act_window">
+        <field name="name">Les Présences</field>
+        <field name="res_model">will.fitness.presence</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Présences" id="will_fitness.presences" parent="will_fitness.client" action="will_fitness.action_presences_window"/>
+  </data>
+</odoo>
