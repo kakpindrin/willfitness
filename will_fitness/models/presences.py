@@ -23,6 +23,6 @@ class will_fitness_presence(models.Model):
         time_one = result.sortie.hour + result.sortie.minute/60.0
         time_two = result.arrivee.hour + result.arrivee.minute/60.0
         result.write({
-            'duree_de_travail': time_two - time_one
+            'duree_de_travail': time_one - time_two
         })
         return result
