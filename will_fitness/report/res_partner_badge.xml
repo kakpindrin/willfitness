@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="will_contact_print_badge" model="ir.actions.report">
+    <record id="will_partner_print_badge" model="ir.actions.report">
         <field name="name">Print Badge</field>
         <field name="model">res.partner</field>
         <field name="report_type">qweb-pdf</field>
