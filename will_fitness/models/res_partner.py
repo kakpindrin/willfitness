@@ -5,7 +5,7 @@ from odoo import api, fields, models, _
 class res_partner(models.Model):
     _inherit = 'res.partner'
 
-    prenom = fields.Char(string='Prénom')
+    prenom = fields.Char(string='Prénoms')
     date_naissance = fields.Date(string='Date Naissance',)
     adresse_postale = fields.Char(string='Adresse Postale')
     poids = fields.Float(string='Poids')
