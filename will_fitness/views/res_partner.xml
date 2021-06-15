@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_partner_inherit_form_will_fitness_view" model="ir.ui.view">
+        <field name="name">res.partner.inherit.form.will.fitness.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="function" position="after">
+            <field name="prenom"/>
+            <field name="date_naissance"/>
+            <field name="adresse_postale"/>
+            <field name="poids"/>
+            <field name="taille"/>
+            <field name="antecedent_medical"/>
+            <field name="contact_urgence"/>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_will_fitness_clients_window">
+        <field name="name">Clients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Clients" id="will_fitness.clients" parent="will_fitness.client" action="will_fitness.action_will_fitness_clients_window"/>
+</odoo>
+
