@@ -30,7 +30,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        # 'views/views.xml',
+        'report/will_this_week_print_coach_planning.xml',
         'report/res_partner_badge.xml',
         'views/menu.xml',
         'views/res_partner.xml',
