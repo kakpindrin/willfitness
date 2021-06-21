@@ -33,14 +33,12 @@
                                         </tr>
                                     
                                         <t t-foreach="docs" t-as="planning">
-                                            <t t-if="planning.start_datetime &gt;= (datetime.datetime.now()).strftime('%Y-%m-%d')">
-                                                <tr>
-                                                    <td><strong><t t-esc="planning.start_datetime.strftime('%A')"/></strong></td>
-                                                    <td><t t-esc="planning.start_datetime"/></td>
-                                                    <td><t t-esc="planning.end_datetime"/></td>
-                                                    <td><t t-esc="planning.role_id.name"/></td>
-                                                </tr>
-                                            </t>
+                                            <tr>
+                                                <td><strong><t t-esc="planning.start_datetime.strftime('%A')"/></strong></td>
+                                                <td><t t-esc="planning.start_datetime"/></td>
+                                                <td><t t-esc="planning.end_datetime"/></td>
+                                                <td><t t-esc="planning.role_id.name"/></td>
+                                            </tr>
                                         </t>
                                     </table>
                                 </tr>
