@@ -20,11 +20,11 @@
             <t t-foreach="set(planning_employee)" t-as="employee">
                 <div class="page">
                     <div class="col-md-6">
-                        <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:collapsed; border-radius:8pt; margin:5pt">
+                        <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt">
                             <td style="width:100%;" valign="center">
                                 <tr><strong>NOM DU COACH: </strong><t t-esc="employee.name"/></tr>
                                 <tr>
-                                    <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:collapsed; border-radius:8pt; margin:5pt" valign="center">
+                                    <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt" valign="center">
                                         <tr>
                                             <th>Jours</th>
                                             <th>Heure Début</th>
