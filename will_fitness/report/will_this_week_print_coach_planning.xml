@@ -33,7 +33,7 @@
                                         </tr>
                                     
                                         <t t-foreach="docs" t-as="planning">
-                                            <t t-if="planning.start_datetime &gt;= datetime.datetime.now().strftime('%Y-%m-%d 00:00:00') and planning.end_datetime &lt;= (datetime.datetime.now()+relativedelta(days=7)).strftime('%Y-%m-%d 23:59:59')">
+                                            <t t-if="planning.start_datetime &gt;= datetime.datetime.now().strftime('%Y-%m-%d') and planning.end_datetime &lt;= (datetime.datetime.now()+relativedelta(days=7)).strftime('%Y-%m-%d')">
                                                 <tr>
                                                     <td><strong><t t-esc="planning.start_datetime.strftime('%A')"/></strong></td>
                                                     <td><t t-esc="planning.start_datetime"/></td>
