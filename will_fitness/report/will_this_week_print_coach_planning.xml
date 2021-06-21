@@ -31,7 +31,6 @@
                                             <th>Heure Fin</th>
                                             <th>Discipline</th>
                                         </tr>
-                                    
                                         <t t-foreach="docs" t-as="planning">
                                             <t t-if="planning.start_datetime.strftime('%W') == datetime.datetime.now().strftime('%W') and planning.end_datetime.strftime('%W') == datetime.datetime.now().strftime('%W')">
                                                 <tr>
