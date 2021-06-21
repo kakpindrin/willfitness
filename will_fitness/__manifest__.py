@@ -31,7 +31,6 @@
     'data': [
         'security/ir.model.access.csv',
         'report/will_this_week_print_coach_planning.xml',
-        'views/planning_slot.xml',
         'report/res_partner_badge.xml',
         'views/menu.xml',
         'views/res_partner.xml',
