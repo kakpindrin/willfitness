@@ -19,7 +19,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">planning.slot</field>
         <field name="binding_view_types">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">gantt,form</field>
     </record>
     <menuitem name="Imprimer Planning" id="will_fitness.impression" parent="will_fitness.menu_root"/>
 </odoo>
