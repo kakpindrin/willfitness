@@ -7,14 +7,14 @@
         <form string="planning">
             <header>
                 <button name="generate_planning_to_impress" string="Générer Planning" states="new" attrs="{'invisible': [('state','!=','new')]}" class="oe_highlight" type="object"/>
-                <button name="%(will_specific_employee_print_coach_planning)d" string="Planning Spécifique" states="generate" attrs="{'invisible': [('state','!=','generate')]}"  class="oe_highlight" type="action"/>
+                <button name="%(will_specific_employee_print_coach_planning)d" string="Imprimer Planning" states="generate" attrs="{'invisible': [('state','!=','generate')]}"  class="oe_highlight" type="action"/>
                 <button name="re_do" string="Refaire" states="generate" attrs="{'invisible': [('state','!=','generate')]}" type="object"/>
             
                 <field name="state" widget="statusbar" statusbar_visible="new,generate" />
             </header> 
             <sheet>
                 <group>
-                    <!-- <field name="name"/> -->
+                    <field name="name"/>
                     <group>
                         <field name="debut"/>
                     </group>
@@ -32,7 +32,7 @@
       <field name="model">will.fitness.planning</field>
       <field name="arch" type="xml">
         <tree string="La liste des plannings">
-            <!-- <field name="name"/> -->
+            <field name="name"/>
             <field name="debut"/>
             <field name="fin"/>
         </tree>
