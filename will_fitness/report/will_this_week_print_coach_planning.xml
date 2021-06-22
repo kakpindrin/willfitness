@@ -12,7 +12,7 @@
     </record>
 
     <template id="this_week_print_planning_coach">
-        <t t-call="web.external_layout">
+        <t t-call="web.basic_layout">
             <t t-set="planning_employee" t-value="[]"/>
             <t t-foreach="docs" t-as="planning">
                 <t t-if="planning.employee_id">
