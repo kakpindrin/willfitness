@@ -26,6 +26,14 @@ class will_fitness_planning(models.Model):
                     'state': 'generate'
                 })
 
+    def re_do(self):
+        self.write({
+            'fin': False,
+            'debut': False,
+            'planning_slot_ids': False,
+            'state': 'new'
+        })
+
 
     @api.model
     def create(self, vals):
