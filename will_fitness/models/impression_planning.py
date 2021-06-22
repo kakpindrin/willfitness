@@ -11,6 +11,9 @@ class will_fitness_planning(models.Model):
     debut = fields.Datetime(string='Début')
     fin = fields.Datetime(string='Fin')
     planning_slot_ids = fields.Many2many('planning.slot', string="Coaches plans")
+    
+    state = fields.Selection(string="Statut", selection=[('new','Nouveau'),
+                                                         ('generate','Généré'),], default="new", track_visibility='onchange')
 
     def generate_planning_to_impress(self):
         if self.debut and self.fin:
@@ -19,7 +22,8 @@ class will_fitness_planning(models.Model):
 
             if len(plannings) > 0:
                 self.write({
-                    'planning_slot_ids': plannings
+                    'planning_slot_ids': plannings,
+                    'state': 'generate'
                 })
 
 

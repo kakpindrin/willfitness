@@ -6,7 +6,10 @@
       <field name="arch" type="xml">
         <form string="planning">
             <header>
-                <button name="%(will_specific_employee_print_coach_planning)d" string="Planning Spécifique" class="oe_highlight" type="action"/>
+                <button name="generate_planning_to_impress" string="Générer Planning" states="new" attrs="{'invisible': [('state','!=','new')]}" class="oe_highlight" type="object"/>
+                <button name="%(will_specific_employee_print_coach_planning)d" string="Planning Spécifique" states="generate" attrs="{'invisible': [('state','!=','generate')]}"  class="oe_highlight" type="action"/>
+            
+                <field name="state" widget="statusbar" statusbar_visible="new,generate" />
             </header> 
             <sheet>
                 <group>
