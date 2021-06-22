@@ -14,7 +14,7 @@
             </header> 
             <sheet>
                 <group>
-                    <field name="name"/>
+                    <!-- <field name="name"/> -->
                     <group>
                         <field name="debut"/>
                     </group>
@@ -32,7 +32,7 @@
       <field name="model">will.fitness.planning</field>
       <field name="arch" type="xml">
         <tree string="La liste des plannings">
-            <field name="name"/>
+            <!-- <field name="name"/> -->
             <field name="debut"/>
             <field name="fin"/>
         </tree>

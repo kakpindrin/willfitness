@@ -10,7 +10,7 @@ class will_fitness_planning(models.Model):
     name = fields.Char(string="ID Planning", copy=False, index=True, required=True, default=lambda self: _('New'), readonly=True)
     debut = fields.Datetime(string='Début')
     fin = fields.Datetime(string='Fin')
-    planning_slot_ids = fields.Many2many('planning.slot', string="Coaches plans")
+    planning_slot_ids = fields.Many2many('planning.slot', string="Coaches plans", readonly=True)
     
     state = fields.Selection(string="Statut", selection=[('new','Nouveau'),
                                                          ('generate','Généré'),], default="new", track_visibility='onchange')
@@ -38,7 +38,7 @@ class will_fitness_planning(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
-            vals['name'] = self.env['ir.sequence'].next_by_code('will.fitness.planning.sequence',) or _('New')
+            vals['name'] = self.env['ir.sequence'].next_by_code('will.fitness.planning.sequence') or _('New')
         result = super(will_fitness_planning, self).create(vals)
 
         return result
