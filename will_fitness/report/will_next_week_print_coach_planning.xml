@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="will_this_week_employee_print_coach_planning" model="ir.actions.report">
-        <field name="name">(Semaine en cours) Print Coach Planning</field>
+    <record id="will_next_week_employee_print_coach_planning" model="ir.actions.report">
+        <field name="name">(Semaine prochaine) Print Coach Planning</field>
         <field name="model">planning.slot</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">will_fitness.this_week_print_planning_coach</field>
-        <field name="report_file">will_fitness.this_week_print_planning_coach</field>
-        <field name="print_report_name">'This Week Print Planning - %s' % (object.name).replace('/', '')</field>
+        <field name="report_name">will_fitness.next_week_print_planning_coach</field>
+        <field name="report_file">will_fitness.next_week_print_planning_coach</field>
+        <field name="print_report_name">'Next Week Print Planning - %s' % (object.name).replace('/', '')</field>
         <field name="binding_model_id" ref="model_planning_slot"/>
         <field name="binding_type">report</field>
     </record>
 
-    <template id="this_week_print_planning_coach">
+    <template id="next_week_print_planning_coach">
         <t t-call="web.basic_layout">
             <t t-set="planning_employee" t-value="[]"/>
             <t t-foreach="docs" t-as="planning">
@@ -32,7 +32,7 @@
                                             <th>Discipline</th>
                                         </tr>
                                         <t t-foreach="docs" t-as="planning">
-                                            <t t-if="planning.start_datetime.strftime('%W') == datetime.datetime.now().strftime('%W') and planning.end_datetime.strftime('%W') == datetime.datetime.now().strftime('%W')">
+                                            <t t-if="planning.start_datetime.strftime('%W') == (datetime.datetime.now()+relativedelta(days=7)).strftime('%W') and planning.end_datetime.strftime('%W') == (datetime.datetime.now()+relativedelta(days=7)).strftime('%W')">
                                                 <tr>
                                                     <td><strong><t t-esc="planning.start_datetime.strftime('%A')"/></strong></td>
                                                     <td><t t-esc="planning.start_datetime"/></td>
