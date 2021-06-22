@@ -36,6 +36,7 @@
         'views/menu.xml',
         'views/res_partner.xml',
         'views/presences.xml',
+        'views/planning_slot.xml',
     ],
     # only loaded in demonstration mode
     # 'demo': [

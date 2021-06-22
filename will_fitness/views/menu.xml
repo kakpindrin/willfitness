@@ -6,6 +6,7 @@
 
     <!-- menu categories -->
     <menuitem name="Clients" id="will_fitness.client" parent="will_fitness.menu_root"/>
+    <menuitem name="Imprimer Planning" id="will_fitness.impression" parent="will_fitness.menu_root"/>
     <!-- <menuitem name="Paiements" id="go_resa.paiements" parent="go_resa.menu_root"/>
     <menuitem name="Voyages" id="go_resa.voyages" parent="go_resa.menu_root"/>
     <menuitem name="Restriction" id="go_resa.restriction" parent="go_resa.menu_root"/>

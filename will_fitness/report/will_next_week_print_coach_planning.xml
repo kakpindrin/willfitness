@@ -15,7 +15,9 @@
         <t t-call="web.basic_layout">
             <t t-set="planning_employee" t-value="[]"/>
             <t t-foreach="docs" t-as="planning">
-                <t t-set="planning_employee" t-value="planning_employee+[planning.employee_id]"/>
+                <t t-if="planning.employee_id">
+                    <t t-set="planning_employee" t-value="planning_employee+[planning.employee_id]"/>
+                </t>
             </t>
             <t t-foreach="set(planning_employee)" t-as="employee">
                 <div class="page">
@@ -32,13 +34,15 @@
                                             <th>Discipline</th>
                                         </tr>
                                         <t t-foreach="docs" t-as="planning">
-                                            <t t-if="planning.start_datetime.strftime('%W') == (datetime.datetime.now()+relativedelta(days=7)).strftime('%W') and planning.end_datetime.strftime('%W') == (datetime.datetime.now()+relativedelta(days=7)).strftime('%W')">
-                                                <tr>
-                                                    <td><strong><t t-esc="planning.start_datetime.strftime('%A')"/></strong></td>
-                                                    <td><t t-esc="planning.start_datetime"/></td>
-                                                    <td><t t-esc="planning.end_datetime"/></td>
-                                                    <td><t t-esc="planning.role_id.name"/></td>
-                                                </tr>
+                                            <t t-if="planning.start_datetime and planning.end_datetime">
+                                                <t t-if="planning.start_datetime.strftime('%W') == (datetime.datetime.now()+relativedelta(days=7)).strftime('%W') and planning.end_datetime.strftime('%W') == (datetime.datetime.now()+relativedelta(days=7)).strftime('%W')">
+                                                    <tr>
+                                                        <td><strong><t t-esc="planning.start_datetime.strftime('%A')"/></strong></td>
+                                                        <td><t t-esc="planning.start_datetime"/></td>
+                                                        <td><t t-esc="planning.end_datetime"/></td>
+                                                        <td><t t-esc="planning.role_id.name"/></td>
+                                                    </tr>
+                                                </t>
                                             </t>
                                         </t>
                                     </table>
