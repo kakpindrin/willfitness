@@ -9,40 +9,10 @@
                 <header>
                     <button name="%(will_this_week_employee_print_coach_planning)d" string="Semaine en cours" class="oe_highlight" type="action"/>
                     <button name="%(will_next_week_employee_print_coach_planning)d" string="Semaine prochaine" class="oe_highlight" type="action"/>
-                    <!-- <button name="%(will_specific_employee_print_coach_planning)d" string="Spécifique" class="oe_highlight" type="action"/> -->
                 </header>
             </xpath>
-            <!-- <notebook>
-                <page string="Badge">
-                    <label for="barcode"/>
-                    <div class="o_row">
-                        <field name="barcode"/>
-                        <button string="Generate" class="btn btn-link" type="object" name="generate_random_barcode" attrs="{'invisible': [('barcode', '!=', False)]}"/>
-                        <button name="%(will_partner_print_badge)d" string="Print Badge" class="btn btn-link" type="action" attrs="{'invisible': [('barcode', '=', False)]}"/>
-                    </div>
-                </page>
-            </notebook> -->
         </field>
     </record>
-
-    <!-- <record id="res_partner_inherit_form_will_fitness_notepad_view" model="ir.ui.view">
-        <field name="name">res.partner.inherit.form.will.fitness.view</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form" />
-        <field name="arch" type="xml">
-            <notebook>
-                <page string="Badge">
-                    <label for="barcode"/>
-                    <div class="o_row">
-                        <field name="barcode"/>
-                        <button string="Generate" class="btn btn-link" type="object" name="generate_random_barcode" attrs="{'invisible': [('barcode', '!=', False)]}"/>
-                        <button name="%(will_partner_print_badge)d" string="Print Badge" class="btn btn-link" type="action" attrs="{'invisible': [('barcode', '=', False)]}"/>
-                    </div>
-                </page>
-            </notebook>
-        </field>
-    </record> -->
-
 
     <record model="ir.actions.act_window" id="action_will_fitness_plannings_window">
         <field name="name">Plannings</field>
