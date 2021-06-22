@@ -12,7 +12,7 @@
         </record>
 
         <!-- Sequences for will.fitness.planning.sequence -->
-        <record id="seq_will_fitness_impress_plan" model="ir.sequence">
+        <record id="seq_will_fitness_planning" model="ir.sequence">
             <field name="name">Planning sequence</field>
             <field name="code">will.fitness.planning.sequence</field>
             <field name="prefix">PRINT_</field>
