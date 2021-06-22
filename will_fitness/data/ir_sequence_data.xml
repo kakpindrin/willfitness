@@ -15,7 +15,7 @@
         <record id="seq_will_fitness_planning" model="ir.sequence">
             <field name="name">Planning sequence</field>
             <field name="code">will.fitness.planning.sequence</field>
-            <field name="prefix">_</field>
+            <field name="prefix">PRINT</field>
             <field name="padding">5</field>
             <field name="company_id" eval="False"/>
         </record>

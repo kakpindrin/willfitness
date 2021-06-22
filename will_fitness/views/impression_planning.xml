@@ -14,8 +14,12 @@
             <sheet>
                 <group>
                     <field name="name"/>
-                    <field name="debut"/>
-                    <field name="fin"/>
+                    <group>
+                        <field name="debut"/>
+                    </group>
+                    <group>
+                        <field name="fin"/>
+                    </group>
                     <field name="planning_slot_ids"/>
                 </group>
             </sheet>
