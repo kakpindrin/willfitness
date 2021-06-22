@@ -1,0 +1,40 @@
+<odoo>
+  <data>
+    <record id="will_fitness_plannings_form" model="ir.ui.view">
+      <field name="name">will.fitness.planning.form</field>
+      <field name="model">will.fitness.planning</field>
+      <field name="arch" type="xml">
+        <form string="planning">
+            <header>
+                <button name="%(will_specific_employee_print_coach_planning)d" string="Planning Spécifique" class="oe_highlight" type="action"/>
+            </header> 
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="debut"/>
+                    <field name="fin"/>
+                    <field name="planning_slot_ids"/>
+                </group>
+            </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="will_fitness.plannings_view_tree" model="ir.ui.view">
+      <field name="name">will.fitness.planning.tree</field>
+      <field name="model">will.fitness.planning</field>
+      <field name="arch" type="xml">
+        <tree string="La liste des plannings">
+            <field name="name"/>
+            <field name="debut"/>
+            <field name="fin"/>
+        </tree>
+      </field>
+    </record>
+    <record id="action_plannings_window" model="ir.actions.act_window">
+        <field name="name">Les Plannings</field>
+        <field name="res_model">will.fitness.planning</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Plannings" id="will_fitness.plannings" parent="will_fitness.impression" action="will_fitness.action_plannings_window"/>
+  </data>
+</odoo>

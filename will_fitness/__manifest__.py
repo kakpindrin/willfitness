@@ -32,11 +32,12 @@
         'security/ir.model.access.csv',
         'report/will_this_week_print_coach_planning.xml',
         'report/will_next_week_print_coach_planning.xml',
+        'report/will_specific_print_coach_planning.xml',
         'report/res_partner_badge.xml',
         'views/menu.xml',
         'views/res_partner.xml',
         'views/presences.xml',
-        'views/planning_slot.xml',
+        'views/impression_planning.xml',
     ],
     # only loaded in demonstration mode
     # 'demo': [

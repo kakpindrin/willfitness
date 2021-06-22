@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="will_specific_employee_print_coach_planning" model="ir.actions.report">
+        <field name="name">(Spécifique) Print Coach Planning</field>
+        <field name="model">will.fitness.planning</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">will_fitness.specific_print_planning_coach</field>
+        <field name="report_file">will_fitness.specific_print_planning_coach</field>
+        <field name="print_report_name">'Specific Print Planning - %s' % (object.name).replace('/', '')</field>
+        <field name="binding_model_id" ref="model_will_fitness_planning"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="specific_print_planning_coach">
+        <t t-call="web.basic_layout">
+            <t t-set="planning_employee" t-value="[]"/>
+            <t t-foreach="doc.planning_slot_ids" t-as="planning">
+                <t t-if="planning.employee_id">
+                    <t t-set="planning_employee" t-value="planning_employee+[planning.employee_id]"/>
+                </t>
+            </t>
+            <t t-foreach="set(planning_employee)" t-as="employee">
+                <div class="page">
+                    <div class="col-md-6">
+                        <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt">
+                            <td style="width:100%;" valign="center">
+                                <tr><strong>NOM DU COACH: </strong><t t-esc="employee.name"/></tr>
+                                <tr>
+                                    <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt" valign="center">
+                                        <tr>
+                                            <th>Jours</th>
+                                            <th>Heure Début</th>
+                                            <th>Heure Fin</th>
+                                            <th>Discipline</th>
+                                        </tr>
+                                        <t t-foreach="doc.planning_slot_ids" t-as="planning">
+                                            <t t-if="planning.start_datetime and planning.end_datetime">
+                                                <t t-if="planning.start_datetime.strftime('%W') == datetime.datetime.now().strftime('%W') and planning.end_datetime.strftime('%W') == datetime.datetime.now().strftime('%W')">
+                                                    <tr>
+                                                        <td><strong><t t-esc="planning.start_datetime.strftime('%A')"/></strong></td>
+                                                        <td><t t-esc="planning.start_datetime"/></td>
+                                                        <td><t t-esc="planning.end_datetime"/></td>
+                                                        <td><t t-esc="planning.role_id.name"/></td>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                        </t>
+                                    </table>
+                                </tr>
+                            </td>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
