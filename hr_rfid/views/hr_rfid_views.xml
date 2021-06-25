@@ -729,9 +729,9 @@
       <field name="arch" type="xml">
         <search>
           <field name="name" />
-          <field name="card_ids">
+          <!-- <field name="card_ids">
             <field name="number" />
-          </field>
+          </field> -->
         </search>
       </field>
     </record>
