@@ -1642,13 +1642,13 @@
           <field name="door_id" />
           <field name="event_action" />
           <field name="event_time" />
-          <field name="employee_id">
-            <field name="name" />
-          </field>
-          <field name="card_id">
-            <field name="number" />
+          <field name="employee_id" />
+          <!-- <field name="name" />
+          </field> -->
+          <field name="card_id" />
+            <!-- <field name="number" />
             <field name="card_type" />
-          </field>
+          </field> -->
 
           <filter name="granted" string="Status: Granted"
                   domain="[('event_action', '=', '1')]" />
