@@ -1682,7 +1682,7 @@
         <calendar date_start="event_time" date_stop="event_time" color="action_string">
           <field name="employee_id" />
           <field name="door_id">
-            <field name="controller_id" />
+            <!-- <field name="controller_id" /> -->
           </field>
           <field name="action_string" />
         </calendar>
