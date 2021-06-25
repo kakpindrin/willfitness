@@ -8,10 +8,10 @@
     ########################################################-->
 
     <record id="hr_rfid_card_action" model="ir.actions.act_window">
-        <field name="name">Cards</field>
-        <field name="res_model">hr.rfid.card</field>
-        <field name="view_mode">tree,form,search</field>
-        <field name="context">{"search_default_showall":1}</field>
+      <field name="name">Cards</field>
+      <field name="res_model">hr.rfid.card</field>
+      <field name="view_mode">tree,form,search</field>
+      <field name="context">{"search_default_showall":1}</field>
     </record>
 
     <record id="hr_rfid_card_type_action" model="ir.actions.act_window">
@@ -47,7 +47,7 @@
     <record id="hr_rfid_webstack_action" model="ir.actions.act_window">
       <field name="name">Modules</field>
       <field name="res_model">hr.rfid.webstack</field>
-        <field name="context">{"search_default_showall":1}</field>
+      <field name="context">{"search_default_showall":1}</field>
       <field name="view_mode">tree,form,search,calendar,kanban</field>
     </record>
 

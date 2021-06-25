@@ -266,6 +266,7 @@ class HrRfidCard(models.Model):
             card.door_rel_ids.unlink()
         return super(HrRfidCard, self).unlink()
 
+
     @api.model
     def _update_cards(self):
         cenv = self.env['hr.rfid.card']
