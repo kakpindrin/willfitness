@@ -170,10 +170,10 @@ class HrRfidCard(models.Model):
     def _check_len_number(self):
         for card in self:
             if card.number:
-                if len(card.number) < 12: 
-                    zeroes = 12 - len(card.number)
+                if len(card.number) < 10: 
+                    zeroes = 10 - len(card.number)
                     card.number = (zeroes * '0') + card.number
-                elif len(card.number) > 12: 
+                elif len(card.number) > 10: 
                     raise exceptions.UserError(_("Le numéro de carte doit comporter exactement 10 chiffres"))
 
 
@@ -185,7 +185,7 @@ class HrRfidCard(models.Model):
             if len(dupes) > 1:
                 raise exceptions.ValidationError(_("Le numéro de carte doit être unique pour chaque type de carte !"))
 
-            if len(card.number) > 12:
+            if len(card.number) > 10:
                 raise exceptions.ValidationError(_("Le numéro de carte doit comporter exactement 12 chiffres"))
 
             # if len(card.number) < 10:
