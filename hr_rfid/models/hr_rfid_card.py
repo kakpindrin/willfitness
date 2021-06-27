@@ -174,7 +174,7 @@ class HrRfidCard(models.Model):
                     zeroes = 12 - len(card.number)
                     card.number = (zeroes * '0') + card.number
                 elif len(card.number) > 12: 
-                    raise exceptions.UserError(_("Le numéro de carte doit comporter exactement 10 chiffres"))
+                    raise exceptions.UserError(_("Le numéro de carte doit comporter exactement 12 chiffres"))
 
 
 
