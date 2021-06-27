@@ -148,6 +148,7 @@ class HrRfidCard(models.Model):
     def card_ready(self):
         return self.active
 
+    #BUILD
     @api.depends('employee_id', 'contact_id')
     def _compute_pin_code(self):
         for card in self:
