@@ -117,12 +117,12 @@ class HrRfidCard(models.Model):
 
     #DÉBUT DIBI CODE
     @api.onchange("employee_id",)
-    def _onchange_field(self):
+    def _onchange_employee_id(self):
         if self.employee_id:
             self.number = self.employee_id.barcode
     
     @api.onchange("contact_id",)
-    def _onchange_field(self):
+    def _onchange_contact_id(self):
         if self.contact_id:
             self.number = self.contact_id.barcode
     #FIN DIBI CODE
