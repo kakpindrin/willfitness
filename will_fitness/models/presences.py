@@ -1,7 +1,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 from datetime import timedelta, datetime, date
-from xl2dict import XlToDict
+#from xl2dict import XlToDict
 
 
 class will_fitness_presence(models.Model):
@@ -44,44 +44,44 @@ class will_fitness_presence(models.Model):
         return result
 
 
-    def _treat_xlsx(self, attachment):
-        fname = attachment.store_fname
-        full_path = attachment._full_path(fname)
-        myxlobject = XlToDict()
-        data = myxlobject.fetch_data_by_column_by_sheet_index(
-            file_name=full_path, sheet_index=0)
-        i = 1
-        for d in data:
-            coach = d.get("coach")
-            nom = d.get("nom")
-            arrivee = d.get("arrivee")
-            sortie = d.get("sortie")
+    # def _treat_xlsx(self, attachment):
+    #     fname = attachment.store_fname
+    #     full_path = attachment._full_path(fname)
+    #     myxlobject = XlToDict()
+    #     data = myxlobject.fetch_data_by_column_by_sheet_index(
+    #         file_name=full_path, sheet_index=0)
+    #     i = 1
+    #     for d in data:
+    #         coach = d.get("coach")
+    #         nom = d.get("nom")
+    #         arrivee = d.get("arrivee")
+    #         sortie = d.get("sortie")
 
-            str_coach = False
-            str_nom = False
-            str_arrivee = False
-            str_sortie = False
+    #         str_coach = False
+    #         str_nom = False
+    #         str_arrivee = False
+    #         str_sortie = False
 
-            if coach:
-                str_coach = str(coach)
-            if nom:
-                str_nom = str(nom)
-            if arrivee:
-                str_arrivee = str(arrivee)
-            if sortie:
-                str_sortie = str(sortie)
+    #         if coach:
+    #             str_coach = str(coach)
+    #         if nom:
+    #             str_nom = str(nom)
+    #         if arrivee:
+    #             str_arrivee = str(arrivee)
+    #         if sortie:
+    #             str_sortie = str(sortie)
                 
-            infos = dict(None or {
-                'coach': str_coach,
-                'nom': str_nom,
-                'arrivee': str_arrivee,
-                'sortie': str_sortie,
-                })
+    #         infos = dict(None or {
+    #             'coach': str_coach,
+    #             'nom': str_nom,
+    #             'arrivee': str_arrivee,
+    #             'sortie': str_sortie,
+    #             })
                     
-            if str_coach == "1":
-                #Créer la présence dans les employés si l'employé existe
-                self.env['hr.employee'].sudo().create(infos)
+    #         if str_coach == "1":
+    #             #Créer la présence dans les employés si l'employé existe
+    #             self.env['hr.employee'].sudo().create(infos)
 
-            if str_coach == "0":
-                #Créer la présence dans les clients si le contact existe
-                self.env['res.partner'].sudo().create(infos)
+    #         if str_coach == "0":
+    #             #Créer la présence dans les clients si le contact existe
+    #             self.env['res.partner'].sudo().create(infos)
