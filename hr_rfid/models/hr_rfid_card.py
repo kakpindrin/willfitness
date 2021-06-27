@@ -28,9 +28,10 @@ class HrRfidCard(models.Model):
     number = fields.Char(
         string='Numéro de Carte',
         required=True,
-        limit=10, 
+        limit=12, 
         index=True,
-        track_visibility='onchange'
+        track_visibility='onchange',
+        readonly=True
     )
 
     card_type = fields.Many2one(
@@ -115,15 +116,15 @@ class HrRfidCard(models.Model):
         return self.contact_id
 
     #DÉBUT DIBI CODE
-    # @api.onchange("employee_id",)
-    # def _onchange_employee_id(self):
-    #     if self.employee_id:
-    #         self.number = self.employee_id.barcode
+    @api.onchange("employee_id",)
+    def _onchange_employee_id(self):
+        if self.employee_id:
+            self.number = self.employee_id.barcode
     
-    # @api.onchange("contact_id",)
-    # def _onchange_contact_id(self):
-    #     if self.contact_id:
-    #         self.number = self.contact_id.barcode
+    @api.onchange("contact_id",)
+    def _onchange_contact_id(self):
+        if self.contact_id:
+            self.number = self.contact_id.barcode
     #FIN DIBI CODE
 
     def get_potential_access_doors(self, access_groups=None):
@@ -170,10 +171,10 @@ class HrRfidCard(models.Model):
     def _check_len_number(self):
         for card in self:
             if card.number:
-                if len(card.number) < 10: 
-                    zeroes = 10 - len(card.number)
+                if len(card.number) < 12: 
+                    zeroes = 12 - len(card.number)
                     card.number = (zeroes * '0') + card.number
-                elif len(card.number) > 10: 
+                elif len(card.number) > 12: 
                     raise exceptions.UserError(_("Le numéro de carte doit comporter exactement 10 chiffres"))
 
 
@@ -185,8 +186,8 @@ class HrRfidCard(models.Model):
             if len(dupes) > 1:
                 raise exceptions.ValidationError(_("Le numéro de carte doit être unique pour chaque type de carte !"))
 
-            if len(card.number) > 10:
-                raise exceptions.ValidationError(_("Le numéro de carte doit comporter exactement 10 chiffres"))
+            if len(card.number) > 12:
+                raise exceptions.ValidationError(_("Le numéro de carte doit comporter exactement 12 chiffres"))
 
             # if len(card.number) < 10:
             #     zeroes = 10 - len(card.number)
