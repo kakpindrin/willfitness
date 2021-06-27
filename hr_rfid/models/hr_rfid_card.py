@@ -24,6 +24,7 @@ class HrRfidCard(models.Model):
         compute='_compute_card_name',
     )
 
+    #MODIFICATION NUMBER
     number = fields.Char(
         string='Numéro de Carte',
         required=True,
