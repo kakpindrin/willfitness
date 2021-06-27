@@ -119,12 +119,16 @@ class HrRfidCard(models.Model):
     @api.onchange("employee_id",)
     def _onchange_employee(self):
         if self.employee_id:
-            self.number = self.employee_id.barcode
+            self.sudo().write({
+                'number': self.employee_id.barcode
+            })
     
     @api.onchange("contact_id",)
     def _onchange_contact(self):
         if self.contact_id:
-            self.number = self.contact_id.barcode
+            self.sudo().write({
+                'number': self.employee_id.barcode
+            })
     #FIN DIBI CODE
 
     def get_potential_access_doors(self, access_groups=None):
