@@ -30,6 +30,7 @@ class HrRfidCard(models.Model):
         limit=10,
         index=True,
         track_visibility='onchange',
+        readonly=True
     )
 
     card_type = fields.Many2one(
@@ -112,6 +113,18 @@ class HrRfidCard(models.Model):
         if len(self.employee_id) == 1:
             return self.employee_id
         return self.contact_id
+
+    #DÉBUT DIBI CODE
+    @api.onchange("employee_id",)
+    def _onchange_field(self):
+        if self.employee_id:
+            self.number = self.employee_id.barcode
+    
+    @api.onchange("contact_id",)
+    def _onchange_field(self):
+        if self.contact_id:
+            self.number = self.contact_id.barcode
+    #FIN DIBI CODE
 
     def get_potential_access_doors(self, access_groups=None):
         """

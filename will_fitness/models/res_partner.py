@@ -24,4 +24,4 @@ class res_partner(models.Model):
 
     def generate_random_barcode(self):
         for partner in self:
-            partner.barcode = '041'+"".join(choice(digits) for i in range(9))
+            partner.barcode = '041'+"".join(choice(digits) for i in range(7))
