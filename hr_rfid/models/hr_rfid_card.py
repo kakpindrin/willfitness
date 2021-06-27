@@ -119,16 +119,12 @@ class HrRfidCard(models.Model):
     @api.onchange("employee_id",)
     def _onchange_employee(self):
         if self.employee_id:
-            self.sudo().write({
-                'number': self.employee_id.barcode
-            })
+            self.number = self.employee_id.barcode
     
     @api.onchange("contact_id",)
     def _onchange_contact(self):
         if self.contact_id:
-            self.sudo().write({
-                'number': self.employee_id.barcode
-            })
+            self.number = self.contact_id.barcode
     #FIN DIBI CODE
 
     def get_potential_access_doors(self, access_groups=None):
@@ -557,6 +553,15 @@ class HrRfidCardDoorRel(models.Model):
             records += rel
             rel._create_add_card_command()
 
+        # if records.contact_id:
+        #     records.sudo().write({
+        #         'number': records.contact_id.barcode
+        #     })
+
+        # if records.employee_id:
+        #     records.sudo().write({
+        #         'number': records.employee_id.barcode
+        #     })
         return records
 
     def write(self, vals):
