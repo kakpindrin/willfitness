@@ -6,8 +6,8 @@ class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     hr_rfid_pin_code = fields.Char(
-        string='User pin code',
-        help="Pin code for this user, four zeroes means that the user has no pin code.",
+        string='Code PIN Utilisateur',
+        help="Code PIN pour cet utilisateur, quatre zéros signifient que l'utilisateur n'a pas de code PIN.",
         limit=4,
         default='0000',
         track_visibility='onchange',
@@ -16,24 +16,24 @@ class HrEmployee(models.Model):
     hr_rfid_access_group_ids = fields.One2many(
         'hr.rfid.access.group.employee.rel',
         'employee_id',
-        string='Access Groups',
-        help='Which access groups the user is a part of',
+        string="Groupes d'Accès",
+        help="De quels groupes d'accès l'utilisateur fait-il partie",
         track_visibility='onchange',
     )
 
     hr_rfid_card_ids = fields.One2many(
         'hr.rfid.card',
         'employee_id',
-        string='RFID Card',
-        help='Cards owned by the employee',
+        string='Carte RFID',
+        help='Cartes appartenant à cet employé',
         context = {'active_test': False},
     )
 
     hr_rfid_event_ids = fields.One2many(
         'hr.rfid.event.user',
         'employee_id',
-        string='RFID Events',
-        help='Events concerning this employee',
+        string='Évènements RFID',
+        help='Évènements concernat cet employé',
     )
 
     def add_acc_gr(self, access_groups, expiration=None):     
@@ -101,8 +101,8 @@ class HrEmployee(models.Model):
             for acc_gr_rel in user.hr_rfid_access_group_ids:
                 acc_gr = acc_gr_rel.access_group_id
                 if acc_gr not in user.department_id.hr_rfid_allowed_access_groups:
-                    raise exceptions.ValidationError('Access group must be one of the access '
-                                                     'groups assigned to the department!')
+                    raise exceptions.ValidationError("Le groupe d'accès doit être l'un des accès"
+                                                      "groupes affectés au département !")
 
             doors = user.hr_rfid_access_group_ids.mapped('access_group_id')\
                 .mapped('all_door_ids').mapped('door_id')
@@ -112,7 +112,7 @@ class HrEmployee(models.Model):
                 if ctrl.is_relay_ctrl():
                     if ctrl in relay_doors and ctrl.mode == 3:
                         raise exceptions.ValidationError(
-                            _('Doors "%s" and "%s" both belong to a controller that cannot give access to multiple doors in the same time.')
+                            _('Les portes "%s" et "%s" appartiennent toutes deux à un contrôleur qui ne peut pas donner accès à plusieurs portes en même temps.')
                             % (relay_doors[ctrl].name, door.name)
                         )
                     relay_doors[ctrl] = door
@@ -194,14 +194,14 @@ class HrEmployeeDoors(models.TransientModel):
 
     employee_id = fields.Many2one(
         'hr.employee',
-        string='Employee',
+        string='Employé',
         required=True,
         default=_default_employee,
     )
 
     door_ids = fields.Many2many(
         'hr.rfid.door',
-        string='Doors',
+        string='Portes',
         required=True,
         default=_default_doors,
     )

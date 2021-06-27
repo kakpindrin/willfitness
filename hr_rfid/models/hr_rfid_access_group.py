@@ -21,7 +21,7 @@ class HrRfidAccessGroup(models.Model):
 
     name = fields.Char(
         string='Name',
-        help='A label to help differentiate between access groups',
+        help="Une étiquette pour aider à différencier les groupes d'accès",
         default=access_group_generate_name,
         limit=32,
         track_visibility='onchange',
@@ -30,35 +30,35 @@ class HrRfidAccessGroup(models.Model):
     employee_ids = fields.One2many(
         'hr.rfid.access.group.employee.rel',
         'access_group_id',
-        string='Users',
-        help='Users part of this access group',
+        string='Utilisateurs',
+        help="Utilisateurs faisant partie de ce groupe d'accès",
     )
 
     contact_ids = fields.One2many(
         'hr.rfid.access.group.contact.rel',
         'access_group_id',
         string='Contacts',
-        help='Contacts part of this access group'
+        help="Contacts faisant partie de ce groupe d'accès"
     )
 
     door_ids = fields.One2many(
         'hr.rfid.access.group.door.rel',
         'access_group_id',
-        string='Doors',
-        help='Doors included in this access group',
+        string='Portes',
+        help="Portes incluses dans ce groupe d'accès",
     )
 
     default_department_ids = fields.One2many(
         'hr.department',
         'hr_rfid_default_access_group',
-        string='Department (Default)',
-        help='Departments that have this access group as default',
+        string='Département (Par Défaut)',
+        help="Départements qui ont ce groupe d'accès par défaut",
     )
 
     department_ids = fields.Many2many(
         'hr.department',
-        string='Departments',
-        help='Departments assigned to this access group',
+        string='Départements',
+        help="Départements qui ont ce groupe d'accès par défaut",
     )
 
     inherited_ids = fields.Many2many(
@@ -66,7 +66,7 @@ class HrRfidAccessGroup(models.Model):
         relation='access_group_inheritance',
         column1='inheritor',
         column2='inherited',
-        string='Inherited access groups',
+        string="Groupes d'accès hérités",
     )
 
     inheritor_ids = fields.Many2many(
@@ -74,28 +74,28 @@ class HrRfidAccessGroup(models.Model):
         relation='access_group_inheritance',
         column1='inherited',
         column2='inheritor',
-        string='Inheritors',
-        help='Access groups that have inherited this one',
+        string='Héritiers',
+        help="Accéder aux groupes qui ont hérité de celui-ci",
     )
 
     all_door_ids = fields.Many2many(
         'hr.rfid.access.group.door.rel',
-        string='All doors',
-        help='All doors, including inherited ones',
+        string='Toutes les portes',
+        help="Toutes les portes, y compris celles héritées",
         compute='_compute_all_doors',
     )
 
     all_employee_ids = fields.Many2many(
         'hr.rfid.access.group.employee.rel',
-        string='All employees',
-        help='All employees that use this access group, including the ones from the inheritors',
+        string='Tous les employés',
+        help="Tous les employés qui utilisent ce groupe d'accès, y compris ceux des héritiers",
         compute='_compute_all_employees',
     )
 
     all_contact_ids = fields.Many2many(
         'hr.rfid.access.group.contact.rel',
-        string='All contacts',
-        help='All contacts that use this access group, including the ones from the inheritors',
+        string='Tous les contacts',
+        help="Tous les contacts qui utilisent ce groupe d'accès, y compris ceux des héritiers",
         compute='_compute_all_contacts',
     )
 
@@ -113,7 +113,7 @@ class HrRfidAccessGroup(models.Model):
             else:
                 # if controller is of type iCON130 or iCON180
                 if door.controller_id.hw_version in ['17', '10'] and time_schedule.number > 3:
-                    raise exceptions.ValidationError(_('Door %s can only use the first 3 time schedules') %
+                    raise exceptions.ValidationError(_('La porte %s ne peut utiliser que les 3 premiers horaires') %
                                                      door.name)
                 rel_env.create([{
                     'access_group_id': self.id,
@@ -148,16 +148,17 @@ class HrRfidAccessGroup(models.Model):
             door_id_list = []
             for rel in acc_gr.door_ids:
                 if rel.door_id.id in door_id_list:
-                    raise exceptions.ValidationError('Cannot link access group to a door '
-                                                     'it is already linked to.')
+                    raise exceptions.ValidationError("Impossible de lier le groupe d'accès à une porte"
+                                                      "il est déjà lié à.")
 
             relay_doors = dict()
             for rel in acc_gr.all_door_ids:
                 ctrl = rel.door_id.controller_id
                 if ctrl.is_relay_ctrl():
                     if ctrl in relay_doors and ctrl.mode == 3:
+                        un_message = 'Les portes "%s" et "%s" appartiennent toutes deux à un contrôleur qui ne peut pas donner accès à plusieurs portes en même temps.'
                         raise exceptions.ValidationError(
-                            _('Doors "%s" and "%s" both belong to a controller that cannot give access to multiple doors in the same time.')
+                            _(un_message)
                             % (relay_doors[ctrl].name, rel.door_id.name)
                         )
                     relay_doors[ctrl] = rel.door_id
@@ -262,7 +263,7 @@ class HrRfidAccessGroup(models.Model):
                     acc_gr = env.browse(acc_gr_id)
                     err2 += '\n-> '
                     err2 += acc_gr.name
-                err = _('Circular reference found in the inherited access groups: %s') % err2
+                err = _("Référence circulaire trouvée dans les groupes d'accès hérités : %s") % err2
                 raise exceptions.ValidationError(err)
 
             acc_gr.check_for_ts_inconsistencies()
@@ -357,14 +358,14 @@ class HrRfidAccessGroupDoorRel(models.Model):
 
     access_group_id = fields.Many2one(
         'hr.rfid.access.group',
-        string='Access Group',
+        string="Groupe d'Accès",
         default=_get_cur_access_group_id,
         required=True,
     )
 
     door_id = fields.Many2one(
         'hr.rfid.door',
-        string='Door',
+        string='Porte',
         default=_get_cur_door_id,
         required=True,
         ondelete='cascade',
@@ -372,8 +373,8 @@ class HrRfidAccessGroupDoorRel(models.Model):
 
     time_schedule_id = fields.Many2one(
         'hr.rfid.time.schedule',
-        string='Time schedule',
-        help='Time schedule for the door/access group combination',
+        string='Horaire',
+        help="Horaire de la combinaison porte/groupe d'accès",
         default=lambda self: self.env.ref('hr_rfid.hr_rfid_time_schedule_0').id,
         required=True,
         ondelete='cascade',
@@ -385,8 +386,9 @@ class HrRfidAccessGroupDoorRel(models.Model):
             for door_rel2 in rels2[:]:
                 if door_rel.door_id == door_rel2.door_id:
                     if door_rel.time_schedule_id != door_rel2.time_schedule_id:
+                        un_message = "L'horaire ne correspond pas à la porte" + "'%s' dans les groupes d'accès '%s' et '%s'"
                         raise exceptions.ValidationError(
-                            _('Time schedule does not match for door "%s" in access groups "%s" and "%s"')
+                            _(un_message)
                             % (door_rel.door_id.name, door_rel.access_group_id.name,
                                door_rel2.access_group_id.name))
                     rels2 -= door_rel2
@@ -406,7 +408,7 @@ class HrRfidAccessGroupDoorRel(models.Model):
         return records
 
     def write(self, vals):
-        raise exceptions.ValidationError('Not permitted to write here (hr.rfid.access.group.door.rel)')
+        raise exceptions.ValidationError('Pas autorisé à écrire ici (hr.rfid.access.group.door.rel)')
 
     def unlink(self):
         card_door_rel_env = self.env['hr.rfid.card.door.rel']
@@ -430,20 +432,20 @@ class HrRfidAccessGroupEmployeeRel(models.Model):
 
     access_group_id = fields.Many2one(
         'hr.rfid.access.group',
-        string='Access Group',
+        string="Groupe d'Accès",
         required=True,
     )
 
     employee_id = fields.Many2one(
         'hr.employee',
-        string='Employee',
+        string='Employé',
         required=True,
     )
 
     expiration = fields.Datetime(
-        string='Expiration Date',
-        help='Access group will remove itself from the employee '
-             'on the expiration date. Will never expire if blank.',
+        string='Date Expiration',
+        help="Le groupe d'accès se retirera de l'employé"
+              "à la date d'expiration. N'expirera jamais si vide.",
         index=True,
     )
 
@@ -462,7 +464,7 @@ class HrRfidAccessGroupEmployeeRel(models.Model):
             ])
             if len(duplicates) > 1:
                 raise exceptions.ValidationError(
-                    _("Employees (%s) can't have the same access group twice (%s)!")
+                    _("Les employés (%s) ne peuvent pas avoir deux fois le même groupe d'accès (%s) !")
                     % (rel.employee_id.name, rel.access_group_id.name))
 
     @api.model
@@ -482,7 +484,7 @@ class HrRfidAccessGroupEmployeeRel(models.Model):
 
     def write(self, vals):
         if 'employee_id' in vals:
-            raise exceptions.ValidationError('Cannot change the employee of the relation!')
+            raise exceptions.ValidationError("Impossible de changer l'employé de la relation !")
         card_door_rel_env = self.env['hr.rfid.card.door.rel']
         for rel in self:
             old_acc_gr = rel.access_group_id
@@ -522,7 +524,7 @@ class HrRfidAccessGroupContactRel(models.Model):
 
     access_group_id = fields.Many2one(
         'hr.rfid.access.group',
-        string='Access Group',
+        string="Groupe d'Accès",
         required=True,
     )
 
@@ -533,9 +535,9 @@ class HrRfidAccessGroupContactRel(models.Model):
     )
 
     expiration = fields.Datetime(
-        string='Expiration Date',
-        help='Access group will remove itself from the contact '
-             'on the expiration date. Will never expire if blank.',
+        string="Date Expiration",
+        help="Le groupe d'accès se retirera du contact "
+              "à la date d'expiration. N'expirera jamais si vide.",
         index=True,
     )
 
@@ -554,7 +556,7 @@ class HrRfidAccessGroupContactRel(models.Model):
             ])
             if len(duplicates) > 1:
                 raise exceptions.ValidationError(
-                    _("Employees (%s) can't have the same access group twice (%s)!")
+                    _("Les employés (%s) ne peuvent pas avoir le même groupe d'accès (%s) deux fois !")
                     % (rel.contact_id.name, rel.access_group_id.name))
 
     @api.model
@@ -574,7 +576,7 @@ class HrRfidAccessGroupContactRel(models.Model):
 
     def write(self, vals):
         if 'contact_id' in vals:
-            raise exceptions.ValidationError('Cannot change the employee of the relation!')
+            raise exceptions.ValidationError("Impossible de changer l'employé de la relation !")
         card_door_rel_env = self.env['hr.rfid.card.door.rel']
         for rel in self:
             old_acc_gr = rel.access_group_id
@@ -624,7 +626,7 @@ class HrRfidAccessGroupWizard(models.TransientModel):
 
     acc_gr_id = fields.Many2many(
         'hr.rfid.access.group',
-        string='Access Group',
+        string="Groupe d'Accès",
         required=True,
         default=_default_acc_gr,
     )
@@ -634,8 +636,8 @@ class HrRfidAccessGroupWizard(models.TransientModel):
         'my_door_ids',
         'wiz',
         'door',
-        string='Doors',
-        help='Which doors to add to the access group',
+        string='Portes',
+        help="Quelles portes ajouter au groupe d'accès",
         required=True,
     )
 
@@ -644,14 +646,14 @@ class HrRfidAccessGroupWizard(models.TransientModel):
         'custom_door_ids',
         'wiz',
         'door',
-        string='All access group doors',
+        string="Toutes les portes de groupe d'accès",
         default=_default_acc_gr_doors,
     )
 
     time_schedule_id = fields.Many2one(
         'hr.rfid.time.schedule',
-        string='Time Schedule',
-        help='Time schedule for the door/access group combination',
+        string='Horaire',
+        help="Horaire de la combinaison porte/groupe d'accès",
         required=True,
         default=lambda self: self.env.ref('hr_rfid.hr_rfid_time_schedule_0').id,
     )

@@ -4,14 +4,14 @@ from odoo import fields, models
 class RfidSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
-    event_lifetime = fields.Integer(string='Event life time', default=365,
+    event_lifetime = fields.Integer(string="Durée de vie de l'événement", default=365,
                                     config_parameter='hr_rfid.event_lifetime',
-                                    help='Enter event lifetime. Older events will be deleted')
+                                    help="Entrez la durée de vie de l'événement. Les événements plus anciens seront supprimés")
     save_webstack_communications = fields.Selection([('True', 'On'),
                                                     ('False', 'Off'),
-                                                    ],string='Save WebStack communication', default='False',
+                                                    ],string='Enregistrer la communication WebStack', default='False',
                                                     config_parameter='hr_rfid.save_webstack_communications',
-                                                    help='Save WebStack communication')
+                                                    help='Enregistrer la communication WebStack')
 
 
 

@@ -6,7 +6,7 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     hr_rfid_pin_code = fields.Char(
-        string='Contact pin code',
+        string='Code PIN du Contact',
         help="Pin code for this contact, four zeroes means that the contact has no pin code.",
         limit=4,
         default='0000',
@@ -16,7 +16,7 @@ class ResPartner(models.Model):
     hr_rfid_access_group_ids = fields.One2many(
         'hr.rfid.access.group.contact.rel',
         'contact_id',
-        string='Access Group',
+        string="Groupe d'Accès",
         help='Which access group the contact is a part of',
         track_visibility='onchange',
     )
@@ -24,14 +24,14 @@ class ResPartner(models.Model):
     hr_rfid_card_ids = fields.One2many(
         'hr.rfid.card',
         'contact_id',
-        string='RFID Card',
+        string='Carte RFID',
         help='Cards owned by the contact',
     )
 
     hr_rfid_event_ids = fields.One2many(
         'hr.rfid.event.user',
         'contact_id',
-        string='RFID Events',
+        string='Évènements RFID',
         help='Events concerning this contact',
     )
 

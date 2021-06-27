@@ -8,35 +8,35 @@ class RawData(models.Model):
     _description = 'Raw Data'
 
     data = fields.Char(
-        string='Data',
+        string='Données',
     )
 
     timestamp = fields.Datetime(
-        string='Event/Data timestamp',
-        help='Time the event/data was created',
+        string='Horodatage des événements/données',
+        help="Heure de création de l'événement/des données",
     )
 
     receive_ts = fields.Datetime(
-        string='Receive timestamp',
+        string="Recevoir l'horodatage",
         default=fields.Datetime.now()
     )
 
     identification = fields.Char(
-        string='Webstack serial',
+        string='Série Webstack',
     )
 
     security = fields.Char(
-        string='Security',
+        string='Sécurité',
     )
 
     do_not_save = fields.Boolean(
-        string='Save data?',
-        help="Whether to save the data or not after it's been dealt with",
+        string='Enregistrer des données?',
+        help="S'il faut ou non sauvegarder les données après leur traitement",
         default=False,
     )
 
     return_data = fields.Char(
-        string='Return Data',
-        help='What to return to the json request',
+        string='Renvoyer les données',
+        help='Que retourner à la requête json',
         default=json.dumps({'status': 200}),
     )

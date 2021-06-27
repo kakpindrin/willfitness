@@ -10,16 +10,16 @@ class HrDepartment(models.Model):
 
     hr_rfid_default_access_group = fields.Many2one(
         'hr.rfid.access.group',
-        string='Default Access Group',
-        help='Every user added to this department gets this access group by default',
+        string="Groupe d'accès par défaut",
+        help="Chaque utilisateur ajouté à ce service obtient ce groupe d'accès par défaut",
         ondelete='set null',
         track_visibility='onchange',
     )
 
     hr_rfid_allowed_access_groups = fields.Many2many(
         'hr.rfid.access.group',
-        string='Rfid Access Group',
-        help='Which access group the department uses to gain permissions to Rfid doors',
+        string="Groupe d'accès RFID",
+        help="Quel groupe d'accès le service utilise-t-il pour obtenir des autorisations sur les portes Rfid",
         ondelete='cascade',
     )
 
@@ -30,8 +30,8 @@ class HrDepartment(models.Model):
             allowed_acc_gr_ids = dep.hr_rfid_allowed_access_groups
 
             if (len(cur_acc_gr) != 0) and (cur_acc_gr not in allowed_acc_gr_ids):
-                raise exceptions.ValidationError('Default access group must be one of the access '
-                                                 'groups in the list of allowed access groups!')
+                raise exceptions.ValidationError("Le groupe d'accès par défaut doit être l'un des accès"
+                                                  "groupes dans la liste des groupes d'accès autorisés !")
 
     @api.onchange('hr_rfid_allowed_access_groups')
     def _hr_rfid_allowed_access_groups_onchange(self):
@@ -83,14 +83,14 @@ class HrDepartmentAccGrWizard(models.TransientModel):
 
     dep_id = fields.Many2one(
         'hr.department',
-        string='Department',
+        string='Département',
         required=True,
         default=_default_dep,
     )
 
     acc_grs = fields.Many2many(
         'hr.rfid.access.group',
-        string='Department groups',
+        string='Groupes de Départements',
         default=_get_current_access_group,
     )
 
@@ -116,14 +116,14 @@ class HrDepartmentDefAccGrWizard(models.TransientModel):
 
     dep_id = fields.Many2one(
         'hr.department',
-        string='Department',
+        string='Département',
         required=True,
         default=_default_dep,
     )
 
     def_acc_gr = fields.Many2one(
         'hr.rfid.access.group',
-        string='New default access group',
+        string="Nouveau groupe d'accès par défaut",
         required=True,
     )
 
@@ -204,14 +204,14 @@ class HrDepartmentAddDefAccGrWizard(models.TransientModel):
 
     dep_id = fields.Many2one(
         'hr.department',
-        string='Department',
+        string='Département',
         required=True,
         default=_default_dep,
     )
 
     acc_gr = fields.Many2one(
         'hr.rfid.access.group',
-        string='Access group to add and set to default',
+        string="Groupe d'accès à ajouter et à définir par défaut",
         required=True,
     )
 

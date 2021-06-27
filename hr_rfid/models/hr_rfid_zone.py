@@ -14,12 +14,12 @@ class HrRfidZone(models.Model):
     )
 
     anti_pass_back = fields.Boolean(
-        string='Anti-Pass Back',
+        string='Anti-retour',
         help="Disallow people in the zone to enter again, or leave if they're not in it",
     )
 
     log_out_on_exit = fields.Boolean(
-        string='Logout on Exit',
+        string='Se déconnecter en quittant',
         help='Whether to log people out on exit',
     )
 
@@ -28,14 +28,14 @@ class HrRfidZone(models.Model):
         'hr_rfid_zone_door_rel',
         'zone_id',
         'door_id',
-        string='Doors',
+        string='Portes',
         help='Doors in this zone',
         track_visibility='onchange',
     )
 
     employee_ids = fields.Many2many(
         'hr.employee',
-        string='Employees',
+        string='Employés',
         help='Employees currently in this zone',
     )
 
@@ -146,7 +146,7 @@ class HrRfidZoneDoorsWizard(models.TransientModel):
 
     door_ids = fields.Many2many(
         'hr.rfid.door',
-        string='Doors',
+        string='Portes',
         help='Which doors to add to the access group',
         required=True,
     )

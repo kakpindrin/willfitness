@@ -29,7 +29,7 @@ class HrRfidWorkcode(models.Model):
             ('start', 'Coming to work'),
             ('break', 'Going to a break'),
         ],
-        string='User action',
+        string='Action Utilisateur',
         help='What the user does when he submits this workcode',
         default='stop',
         track_visibility='onchange',

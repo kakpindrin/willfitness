@@ -11,14 +11,14 @@
                 <xpath expr="//div[hasclass('settings')]" position="inside">
                     <div class="app_settings_block" data-string="RFID System" string="RFID System"
                          data-key="hr_rfid" groups="hr_rfid.hr_rfid_group_officer">
-                        <h2>RFID System Settings</h2>
+                        <h2>Paramètres du système RFID</h2>
                         <div class="row mt16 o_settings_container" name="hr_rfid_setting_container">
                             <div class="col-12 col-lg-6 o_setting_box">
                                 <div class="o_setting_left_pane"/>
                                 <div class="o_setting_right_pane">
-                                    <span class="o_form_label">Event lifetime</span>
+                                    <span class="o_form_label">Durée de vie de l'événement</span>
                                     <div class="text-muted content-group mt16">
-                                        <span>Days </span>
+                                        <span>Jours </span>
                                         <field name="event_lifetime" class="text-center oe_inline" />
                                         <span>.</span>
                                     </div>

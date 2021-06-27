@@ -23,9 +23,9 @@ class HrRfidWebstackDiscovery(models.TransientModel):
         relation='hr_rfid_webstack_discovery_all',
         column1='wiz',
         column2='ws',
-        string='Found modules',
+        string='Modules Trouvés',
         readonly=True,
-        help='Modules that were just found during the discovery process',
+        help="Modules qui viennent d'être trouvés pendant le processus de découverte",
     )
 
     setup_and_set_to_active = fields.Many2many(
@@ -33,8 +33,8 @@ class HrRfidWebstackDiscovery(models.TransientModel):
         relation='hr_rfid_webstack_discovery_set',
         column1='wiz',
         column2='ws',
-        string='Setup and activate',
-        help='Modules to automatically setup for the odoo and activate',
+        string='Configurer et activer',
+        help="Modules à configurer automatiquement pour l'odoo et à activer",
     )
 
     state = fields.Selection(
@@ -170,12 +170,12 @@ class HrRfidWebstackManualCreate(models.TransientModel):
     _description = 'Webstack Manual Creation'
 
     webstack_name = fields.Char(
-        string='Module Name',
+        string='Nom du Module',
         required=True,
     )
 
     webstack_address = fields.Char(
-        string='Webstack Address',
+        string='Adresse Webstack',
         required=True,
     )
 
@@ -193,7 +193,7 @@ class HrRfidWebstack(models.Model):
 
     name = fields.Char(
         string='Name',
-        help='A label to easily differentiate modules',
+        help='Une étiquette pour différencier facilement les modules',
         required=True,
         index=True,
         track_visibility='onchange',
@@ -201,26 +201,26 @@ class HrRfidWebstack(models.Model):
 
     tz = fields.Selection(
         _tz_get,
-        string='Timezone',
+        string='Fuseau horaire',
         default=lambda self: self._context.get('tz'),
-        help='If not set, will assume GMT',
+        help='Si non défini, supposera GMT',
     )
 
     tz_offset = fields.Char(
-        string='Timezone offset',
+        string='Décalage de fuseau horaire',
         compute='_compute_tz_offset',
     )
 
     serial = fields.Char(
-        string='Serial number',
-        help='Unique number to differentiate all modules',
+        string='Numéro de série',
+        help='Numéro unique pour différencier tous les modules',
         limit=6,
         index=True,
         readonly=True,
     )
 
     key = fields.Char(
-        string='Key',
+        string='Clé',
         limit=4,
         index=True,
         default='0000',
@@ -228,61 +228,61 @@ class HrRfidWebstack(models.Model):
     )
 
     active = fields.Boolean(
-        string='Active',
-        help='Will accept events from module if true',
+        string='Actif',
+        help='Acceptera les événements du module si vrai',
         default=False,
         track_visibility='onchange',
     )
 
     version = fields.Char(
         string='Version',
-        help='Software version of the module',
+        help='Version logicielle du module',
         limit=6,
     )
 
     hw_version = fields.Char(
-        string='Hardware Version',
-        help='Hardware version of the module',
+        string='Version matérielle',
+        help='Version matérielle du module',
         limit=6,
     )
 
     behind_nat = fields.Boolean(
-        string='Behind NAT',
-        help='Whether we can create a direct connection to the module or not',
+        string='Derrière NAT',
+        help='Si nous pouvons créer une connexion directe au module ou non',
         required=True,
         default=True,
     )
 
     last_ip = fields.Char(
-        string='Last IP',
-        help='Last IP the module connected from',
+        string='Dernière IP',
+        help='Dernière IP du module connecté depuis',
         limit=26,
     )
 
     updated_at = fields.Datetime(
-        string='Last Update',
-        help='The last date we received an event from the module',
+        string='Dernière mise à jour',
+        help='La dernière date à laquelle nous avons reçu un événement du module',
     )
 
     controllers = fields.One2many(
         'hr.rfid.ctrl',
         'webstack_id',
-        string='Controllers',
-        help='Controllers that this WebStack manages'
+        string='Contrôleurs',
+        help='Contrôleurs que ce WebStack gère'
     )
 
     system_event_ids = fields.One2many(
         'hr.rfid.event.system',
         'webstack_id',
-        string='Errors',
-        help='Errors that we have received from the module'
+        string='Erreurs',
+        help='Erreurs que nous avons reçues du module'
     )
 
     command_ids = fields.One2many(
         'hr.rfid.command',
         'webstack_id',
-        string='Commands',
-        help='Commands that have been or are in queue to send to this module.',
+        string='Commandes',
+        help="Commandes qui ont été ou sont en file d'attente pour être envoyées à ce module.",
     )
 
     http_link = fields.Char(
@@ -291,21 +291,21 @@ class HrRfidWebstack(models.Model):
 
     module_username = fields.Selection(
         selection=[ ('admin', 'Admin'), ('sdk', 'SDK') ],
-        string='Module Username',
-        help='Username for the admin account for the module',
+        string="Nom d'utilisateur du module",
+        help="Nom d'utilisateur pour le compte administrateur du module",
         default='admin',
     )
 
     module_password = fields.Char(
-        string='Module Password',
-        help='Password for the admin account for the module',
+        string='Mot de passe du module',
+        help='Mot de passe du compte admin du module',
         default='',
     )
 
     available = fields.Selection(
         selection=[ ('u', 'Unavailable'), ('a', 'Available') ],
-        string='Available?',
-        help='Whether the module was available the last time Odoo tried to connect to it.',
+        string='Disponible?',
+        help="Si le module était disponible la dernière fois qu'Odoo a essayé de s'y connecter.",
         default='u',
     )
 
@@ -522,8 +522,8 @@ class HrRfidCtrlIoTableRow(models.TransientModel):
 
     event_number = fields.Selection(
         selection=event_codes,
-        string='Event Number',
-        help='What the outs are set to when this event occurs',
+        string="Numéro d'Évènement",
+        help='À quoi sont réglés les sorties lorsque cet événement se produit',
         required=True,
         readonly=True,
     )
@@ -552,7 +552,7 @@ class HrRfidCtrlIoTableWiz(models.TransientModel):
         ctrl = self._default_ctrl()
 
         if len(ctrl.io_table) % row_len != 0:
-            raise exceptions.ValidationError('Controller does now have an input/output table loaded!')
+            raise exceptions.ValidationError("Le contrôleur a maintenant une table d'entrée/sortie chargée !")
 
         io_table = ctrl.io_table
         rows = rows_env
@@ -640,19 +640,19 @@ class HrRfidController(models.Model):
 
     hw_version = fields.Selection(
         selection=hw_types,
-        string='Hardware Type',
-        help='Type of the controller',
+        string='Type de Matériel',
+        help='Type du contrôleur',
     )
 
     serial_number = fields.Char(
-        string='Serial',
-        help='Serial number of the controller',
+        string='Serie',
+        help='Numéro de série du contrôleur',
         limit=4,
     )
 
     sw_version = fields.Char(
         string='Version',
-        help='The version of the software on the controller',
+        help='The version du logiciel du contrôleur',
         limit=3,
     )
 
@@ -667,12 +667,12 @@ class HrRfidController(models.Model):
     )
 
     readers = fields.Integer(
-        string='Readers',
+        string='Lecteurs',
         help='Number of readers on the controller'
     )
 
     time_schedules = fields.Integer(
-        string='Time Schedules',
+        string='Horaires',
         help='',
     )
 
@@ -699,7 +699,7 @@ class HrRfidController(models.Model):
 
     relay_time_factor = fields.Selection(
         [('0', '1 second'), ('1', '0.1 seconds')],
-        string='Relay Time Factor',
+        string='Facteur de temps de relais',
         default='0',
     )
 
@@ -738,49 +738,49 @@ class HrRfidController(models.Model):
     door_ids = fields.One2many(
         'hr.rfid.door',
         'controller_id',
-        string='Controlled Doors',
-        help='Doors that belong to this controller'
+        string='Portes Contrôlées',
+        help='Portes appartenant à ce contrôleur'
     )
 
     reader_ids = fields.One2many(
         'hr.rfid.reader',
         'controller_id',
-        string='Controlled Readers',
+        string='Lecteurs contrôlés',
         help='Readers that belong to this controller',
     )
 
     system_event_ids = fields.One2many(
         'hr.rfid.event.system',
         'controller_id',
-        string='Errors',
+        string='Erreurs',
         help='Errors received from the controller',
     )
 
     command_ids = fields.One2many(
         'hr.rfid.command',
         'controller_id',
-        string='Commands',
+        string='Commandes',
         help='Commands that have been sent to this controller',
     )
 
     read_b3_cmd = fields.Boolean(
-        string='Read Controller Status',
+        string="Lire l'état du contrôleur",
         default=False,
         index=True,
     )
 
     temperature = fields.Float(
-        string='Temperature',
+        string='Température',
         default=0,
     )
 
     humidity = fields.Float(
-        string='Humidity',
+        string='Humidité',
         default=0,
     )
 
     system_voltage = fields.Float(
-        string='System Voltage',
+        string='Tension du système',
         default=0,
     )
 
@@ -790,7 +790,7 @@ class HrRfidController(models.Model):
     )
 
     last_f0_read = fields.Datetime(
-        string='Last System Information Update',
+        string='Dernière mise à jour des informations système',
     )
 
     @api.model
@@ -936,7 +936,7 @@ class HrRfidDoorOpenCloseWiz(models.TransientModel):
 
     doors = fields.Many2many(
         'hr.rfid.door',
-        string='Doors to open/close',
+        string='Portes à ouvrir/fermer',
         required=True,
         default=_default_doors,
     )
@@ -973,16 +973,16 @@ class HrRfidDoor(models.Model):
     )
 
     number = fields.Integer(
-        string='Number',
-        help='Number of the door in the controller',
+        string='Numéro',
+        help='Numéro de la porte dans le contrôleur',
         required=True,
         index=True,
     )
 
     card_type = fields.Many2one(
         'hr.rfid.card.type',
-        string='Card type',
-        help='Only cards of this type this door will open to',
+        string='Type de Carte',
+        help='Seules les cartes de ce type ouvriront cette porte',
         default=lambda self: self.env.ref('hr_rfid.hr_rfid_card_type_def').id,
         ondelete='set null',
         track_visibility='onchange',
@@ -996,8 +996,8 @@ class HrRfidDoor(models.Model):
 
     controller_id = fields.Many2one(
         'hr.rfid.ctrl',
-        string='Controller',
-        help='Controller that manages the door',
+        string='Contrôleur',
+        help='Contrôleur qui gère la porte',
         required=True,
         readonly=True,
         ondelete='cascade',
@@ -1006,15 +1006,15 @@ class HrRfidDoor(models.Model):
     access_group_ids = fields.One2many(
         'hr.rfid.access.group.door.rel',
         'door_id',
-        string='Door Access Groups',
-        help='The access groups this door is a part of',
+        string="Groupes d'accès aux portes",
+        help="Les groupes d'accès dont cette porte fait partie",
     )
 
     user_event_ids = fields.One2many(
         'hr.rfid.event.user',
         'door_id',
-        string='Events',
-        help='Events concerning this door',
+        string='Évènements',
+        help='Événements concernant cette porte',
     )
 
     reader_ids = fields.Many2many(
@@ -1022,15 +1022,15 @@ class HrRfidDoor(models.Model):
         'hr_rfid_reader_door_rel',
         'door_id',
         'reader_id',
-        string='Readers',
-        help='Readers that open this door',
+        string='Lecteurs',
+        help='Les lecteurs qui ouvrent cette porte',
     )
 
     card_rel_ids = fields.One2many(
         'hr.rfid.card.door.rel',
         'door_id',
-        string='Cards',
-        help='Cards that have access to this door',
+        string='Cartes',
+        help='Cartes qui ont accès à cette porte',
     )
 
     zone_ids = fields.Many2many(
@@ -1039,12 +1039,12 @@ class HrRfidDoor(models.Model):
         'door_id',
         'zone_id',
         string='Zones',
-        help='Zones containing this door',
+        help='Zones contenant cette porte',
     )
 
     def get_potential_cards(self, access_groups=None):
         """
-        Returns a list of tuples (card, time_schedule) for which the card potentially has access to this door
+        Renvoie une liste de tuples (card, time_schedule) pour lesquels la carte a potentiellement accès à cette porte
         """
         if access_groups is None:
             acc_gr_rels = self.access_group_ids
@@ -1316,14 +1316,14 @@ class HrRfidReader(models.Model):
     ]
 
     name = fields.Char(
-        string='Reader name',
+        string='Nom du Lecteur',
         help='Label to differentiate readers',
         default='Reader',
         track_visibility='onchange',
     )
 
     number = fields.Integer(
-        string='Number',
+        string='Numéro',
         help='Number of the reader on the controller',
         index=True,
     )
@@ -1331,7 +1331,7 @@ class HrRfidReader(models.Model):
     # TODO Rename to just 'type'
     reader_type = fields.Selection(
         selection=reader_types,
-        string='Reader type',
+        string='Type de Lecteur',
         help='Type of the reader',
         required=True,
         default='0',

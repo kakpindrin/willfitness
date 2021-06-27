@@ -6,7 +6,7 @@
       <field name="name">hr.department.add.acc.grs.wiz.form</field>
       <field name="model">hr.department.acc.grs</field>
       <field name="arch" type="xml">
-        <form string="Manage Access Groups">
+        <form string="Gérer les groupes d'accès">
           <group>
             <field name="dep_id" attrs="{'invisible': True}" />
             <field name="acc_grs"
@@ -16,8 +16,8 @@
           </group>
           <footer>
             <button name="add_acc_grs" type="object"
-                    string="Save Access Groups" class="oe_highlight" />
-            <button special="cancel" string="Cancel" />
+                    string="Enregistrer les groupes d'accès" class="oe_highlight" />
+            <button special="cancel" string="Annuler" />
           </footer>
         </form>
       </field>
@@ -27,19 +27,19 @@
       <field name="name">hr.department.def.acc.gr.wiz.form</field>
       <field name="model">hr.department.def.acc.gr</field>
       <field name="arch" type="xml">
-        <form string="Change Default Access Group for Current Department">
+        <form string="Modifier le groupe d'accès par défaut pour le service actuel">
           <group>
             <field name="dep_id" attrs="{'invisible': True}" />
             <field name="def_acc_gr" domain="[('department_ids', 'in', [dep_id])]" />
           </group>
           <footer>
             <button name="change_default_access_group" type="object"
-                    string="Change and Apply" class="oe_highlight"
-                    help="Adds access group to employees in the department without any access groups"/>
+                    string="Modifier et appliquer" class="oe_highlight"
+                    help="Ajoute un groupe d'accès aux employés du service sans aucun groupe d'accès"/>
             <button name="change_and_apply_def_acc_gr" type="object"
-                    string="Change and Apply for Everyone" class="oe_highlight"
-                    help="Adds access group to all employees in the department" />
-            <button special="cancel" string="Cancel" />
+                    string="Modifier et appliquer for Everyone" class="oe_highlight"
+                    help="Ajoute un groupe d'accès à tous les employés du département" />
+            <button special="cancel" string="Annuler" />
           </footer>
         </form>
       </field>
@@ -49,7 +49,7 @@
       <field name="name">hr.department.mass.acc.grs.wiz.form</field>
       <field name="model">hr.department.mass.wiz</field>
       <field name="arch" type="xml">
-        <form string="Add/Remove Access Groups from Employees">
+        <form string="Ajouter/supprimer des groupes d'accès des employés">
           <group>
             <field name="dep_id" attrs="{'invisible': True}" />
             <field name="acc_gr_ids"
@@ -64,10 +64,10 @@
           </group>
           <footer>
             <button name="add_acc_grs" type="object"
-                    string="Add To Employees" class="oe_highlight" />
+                    string="Ajouter aux employés" class="oe_highlight" />
             <button name="remove_acc_grs" type="object"
-                    string="Remove From Employees" class="oe_highlight" />
-            <button special="cancel" string="Cancel" />
+                    string="Supprimer des employés" class="oe_highlight" />
+            <button special="cancel" string="Annuler" />
           </footer>
         </form>
       </field>
@@ -87,7 +87,7 @@
           </field>
 
           <xpath expr="//sheet//group" position="after">
-            <group string="Available access groups for employees in this department">
+            <group string="Groupes d'accès disponibles pour les employés de ce service">
             </group>
             <field name="hr_rfid_allowed_access_groups"
                    groups="hr_rfid.hr_rfid_group_officer"
@@ -101,7 +101,7 @@
     </record>
 
     <record id="hr_rfid_department_add_access_group_action" model="ir.actions.act_window">
-        <field name="name">Manage Access Groups</field>
+        <field name="name">Gérer les groupes d'accès</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hr.department.acc.grs</field>
         <field name="view_mode">form</field>
@@ -113,7 +113,7 @@
     </record>
 
     <record id="hr_rfid_department_change_default_access_group_action" model="ir.actions.act_window">
-        <field name="name">Change Default Access Group</field>
+        <field name="name">Modifier le groupe d'accès par défaut</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hr.department.def.acc.gr</field>
         <field name="view_mode">form</field>
@@ -125,7 +125,7 @@
     </record>
 
     <record id="hr_rfid_department_mass_remove_access_group_action" model="ir.actions.act_window">
-        <field name="name">Mass Add/Remove</field>
+        <field name="name">Ajout/Suppression en masse</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hr.department.mass.wiz</field>
         <field name="view_mode">form</field>

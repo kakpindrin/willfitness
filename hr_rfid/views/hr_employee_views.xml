@@ -6,7 +6,7 @@
       <field name="name">hr.rfid.employee.doors.wiz.form</field>
       <field name="model">hr.rfid.employee.doors.wiz</field>
       <field name="arch" type="xml">
-        <form string="Doors">
+        <form string="Portes">
           <group>
             <field name="door_ids" create="0" edit="0" delete="0"/>
           </group>
@@ -18,7 +18,7 @@
     </record>
 
     <record id="hr_rfid_employee_doors_wiz_action" model="ir.actions.act_window">
-      <field name="name">Doors</field>
+      <field name="name">Portes</field>
       <field name="res_model">hr.rfid.employee.doors.wiz</field>
       <field name="view_mode">form</field>
       <field name="view_id" ref="hr_rfid_employee_doors_wiz_form" />
@@ -32,28 +32,28 @@
       <field name="arch" type="xml">
         <xpath expr="//div[@name='button_box']" position="inside">
           <button name="%(hr_rfid_employee_doors_wiz_action)d" id="hr_rfid_employee_show_doors_btn"
-                  type="action" class="oe_stat_button" icon="fa-info" string="Doors"
-                  help="Doors this employee has access to">
+                  type="action" class="oe_stat_button" icon="fa-info" string="Portes"
+                  help="Portes auxquelles cet employé a accès">
 			</button>
         </xpath>
         <notebook position="inside">
-          <page string="RFID Info" groups="hr_rfid.hr_rfid_view_rfid_data">
+          <page string="Info RFID" groups="hr_rfid.hr_rfid_view_rfid_data">
             <group>
               <field name="hr_rfid_pin_code" groups="hr_rfid.hr_rfid_view_rfid_pin_code_data" />
             </group>
             <notebook>
-              <page string="Cards">
+              <page string="Cartes">
                 <field name="hr_rfid_card_ids"
                        context="{'employee_id': id}"
                        edit="0">
-                  <tree string="Cards belonging to user">
+                  <tree string="Cartes appartenant à l'utilisateur">
                     <field name="number" />
                     <field name="card_type" />
                   </tree>
                 </field>
               </page>
 
-              <page string="Access Groups">
+              <page string="Groupes d'Accès">
                 <field name="hr_rfid_access_group_ids" widget="one2many_list">
                   <tree editable="bottom">
                     <field name="access_group_id"
@@ -63,7 +63,7 @@
                 </field>
               </page>
 
-              <page string="Events">
+              <page string="Événements">
                 <field name="hr_rfid_event_ids" readonly="1">
                   <tree>
                     <field name="event_time" />

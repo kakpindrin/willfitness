@@ -25,7 +25,7 @@ class HrRfidCard(models.Model):
     )
 
     number = fields.Char(
-        string='Card Number',
+        string='Numéro de Carte',
         required=True,
         limit=10,
         index=True,
@@ -34,22 +34,22 @@ class HrRfidCard(models.Model):
 
     card_type = fields.Many2one(
         'hr.rfid.card.type',
-        string='Card type',
-        help='Only doors that support this type will be able to open this card',
+        string='Type de Carte',
+        help="Seules les portes prenant en charge ce type pourront être ouvertes avec cette carte",
         default=lambda self: self.env.ref('hr_rfid.hr_rfid_card_type_def').id,
         track_visibility='onchange',
     )
 
     employee_id = fields.Many2one(
         'hr.employee',
-        string='Card Owner (Employee)',
+        string='Titulaire de la carte (employé)',
         default=_get_cur_employee_id,
         track_visibility='onchange',
     )
 
     contact_id = fields.Many2one(
         'res.partner',
-        string='Card Owner (Partner)',
+        string='Titulaire de la carte (contact)',
         default=_get_cur_contact_id,
         track_visibility='onchange',
         domain=[('is_company', '=', False)],
@@ -58,35 +58,35 @@ class HrRfidCard(models.Model):
     user_event_ids = fields.One2many(
         'hr.rfid.event.user',
         'card_id',
-        string='Events',
-        help='Events concerning this user',
+        string='Évènements',
+        help="Événements concernant cet utilisateur",
     )
 
     activate_on = fields.Datetime(
-        string='Activate on',
-        help='Date and time the card will be activated on',
+        string='Activer le',
+        help="Date et heure d'activation de la carte",
         track_visibility='onchange',
         default=lambda self: datetime.now(),
         index=True,
     )
 
     deactivate_on = fields.Datetime(
-        string='Deactivate on',
-        help='Date and time the card will be deactivated on',
+        string='Désactiver le',
+        help='Date et heure de désactivation de la carte le',
         track_visibility='onchange',
         index=True,
     )
 
     active = fields.Boolean(
-        string='Active',
-        help='Whether the card is active or not',
+        string='Actif',
+        help='Que la carte soit active ou non',
         track_visibility='onchange',
         default=True,
     )
 
     cloud_card = fields.Boolean(
-        string='Cloud Card',
-        help='A cloud card will not be added to controllers that are in the "externalDB" mode.',
+        string='Carte Nuage',
+        help='Une carte cloud ne sera pas ajoutée aux contrôleurs qui sont en mode "externalDB".',
         track_visibility='onchange',
         default=True,
         required=True,
@@ -95,13 +95,13 @@ class HrRfidCard(models.Model):
     door_rel_ids = fields.One2many(
         'hr.rfid.card.door.rel',
         'card_id',
-        string='Doors',
-        help='Doors this card has access to',
+        string='Portes',
+        help='Portes auxquelles cette carte a accès',
     )
 
     door_ids = fields.Many2many(
         'hr.rfid.door',
-        string='Doors',
+        string='Portes',
         compute='_compute_door_ids',
     )
 
@@ -115,7 +115,7 @@ class HrRfidCard(models.Model):
 
     def get_potential_access_doors(self, access_groups=None):
         """
-        Returns a list of tuples (door, time_schedule) the card potentially has access to
+        Renvoie une liste de tuples (door, time_schedule) auxquels la carte a potentiellement accès
         """
         if access_groups is None:
             owner = self.get_owner()
@@ -150,8 +150,8 @@ class HrRfidCard(models.Model):
             if card.employee_id is not None and card.contact_id is not None:
                 if card.employee_id == card.contact_id or \
                    (len(card.employee_id) > 0 and len(card.contact_id) > 0):
-                    raise exceptions.ValidationError('Card user and contact cannot both be set '
-                                                     'in the same time, and cannot both be empty.')
+                    raise exceptions.ValidationError("L'utilisateur de la carte et le contact ne peuvent pas être définis tous les deux"
+                                                      "en même temps, et ne peuvent pas être tous les deux vides.")
 
     @api.onchange('number')
     def _check_len_number(self):
@@ -161,7 +161,7 @@ class HrRfidCard(models.Model):
                     zeroes = 10 - len(card.number)
                     card.number = (zeroes * '0') + card.number
                 elif len(card.number) > 10:
-                    raise exceptions.UserError(_('Card number must be exactly 10 digits'))
+                    raise exceptions.UserError(_("Le numéro de carte doit comporter exactement 10 chiffres"))
 
 
 
@@ -170,10 +170,10 @@ class HrRfidCard(models.Model):
         for card in self:
             dupes = self.search([ ('number', '=', card.number), ('card_type', '=', card.card_type.id) ])
             if len(dupes) > 1:
-                raise exceptions.ValidationError(_('Card number must be unique for every card type!'))
+                raise exceptions.ValidationError(_("Le numéro de carte doit être unique pour chaque type de carte !"))
 
             if len(card.number) > 10:
-                raise exceptions.ValidationError(_('Card number must be exactly 10 digits'))
+                raise exceptions.ValidationError(_("Le numéro de carte doit comporter exactement 10 chiffres"))
 
             # if len(card.number) < 10:
             #     zeroes = 10 - len(card.number)
@@ -183,7 +183,7 @@ class HrRfidCard(models.Model):
                 for char in card.number:
                     int(char, 10)
             except ValueError:
-                raise exceptions.ValidationError('Card number digits must be from 0 to 9')
+                raise exceptions.ValidationError("Les chiffres du numéro de carte doivent être compris entre 0 et 9")
 
     def _compute_card_name(self):
         for record in self:
@@ -198,8 +198,8 @@ class HrRfidCard(models.Model):
     @api.returns('self', lambda value: value.id)
     def create(self, vals):
         card_door_rel_env = self.env['hr.rfid.card.door.rel']
-        invalid_user_and_contact_msg = _('Card user and contact cannot both be set' \
-                                       ' in the same time, and cannot both be empty.')
+        invalid_user_and_contact_msg = _("L'utilisateur de la carte et le contact ne peuvent pas être définis tous les deux" \
+                                        " en même temps, et ne peuvent pas être tous les deux vides.")
 
         records = self.env['hr.rfid.card']
         for val in vals:
@@ -218,8 +218,8 @@ class HrRfidCard(models.Model):
 
     def write(self, vals):
         rel_env = self.env['hr.rfid.card.door.rel']
-        invalid_user_and_contact_msg = 'Card user and contact cannot both be set' \
-                                       ' in the same time, and cannot both be empty.'
+        invalid_user_and_contact_msg = "L'utilisateur de la carte et le contact ne peuvent pas être définis tous les deux" \
+                                        " en même temps, et ne peuvent pas être tous les deux vides."
 
         for card in self:
             old_number = str(card.number)[:]
@@ -299,8 +299,8 @@ class HrRfidCardType(models.Model):
     _description = 'Card Type'
 
     name = fields.Char(
-        string='Type Name',
-        help='Label to differentiate types with',
+        string='Nom du Type',
+        help='Étiquette pour différencier les types avec',
         required=True,
         track_visibility='onchange',
     )
@@ -308,16 +308,16 @@ class HrRfidCardType(models.Model):
     card_ids = fields.One2many(
         'hr.rfid.card',
         'card_type',
-        string='Cards',
-        help='Cards of this card type',
+        string='Cartes',
+        help='Cartes de ce type de carte',
         context={'active_test': False},
     )
 
     door_ids = fields.One2many(
         'hr.rfid.door',
         'card_type',
-        string='Doors',
-        help='Doors that will open to this card type',
+        string='Portes',
+        help="Les portes qui s'ouvriront à ce type de carte",
     )
 
     def unlink(self):
@@ -327,9 +327,9 @@ class HrRfidCardType(models.Model):
             if card_type.id == default_card_type_id \
                     or len(card_type.card_ids) > 0 \
                     or len(card_type.door_ids) > 0:
-                raise exceptions.ValidationError('Cannot delete the default card type or a card '
-                                                 'type that is already used by doors or cards. '
-                                                 'Please change the doors/cards types first.')
+                raise exceptions.ValidationError("Impossible de supprimer le type de carte par défaut ou une carte"
+                                                  "type qui est déjà utilisé par les portes ou les cartes. "
+                                                  "Veuillez d'abord changer les types de portes/cartes. ")
 
         return super(HrRfidCardType, self).unlink()
 
@@ -354,20 +354,20 @@ class HrRfidCardDoorRel(models.Model):
 
     card_id = fields.Many2one(
         'hr.rfid.card',
-        string='Card',
+        string='Carte',
         required=True,
     )
 
     door_id = fields.Many2one(
         'hr.rfid.door',
-        string='Door',
+        string='Porte',
         required=True,
         ondelete='cascade',
     )
 
     time_schedule_id = fields.Many2one(
         'hr.rfid.time.schedule',
-        string='Time Schedule',
+        string='Horaire',
         required=True,
         ondelete='cascade',
     )
@@ -422,7 +422,7 @@ class HrRfidCardDoorRel(models.Model):
         for door, ts in potential_doors:
             if door_id == door:
                 if ts_id is not None and ts_id != ts:
-                    raise exceptions.ValidationError('This should never happen. Please contact the developers. 95328359')
+                    raise exceptions.ValidationError('Cela ne devrait jamais arriver. Veuillez contacter les développeurs. +225 07 49 94 33 27')
                 ts_id = ts
                 found_door = True
                 break
@@ -463,7 +463,7 @@ class HrRfidCardDoorRel(models.Model):
                         door_rel = rel
                         break
                 if door_rel is None:
-                    raise exceptions.ValidationError('No way this card has access to this door??? 17512849')
+                    raise exceptions.ValidationError('Pas moyen que cette carte ait accès à cette porte ??? 17512849')
                 ts_id = door_rel.time_schedule_id
 
             self.create([{
@@ -527,7 +527,7 @@ class HrRfidCardDoorRel(models.Model):
     def _door_constrains(self):
         for rel in self:
             if len(rel.door_id.access_group_ids) == 0:
-                raise exceptions.ValidationError('Door must be part of an access group!')
+                raise exceptions.ValidationError("La porte doit faire partie d'un groupe d'accès !")
 
     @api.model_create_multi
     @api.returns('self', lambda value: value.id)

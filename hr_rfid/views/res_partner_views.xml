@@ -18,7 +18,7 @@
     </record>
 
     <record id="hr_rfid_contact_doors_wiz_action" model="ir.actions.act_window">
-      <field name="name">Doors</field>
+      <field name="name">Portes</field>
       <field name="res_model">hr.rfid.contact.doors.wiz</field>
 <!--      <field name="view_type">form</field>-->
       <field name="view_mode">form</field>
@@ -32,14 +32,14 @@
       <field name="inherit_id" ref="base.view_partner_form" />
       <field name="arch" type="xml">
         <notebook position="inside">
-          <page string="RFID Info"
+          <page string="Info RFID"
                 groups="hr_rfid.hr_rfid_view_rfid_data"
                 attrs="{'invisible':[('is_company','=',True)]}">
             <group string="Settings">
               <field name="hr_rfid_pin_code" groups="hr_rfid.hr_rfid_view_rfid_pin_code_data" />
             </group>
             <notebook>
-              <page string="Cards">
+              <page string="Cartes">
                 <field name="hr_rfid_card_ids" context="{'contact_id': id}" edit="0">
                   <tree string="Cards belonging to user">
                     <field name="number" />
@@ -57,7 +57,7 @@
                 </field>
               </page>
 
-              <page string="Events">
+              <page string="Événements">
                 <field name="hr_rfid_event_ids" readonly="1">
                   <tree>
                     <field name="event_action" />
