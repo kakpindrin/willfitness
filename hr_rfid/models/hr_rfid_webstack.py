@@ -1432,91 +1432,91 @@ class HrRfidUserEvent(models.Model):
     )
 
     ctrl_addr = fields.Integer(
-        string='Controller ID',
+        string='ID du Contrôleur',
         required=True,
-        help='ID the controller differentiates itself from the others with on the same webstack'
+        help='ID avec lequel le contrôleur se différencie des autres sur la même webstack'
     )
 
     workcode = fields.Char(
-        string='Workcode (Raw)',
-        help="Workcode that arrived from the event. If you are seeing this version, it means that you haven't created "
-             'a workcode label for this one in the workcodes page.',
+        string='Code de travail (brut)',
+        help="Code de travail qui est arrivé de l'événement. Si vous voyez cette version, cela signifie que vous n'avez pas créé "
+              'une étiquette de code de travail pour celui-ci dans la page des codes de travail.',
         default='-',
         readonly=True,
     )
 
     workcode_id = fields.Many2one(
         comodel_name='hr.rfid.workcode',
-        string='Workcode',
-        help='Workcode that arrived from the event',
+        string='Code de travail',
+        help="Code de travail qui est arrivé de l'événement",
         readonly=True,
     )
 
     employee_id = fields.Many2one(
         'hr.employee',
-        string='Employee',
-        help='Employee affected by this event',
+        string='Employé',
+        help="Employé touché par cet événement",
         ondelete='cascade',
     )
 
     contact_id = fields.Many2one(
         'res.partner',
         string='Contact',
-        help='Contact affected by this event',
+        help='Contact concerné par cet événement',
         ondelete='cascade',
     )
 
     door_id = fields.Many2one(
         'hr.rfid.door',
-        string='Door',
-        help='Door affected by this event',
+        string='Porte',
+        help='Porte touchée par cet événement',
         ondelete='cascade',
     )
 
     reader_id = fields.Many2one(
         'hr.rfid.reader',
-        string='Reader',
-        help='Reader affected by this event',
+        string='Lecteur',
+        help='Lecteur concerné par cet événement',
         required=True,
         ondelete='cascade',
     )
 
     card_id = fields.Many2one(
         'hr.rfid.card',
-        string='Card',
-        help='Card affected by this event',
+        string='Carte',
+        help='Carte affectée par cet événement',
         ondelete='cascade',
     )
 
     command_id = fields.Many2one(
         'hr.rfid.command',
-        string='Response',
-        help='Response command',
+        string='Réponse',
+        help='Commande de réponse',
         readonly=True,
         ondelete='set null',
     )
 
     event_time = fields.Datetime(
-        string='Timestamp',
-        help='Time the event triggered',
+        string='Horodatage',
+        help="Heure à laquelle l'événement s'est déclenché",
         required=True,
         index=True,
     )
 
     action_selection = [
-        ('1', 'Granted'),
-        ('2', 'Denied'),
-        ('3', 'Denied T/S'),
-        ('4', 'Denied APB'),
-        ('5', 'Exit Button'),
-        ('6', 'Granted (no entry)'),
-        ('64', 'Request Instructions'),
+        ('1', 'Accordé'),
+        ('2', 'Refusé'),
+        ('3', 'Refusé T/S'),
+        ('4', 'Refusé APB'),
+        ('5', 'Bouton Quitter'),
+        ('6', 'Accordé (no entry)'),
+        ('64', 'Demander des instructions'),
     ]
 
     event_action = fields.Selection(
         selection=action_selection,
         string='Action',
-        help='What happened to trigger the event',
+        help="Que s'est-il passé pour déclencher l'événement",
         required=True,
     )
 
@@ -1664,7 +1664,7 @@ class HrRfidSystemEvent(models.Model):
     )
 
     action_selection = [
-        ('0', 'Unknown Event?'),
+        ('0', 'Évènement inconnu?'),
         ('1', 'DuressOK'),
         ('2', 'DuressError'),
         ('3', 'R1 Card OK'),
