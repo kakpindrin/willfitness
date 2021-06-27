@@ -22,6 +22,7 @@ class res_partner(models.Model):
         ('barcode_uniq', 'unique (barcode)', "The Badge ID must be unique, this one is already assigned to another partner."),
     ]
 
+    #THINK
     def generate_random_barcode(self):
         for partner in self:
             partner.barcode = '041'+"".join(choice(digits) for i in range(9))
