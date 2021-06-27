@@ -27,7 +27,7 @@ class HrRfidCard(models.Model):
     number = fields.Char(
         string='Numéro de Carte',
         required=True,
-        limit=12, #modifier par DIBI 10 passé à 12
+        limit=12, 
         index=True,
         track_visibility='onchange',
         readonly=True
@@ -170,10 +170,10 @@ class HrRfidCard(models.Model):
     def _check_len_number(self):
         for card in self:
             if card.number:
-                if len(card.number) < 12: #MODIFIÉ PAR DIBI DE 10 EST PASSÉ À 12
-                    zeroes = 12 - len(card.number) #MODIFIÉ PAR DIBI DE 10 EST PASSÉ À 12
+                if len(card.number) < 12: 
+                    zeroes = 12 - len(card.number)
                     card.number = (zeroes * '0') + card.number
-                elif len(card.number) > 12: #MODIFIÉ PAR DIBI DE 10 EST PASSÉ À 12
+                elif len(card.number) > 12: 
                     raise exceptions.UserError(_("Le numéro de carte doit comporter exactement 10 chiffres"))
 
 
@@ -185,7 +185,7 @@ class HrRfidCard(models.Model):
             if len(dupes) > 1:
                 raise exceptions.ValidationError(_("Le numéro de carte doit être unique pour chaque type de carte !"))
 
-            if len(card.number) > 12: #MODIFIÉ PAR DIBI DE 10 EST PASSÉ À 12
+            if len(card.number) > 12:
                 raise exceptions.ValidationError(_("Le numéro de carte doit comporter exactement 12 chiffres"))
 
             # if len(card.number) < 10:
