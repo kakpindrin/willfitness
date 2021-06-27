@@ -987,7 +987,7 @@
                   <tree string="Commandes">
                     <field name="controller_id"/>
                     <field name="cmd"/>
-                    <field name="Statut"/>
+                    <field name="status"/>
                     <field name="error"/>
                   </tree>
                 </field>
@@ -1216,7 +1216,7 @@
                   <tree string="Commandes">
                     <field name="webstack_id"/>
                     <field name="cmd"/>
-                    <field name="Statut"/>
+                    <field name="status"/>
                     <field name="error"/>
                   </tree>
                 </field>
@@ -1650,9 +1650,9 @@
             <field name="card_type" />
           </field> -->
 
-          <filter name="granted" string="Statut: Granted"
+          <filter name="granted" string="Statut: Accordé"
                   domain="[('event_action', '=', '1')]" />
-          <filter name="granted" string="Statut: Denied"
+          <filter name="granted" string="Statut: Refusé"
                   domain="[('event_action', '!=', '1')]" />
           <separator />
           <filter name="last_week" string="Events from last week"
