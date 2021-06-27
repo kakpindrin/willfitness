@@ -30,8 +30,7 @@ class HrRfidCard(models.Model):
         required=True,
         limit=12, 
         index=True,
-        track_visibility='onchange',
-        readonly=True
+        track_visibility='onchange'
     )
 
     card_type = fields.Many2one(
@@ -117,12 +116,12 @@ class HrRfidCard(models.Model):
 
     #DÉBUT DIBI CODE
     @api.onchange("employee_id",)
-    def _onchange_employee_id(self):
+    def _onchange_employee(self):
         if self.employee_id:
             self.number = self.employee_id.barcode
     
     @api.onchange("contact_id",)
-    def _onchange_contact_id(self):
+    def _onchange_contact(self):
         if self.contact_id:
             self.number = self.contact_id.barcode
     #FIN DIBI CODE
