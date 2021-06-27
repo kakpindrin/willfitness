@@ -120,7 +120,7 @@ class HrRfidCard(models.Model):
     def _onchange_employee(self):
         if self.employee_id:
             self.number = self.employee_id.barcode
-    
+    #Merci SEIGNEUR !
     @api.onchange("contact_id",)
     def _onchange_contact(self):
         if self.contact_id:
