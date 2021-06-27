@@ -115,17 +115,17 @@ class HrRfidCard(models.Model):
             return self.employee_id
         return self.contact_id
 
-    #DÉBUT DIBI CODE
-    @api.onchange("employee_id",)
-    def _onchange_employee(self):
-        if self.employee_id:
-            self.number = self.employee_id.barcode
-    #Merci SEIGNEUR !
-    @api.onchange("contact_id",)
-    def _onchange_contact(self):
-        if self.contact_id:
-            self.number = self.contact_id.barcode
-    #FIN DIBI CODE
+    # #DÉBUT DIBI CODE
+    # @api.onchange("employee_id",)
+    # def _onchange_employee(self):
+    #     if self.employee_id:
+    #         self.number = self.employee_id.barcode
+    # #Merci SEIGNEUR !
+    # @api.onchange("contact_id",)
+    # def _onchange_contact(self):
+    #     if self.contact_id:
+    #         self.number = self.contact_id.barcode
+    # #FIN DIBI CODE
 
     def get_potential_access_doors(self, access_groups=None):
         """
@@ -553,15 +553,15 @@ class HrRfidCardDoorRel(models.Model):
             records += rel
             rel._create_add_card_command()
 
-        # if records.contact_id:
-        #     records.sudo().write({
-        #         'number': records.contact_id.barcode
-        #     })
+        if records.contact_id:
+            records.write({
+                'number': records.contact_id.barcode
+            })
 
-        # if records.employee_id:
-        #     records.sudo().write({
-        #         'number': records.employee_id.barcode
-        #     })
+        if records.employee_id:
+            records.write({
+                'number': records.employee_id.barcode
+            })
         return records
 
     def write(self, vals):
