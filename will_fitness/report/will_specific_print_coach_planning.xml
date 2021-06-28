@@ -13,8 +13,8 @@
 
     <template id="specific_print_planning_coach">
         <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="impress">
-                <t t-set="impress" t-value="impress.with_context(lang=impress.user_id.lang)"/>
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="impress" t-value="doc.with_context(lang=doc.user_id.lang)"/>
                 <t t-set="planning_employee" t-value="[]"/>
                 <t t-foreach="impress.planning_slot_ids" t-as="planning">
                     <t t-if="planning.employee_id">
