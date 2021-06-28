@@ -38,8 +38,8 @@
                                                     <th>Heure Fin</th>
                                                     <th>Discipline</th>
                                                 </tr>
-                                                <t t-foreach="impress.planning_slot_ids" t-as="plann">
-                                                    <t t-set="planning" t-value="plann.with_context(lang=impress.user_id.lang)"/>
+                                                <t t-foreach="impress.planning_slot_ids" t-as="planning">
+                                                    <t t-set="planning" t-value="planning.with_context(lang=impress.user_id.lang)"/>
                                                     <t t-if="planning.start_datetime and planning.end_datetime">
                                                         <t t-if="planning.start_datetime.strftime('%W') == datetime.datetime.now().strftime('%W') and planning.end_datetime.strftime('%W') == datetime.datetime.now().strftime('%W')">
                                                             <tr>
