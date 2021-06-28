@@ -8,6 +8,7 @@ class will_fitness_planning(models.Model):
     
     #infos à saisir plour imprimer le planning
     name = fields.Char(string="ID Planning", copy=False, index=True, required=True, default=lambda self: _('New'), readonly=True)
+    user_id = fields.Many2one('res.users', string='Utilisateur', default=lambda self: self.env.uid, required= True, readonly=True)
     debut = fields.Datetime(string='Début')
     fin = fields.Datetime(string='Fin')
     planning_slot_ids = fields.Many2many('planning.slot', string="Coaches plans", readonly=True)
