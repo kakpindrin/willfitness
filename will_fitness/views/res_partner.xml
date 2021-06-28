@@ -52,5 +52,5 @@
         <field name="binding_view_types">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem name="Clients" id="will_fitness.clients" parent="will_fitness.client" action="will_fitness.action_will_fitness_clients_window"/>
+    <!-- <menuitem name="Clients" id="will_fitness.clients" parent="will_fitness.client" action="will_fitness.action_will_fitness_clients_window"/> -->
 </odoo>
