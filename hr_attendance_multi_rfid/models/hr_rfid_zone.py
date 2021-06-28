@@ -6,20 +6,20 @@ class HrRfidZone(models.Model):
     _inherit = 'hr.rfid.zone'
 
     attendance = fields.Boolean(
-        string='Attendance',
-        help='Zone will track attendance if ticked.',
+        string='Présence',
+        help="La zone suivra la fréquentation si elle est cochée.",
         default=False,
     )
 
     overwrite_check_in = fields.Boolean(
-        string='Overwrite check-in',
-        help='If a the user has already checked in and also enters this zone then overwrite the time of the check in',
+        string="Écraser l'enregistrement",
+        help="Si un utilisateur s'est déjà enregistré et entre également dans cette zone, écrasez l'heure de l'enregistrement",
         default=False,
     )
 
     overwrite_check_out = fields.Boolean(
-        string='Overwrite check-out',
-        help='If a the user has already checked out and also leaves this zone then overwrite the time of the check out',
+        string='Écraser le check-out',
+        help="Si un utilisateur a déjà vérifié et quitte également cette zone, écrasez l'heure de la vérification",
         default=False,
     )
 

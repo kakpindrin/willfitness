@@ -23,8 +23,8 @@ class HrEmployee(models.Model):
         if attendance:
             attendance.check_out = action_date
         else:
-            raise exceptions.UserError(_('Cannot perform check out on %(empl_name)s, '
-                                         'could not find corresponding check in. Your '
-                                         'attendances have probably been modified manually'
-                                         ' by human resources.') % {'empl_name': self.name, })
+            raise exceptions.UserError(_("Impossible d'effectuer l'extraction sur %(empl_name)s, "
+                                          "Impossible de trouver l'enregistrement correspondant. Votre "
+                                          "les présences ont probablement été modifiées manuellement"
+                                          " par les ressources humaines.") % {"empl_name": self.name, })
         return attendance

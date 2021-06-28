@@ -45,7 +45,6 @@
         </field>
     </record> -->
 
-
     <record model="ir.actions.act_window" id="action_will_fitness_clients_window">
         <field name="name">Clients</field>
         <field name="type">ir.actions.act_window</field>

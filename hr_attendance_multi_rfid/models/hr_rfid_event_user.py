@@ -8,7 +8,7 @@ class HrRfidUserEvent(models.Model):
 
     in_or_out = fields.Selection(
         selection=[ ('in', 'In'), ('out', 'Out'), ('no_info', 'No Info') ],
-        help='Whether the user came in or out',
-        string='User presence',
+        help="Que l'utilisateur soit entré ou sorti",
+        string="Présence de l'utilisateur",
         default='no_info',
     )

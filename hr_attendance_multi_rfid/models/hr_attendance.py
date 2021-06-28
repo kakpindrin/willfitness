@@ -28,4 +28,3 @@ class HrAttendance(models.Model):
             check_out = att.check_in + td
             if check_out <= datetime.now():
                 att.check_out = check_out
-

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # noinspection PyStatementEffect
 {
-    'name': 'RFID Attendance',
+    'name': 'RFID Présence',
     'version': '1.0',
     'category': 'Human Resources',
     'summary': 'Manage employee attendance',
