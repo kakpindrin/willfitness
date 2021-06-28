@@ -2,7 +2,7 @@
   <data>
     <!-- Top menu item -->
 
-    <menuitem name="Planification" id="will_fitness.menu_root"/>
+    <menuitem name="Impression Planning" id="will_fitness.menu_root"/>
 
     <!-- menu categories -->
     <!-- <menuitem name="Clients" id="will_fitness.client" parent="will_fitness.menu_root"/> -->
