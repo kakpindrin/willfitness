@@ -19,7 +19,7 @@ class res_partner(models.Model):
     barcode = fields.Char(string="Badge ID", help="ID used for partner identification.", groups="hr.group_hr_user", copy=False)
 
     _sql_constraints = [
-        ('barcode_uniq', 'unique (barcode)', "The Badge ID must be unique, this one is already assigned to another partner."),
+        ('barcode_uniq', 'unique (barcode)', "Le Badge ID doit être unique, celui-ci est déjà attribué à un autre partenaire."),
     ]
 
     #THINK GOOD
