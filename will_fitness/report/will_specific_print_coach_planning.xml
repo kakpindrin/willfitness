@@ -39,26 +39,25 @@
                                                     <th>Discipline</th>
                                                 </tr>
                                                 <t t-foreach="impress.planning_slot_ids" t-as="planning">
-                                                    <t t-set="planning" t-value="planning.with_context(lang='fr-FR')">
-                                                        <t t-if="planning.start_datetime and planning.end_datetime">
-                                                            <t t-if="planning.start_datetime.strftime('%W') == datetime.datetime.now().strftime('%W') and planning.end_datetime.strftime('%W') == datetime.datetime.now().strftime('%W')">
-                                                                <tr>
-                                                                    <td>
-                                                                        <strong>
-                                                                            <t t-esc="planning.start_datetime.strftime('%A')"/>
-                                                                        </strong>
-                                                                    </td>
-                                                                    <td>
-                                                                        <t t-esc="planning.start_datetime"/>
-                                                                    </td>
-                                                                    <td>
-                                                                        <t t-esc="planning.end_datetime"/>
-                                                                    </td>
-                                                                    <td>
-                                                                        <t t-esc="planning.role_id.name"/>
-                                                                    </td>
-                                                                </tr>
-                                                            </t>
+                                                    <t t-set="planning" t-value="planning.with_context(lang='fr-FR')" />
+                                                    <t t-if="planning.start_datetime and planning.end_datetime">
+                                                        <t t-if="planning.start_datetime.strftime('%W') == datetime.datetime.now().strftime('%W') and planning.end_datetime.strftime('%W') == datetime.datetime.now().strftime('%W')">
+                                                            <tr>
+                                                                <td>
+                                                                    <strong>
+                                                                        <t t-esc="planning.start_datetime.strftime('%A')"/>
+                                                                    </strong>
+                                                                </td>
+                                                                <td>
+                                                                    <t t-esc="planning.start_datetime"/>
+                                                                </td>
+                                                                <td>
+                                                                    <t t-esc="planning.end_datetime"/>
+                                                                </td>
+                                                                <td>
+                                                                    <t t-esc="planning.role_id.name"/>
+                                                                </td>
+                                                            </tr>
                                                         </t>
                                                     </t>
                                                 </t>
