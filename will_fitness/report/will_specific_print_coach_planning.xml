@@ -44,7 +44,27 @@
                                                     <tr>
                                                         <td>
                                                             <strong>
-                                                                <t t-esc="planning.start_datetime.strftime('%A')"/>
+                                                                <t t-if="planning.start_datetime.strftime('%A') == 'Monday'">
+                                                                    Lundi
+                                                                </t>
+                                                                <t t-if="planning.start_datetime.strftime('%A') == 'Tuesday'">
+                                                                    Mardi
+                                                                </t>
+                                                                <t t-if="planning.start_datetime.strftime('%A') == 'Wednesday'">
+                                                                    Mercredi
+                                                                </t>
+                                                                <t t-if="planning.start_datetime.strftime('%A') == 'Thursday'">
+                                                                    Jeudi
+                                                                </t>
+                                                                <t t-if="planning.start_datetime.strftime('%A') == 'Friday'">
+                                                                    Vendredi
+                                                                </t>
+                                                                <t t-if="planning.start_datetime.strftime('%A') == 'Saturday'">
+                                                                    Samedi
+                                                                </t>
+                                                                <t t-if="planning.start_datetime.strftime('%A') == 'Sunday'">
+                                                                    Dimanche
+                                                                </t>
                                                             </strong>
                                                         </td>
                                                         <td>
