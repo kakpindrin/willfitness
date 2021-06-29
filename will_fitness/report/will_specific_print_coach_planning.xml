@@ -44,7 +44,7 @@
                                         <t t-foreach="impress.planning_slot_ids" t-as="jour">
                                             <t t-if="jour.start_datetime and jour.end_datetime">
                                                 <t t-if="jour.start_datetime.strftime('%W') == datetime.datetime.now().strftime('%W') and jour.end_datetime.strftime('%W') == datetime.datetime.now().strftime('%W')">
-                                                    <t t-set="jours_employee" t-value="jours_employee+[jour.start_datetime)"/>
+                                                    <t t-set="jours_employee" t-value="jours_employee+[jour.start_datetime]"/>
                                                 </t>
                                             </t>
                                         </t>
