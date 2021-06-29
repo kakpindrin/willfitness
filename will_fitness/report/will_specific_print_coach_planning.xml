@@ -37,7 +37,52 @@
                                             <th>Heure Fin</th>
                                             <th>Discipline</th>
                                         </tr>
-                                        <t t-foreach="impress.planning_slot_ids" t-as="planning">
+
+
+
+                                        <t t-set="jours_employee" t-value="[]"/>
+                                        <t t-foreach="impress.planning_slot_ids" t-as="jour">
+                                            <t t-if="jour.start_datetime and jour.end_datetime">
+                                                <t t-if="jour.start_datetime.strftime('%W') == datetime.datetime.now().strftime('%W') and jour.end_datetime.strftime('%W') == datetime.datetime.now().strftime('%W')">
+                                                    <t t-set="jours_employee" t-value="jours_employee+[jour.start_datetime)"/>
+                                                </t>
+                                            </t>
+                                        </t>
+
+                                        <t t-foreach="set(jours_employee)" t-as="lesjours">
+                                            <tr>
+                                                <td>
+                                                    <strong>
+                                                        <t t-esc="lesjours.strftime('%A')"/>
+                                                    </strong>
+                                                </td>
+                                                <td>
+                                                    <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt" valign="center">
+                                                        <tr>
+                                                            <t t-foreach="impress.planning_slot_ids" t-as="plannjour">
+                                                                <t t-if="plannjour.start_datetime and plannjour.end_datetime">
+                                                                    <t t-if="plannjour.employee_id.id == employee.id and plannjour.start_datetime.strftime('%A') == lesjours.strftime('%A')and  plannjour.start_datetime.strftime('%W') == datetime.datetime.now().strftime('%W') and plannjour.end_datetime.strftime('%W') == datetime.datetime.now().strftime('%W')">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <t t-esc="plannjour.start_datetime"/>
+                                                                            </td>
+                                                                            <td>
+                                                                                <t t-esc="plannjour.end_datetime"/>
+                                                                            </td>
+                                                                            <td>
+                                                                                <t t-esc="plannjour.role_id.name"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </t>
+                                                                </t>
+                                                            </t>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </t>
+
+                                        <!-- <t t-foreach="impress.planning_slot_ids" t-as="planning">
                                             <t t-if="planning.start_datetime and planning.end_datetime">
                                                 <t t-if="planning.start_datetime.strftime('%W') == datetime.datetime.now().strftime('%W') and planning.end_datetime.strftime('%W') == datetime.datetime.now().strftime('%W')">
                                                     <tr>
@@ -58,7 +103,7 @@
                                                     </tr>
                                                 </t>
                                             </t>
-                                        </t>
+                                        </t> -->
                                     </table>
                                 </tr>
                             </td>
