@@ -68,17 +68,17 @@
                                                             <t t-foreach="impress.planning_slot_ids" t-as="plannjour">
                                                                 <t t-if="plannjour.start_datetime and plannjour.end_datetime">
                                                                     <t t-if="plannjour.employee_id.id == employee.id and plannjour.start_datetime.strftime('%A') == lesjours and plannjour.start_datetime.strftime('%W') == datetime.datetime.now().strftime('%W') and plannjour.end_datetime.strftime('%W') == datetime.datetime.now().strftime('%W')">
-                                                                        <tr>
-                                                                            <td>
-                                                                                <t t-esc="plannjour.start_datetime"/>
-                                                                            </td>
-                                                                            <td>
-                                                                                <t t-esc="plannjour.end_datetime"/>
-                                                                            </td>
-                                                                            <td>
-                                                                                <t t-esc="plannjour.role_id.name"/>
-                                                                            </td>
-                                                                        </tr>
+                                                                        <!-- <tr> -->
+                                                                        <td>
+                                                                            <t t-esc="plannjour.start_datetime"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <t t-esc="plannjour.end_datetime"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <t t-esc="plannjour.role_id.name"/>
+                                                                        </td>
+                                                                        <!-- </tr> -->
                                                                     </t>
                                                                 </t>
                                                             </t>
