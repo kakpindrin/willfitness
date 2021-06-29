@@ -30,7 +30,7 @@
                                     <t t-esc="employee.name"/>
                                 </tr>
                                 <tr>
-                                    <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt" valign="center">
+                                    <!-- <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt" valign="center"> -->
                                         <!-- <tr>
                                             <th>Jours</th>
                                             <th>Heure Début</th>
@@ -58,6 +58,12 @@
                                                 </td>
                                                 <td>
                                                     <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt" valign="center">
+                                                        <tr>
+                                                            <th>Jours</th>
+                                                            <th>Heure Début</th>
+                                                            <th>Heure Fin</th>
+                                                            <th>Discipline</th>
+                                                        </tr>
                                                         <tr>
                                                             <t t-foreach="impress.planning_slot_ids" t-as="plannjour">
                                                                 <t t-if="plannjour.start_datetime and plannjour.end_datetime">
@@ -104,7 +110,7 @@
                                                 </t>
                                             </t>
                                         </t> -->
-                                    </table>
+                                    <!-- </table> -->
                                 </tr>
                             </td>
                         </table>
