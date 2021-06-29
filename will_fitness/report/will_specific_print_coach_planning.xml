@@ -56,7 +56,7 @@
                                                         <t t-esc="lesjours"/>
                                                     </strong>
                                                 </td>
-                                                <td style="colspan: 4">
+                                                <td style="colspan: 3">
                                                     <!-- <table> -->
                                                         <!-- <tr>
                                                             <th>Jours</th>
