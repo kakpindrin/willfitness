@@ -66,12 +66,13 @@
                                                                     Dimanche
                                                                 </t>
                                                             </strong>
+                                                            le <t t-esc="planning.start_datetime.strftime('%d/%m/%y')"/>
                                                         </td>
                                                         <td>
-                                                            <t t-esc="planning.start_datetime"/>
+                                                            <t t-esc="planning.start_datetime.strftime('%H:%M')"/>
                                                         </td>
                                                         <td>
-                                                            <t t-esc="planning.end_datetime"/>
+                                                            <t t-esc="planning.end_datetime.strftime('%H:%M')"/>
                                                         </td>
                                                         <td>
                                                             <t t-esc="planning.role_id.name"/>
