@@ -4,8 +4,8 @@
         <field name="name">(Spécifique) Print Coach Planning</field>
         <field name="model">will.fitness.planning</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">will_fitness.specific_print_planning_coach</field>
-        <field name="report_file">will_fitness.specific_print_planning_coach</field>
+        <field name="report_name">will_fitness.report_specific_print_planning_coach</field>
+        <field name="report_file">will_fitness.report_specific_print_planning_coach</field>
         <field name="print_report_name">'Specific Print Planning - %s' % (object.name).replace('/', '')</field>
         <field name="binding_model_id" ref="model_will_fitness_planning"/>
         <field name="binding_type">report</field>
