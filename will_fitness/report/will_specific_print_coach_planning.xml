@@ -66,7 +66,7 @@
                                                                     Dimanche
                                                                 </t>
                                                             </strong>
-                                                            le <t t-esc="planning.start_datetime.strftime('%d/%m/%y')"/>
+                                                            le <t t-esc="planning.start_datetime.strftime('%d/%m/%Y')"/>
                                                         </td>
                                                         <td>
                                                             <t t-esc="planning.start_datetime.strftime('%H:%M')"/>
