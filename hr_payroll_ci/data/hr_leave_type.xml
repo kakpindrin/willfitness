@@ -5,7 +5,7 @@
         <record id="holiday_status_cl_ex" model="hr.leave.type">
             <field name="name">Congés payés</field>
             <field name="allocation_type">fixed</field>
-            <field name="validation_type">both</field>
+            <!-- <field name="validation_type">both</field> -->
             <field name="color_name">black</field>
             <field name="leave_notif_subtype_id" eval="ref('hr_holidays.mt_leave')"/>
             <field name="allocation_notif_subtype_id" eval="ref('hr_holidays.mt_leave_allocation')"/>
