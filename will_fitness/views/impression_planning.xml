@@ -1,6 +1,6 @@
 <odoo>
   <data>
-    <record id="will_fitness_plannings_form" model="ir.ui.view">
+    <record id="will_fitness_impressions_form" model="ir.ui.view">
       <field name="name">will.fitness.planning.form</field>
       <field name="model">will.fitness.planning</field>
       <field name="arch" type="xml">
@@ -26,22 +26,22 @@
         </form>
       </field>
     </record>
-    <record id="will_fitness.plannings_view_tree" model="ir.ui.view">
+    <record id="will_fitness.impressions_view_tree" model="ir.ui.view">
       <field name="name">will.fitness.planning.tree</field>
       <field name="model">will.fitness.planning</field>
       <field name="arch" type="xml">
-        <tree string="La liste des plannings">
+        <tree string="La liste des impressions">
             <field name="name"/>
             <field name="debut"/>
             <field name="fin"/>
         </tree>
       </field>
     </record>
-    <record id="action_plannings_window" model="ir.actions.act_window">
-        <field name="name">Les Plannings</field>
+    <record id="action_impressions_window" model="ir.actions.act_window">
+        <field name="name">Impressions</field>
         <field name="res_model">will.fitness.planning</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem name="Plannings" id="will_fitness.plannings" parent="will_fitness.impression" action="will_fitness.action_plannings_window"/>
+    <menuitem name="Impressions" id="will_fitness.impressions" parent="will_fitness.impression" action="will_fitness.action_impressions_window"/>
   </data>
 </odoo>
