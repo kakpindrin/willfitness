@@ -9,7 +9,7 @@ class will_fitness_classe(models.Model):
     _description = "Classe des eleves"
 
     #infos à saisir pour la classe
-    name = fields.Char(string="Nom de la Classe", copy=False, index=True, required=True,)
+    name = fields.Char(string="Nom de la Classe", copy=False, required=True,)
     
     @api.model
     def create(self, vals):
