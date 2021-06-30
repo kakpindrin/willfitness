@@ -16,7 +16,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">planning.slot</field>
         <field name="binding_view_types">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,form</field>
     </record>
     <menuitem name="Planning" id="will_fitness.plannings" parent="will_fitness.planning" action="will_fitness.action_will_fitness_plannings_window"/>
 </odoo>
