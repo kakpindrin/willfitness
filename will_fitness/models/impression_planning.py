@@ -26,7 +26,7 @@ class will_fitness_planning(models.Model):
                     'planning_slot_ids': plannings,
                     'state': 'generate'
                 })
-
+    #REDO
     def re_do(self):
         self.write({
             'fin': False,
