@@ -39,6 +39,8 @@
         'views/res_partner.xml',
         'views/presences.xml',
         'views/impression_planning.xml',
+        'views/planning_slot.xml',
+        'views/classes.xml',
     ],
     # only loaded in demonstration mode
     # 'demo': [
