@@ -1,0 +1,32 @@
+<odoo>
+  <data>
+    <record id="will_fitness_classes_form" model="ir.ui.view">
+      <field name="name">will.fitness.classe.form</field>
+      <field name="model">will.fitness.classe</field>
+      <field name="arch" type="xml">
+        <form string="classe">
+          <sheet>
+            <group>
+                <field name="name"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="will_fitness.classes_view_tree" model="ir.ui.view">
+      <field name="name">will.fitness.classe.tree</field>
+      <field name="model">will.fitness.classe</field>
+      <field name="arch" type="xml">
+        <tree string="La liste des classes">
+            <field name="name"/>
+        </tree>
+      </field>
+    </record>
+    <record id="action_classes_window" model="ir.actions.act_window">
+        <field name="name">Les Classes</field>
+        <field name="res_model">will.fitness.classe</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Classes" id="will_fitness.classes" parent="will_fitness.planning" action="will_fitness.action_classes_window"/>
+  </data>
+</odoo>

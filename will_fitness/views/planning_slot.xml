@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="planning_slot_inherit_form_will_fitness_fields_view" model="ir.ui.view">
+        <field name="name">planning.slot.inherit.form.will.fitness.view</field>
+        <field name="model">planning.slot</field>
+        <field name="inherit_id" ref="planning.planning_view_form" />
+        <field name="arch" type="xml">
+            <field name="role_id" position="after">
+                <field name="classe_id" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_will_fitness_plannings_window">
+        <field name="name">Plannings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">planning.slot</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Planning" id="will_fitness.plannings" parent="will_fitness.planning" action="will_fitness.action_will_fitness_plannings_window"/>
+</odoo>
