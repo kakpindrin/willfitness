@@ -113,11 +113,9 @@
                     	<field name="hr_secteur_id"/>
                         <field name="categorie_salariale_id"/>
                     </label>
-                    <field name="advantages" position="before">
+                    <!-- <field name="advantages" position="before">
                         <field name="sursalaire"/>
                         <field name="taux" invisible="1"/>
-<!--                        <field name="cumul_prime_non_imposable"/>-->
-<!--                        <field name="cumul_prime"/>-->
                         <field name="cumul_prime_non_imposable" invisible="1"/>
                         <field name="cumul_prime_non_imposable2" invisible="1"/>
                         <field name="prime_risque" invisible="1"/>
@@ -128,7 +126,7 @@
                         <field name="prime_panier" invisible="1"/>
                         <field name="prime_outillage" invisible="1"/>
                         <field name="prime_fonction_non" invisible="1"/>
-                    </field>
+                    </field> -->
                     <xpath expr="//group[@name='salary_and_advantages']" position="after">
                         <group name="autres_avantages" string="Retenues">
                             <field name="avance_acompte"/>
@@ -136,6 +134,24 @@
                         </group>
                     </xpath>
                     <xpath expr="//notebook/page[@name='information']" position="after">
+                        <page string="Les primes" name="primes">
+                            <group>
+                                <field name="sursalaire"/>
+                                <field name="taux" invisible="1"/>
+                                <!--<field name="cumul_prime_non_imposable"/>-->
+                                <!--<field name="cumul_prime"/>-->
+                                <field name="cumul_prime_non_imposable" invisible="1"/>
+                                <field name="cumul_prime_non_imposable2" invisible="1"/>
+                                <field name="prime_risque" invisible="1"/>
+                                <field name="prime_assiduite" invisible="1"/>
+                                <field name="prime_caisse" invisible="1"/>
+                                <field name="prime_technicite" invisible="1"/>
+                                <field name="prime_salissure" invisible="1"/>
+                                <field name="prime_panier" invisible="1"/>
+                                <field name="prime_outillage" invisible="1"/>
+                                <field name="prime_fonction_non" invisible="1"/>
+                            </group>
+                        </page>
                         <page string="Les primes" name="primes">
                             <group>
                                 <field name="hr_payroll_prime_ids" nolabel="1">
