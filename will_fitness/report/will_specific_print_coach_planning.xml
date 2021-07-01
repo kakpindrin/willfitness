@@ -38,6 +38,7 @@
                                             <th>Discipline</th>
                                         </tr>
 
+                                        
                                         <t t-foreach="impress.planning_slot_ids" t-as="planning">
                                             <t t-if="planning.start_datetime and planning.end_datetime">
                                                 <t t-if="employee.id == planning.employee_id.id">
