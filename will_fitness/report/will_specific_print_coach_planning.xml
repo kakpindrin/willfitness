@@ -76,7 +76,7 @@
                                                         </td>
                                                         <td>
                                                             <t t-esc="planning.role_id.name"/>
-                                                            (salle: <t t-esc="planning.classe_id.name"/>)
+                                                            (<strong>salle:</strong> <t t-esc="planning.classe_id.name"/>)
                                                         </td>
                                                     </tr>
                                                 </t>
