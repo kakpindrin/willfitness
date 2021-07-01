@@ -37,6 +37,7 @@ class will_fitness_presence(models.Model):
                 'will.fitness.presence.sequence', ) or _('New')
         result = super(will_fitness_presence, self).create(vals)
 
+        #Thanks LORD
         #a = datetime.now().time()
         time_one = result.arrivee.hour + result.arrivee.minute / 60.0
         time_two = result.sortie.hour + result.sortie.minute / 60.0
