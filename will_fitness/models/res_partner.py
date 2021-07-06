@@ -10,7 +10,7 @@ class res_partner(models.Model):
     prenom = fields.Char(string='Prénoms')
     date_naissance = fields.Date(string='Date Naissance',)
     adresse_postale = fields.Char(string='Adresse Postale')
-    carte_identite = fields.Char(string="CNI/Pass./C.C")
+    # carte_identite = fields.Char(string="CNI/Pass./C.C")
     poids = fields.Float(string='Poids')
     taille = fields.Float(string='Taille')
     antecedent_medical = fields.Text(string='Antécédent médical')
