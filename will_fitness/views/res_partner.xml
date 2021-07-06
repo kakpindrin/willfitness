@@ -9,6 +9,7 @@
                 <field name="prenom" attrs="{'invisible': [('company_type','!=','person')]}"/>
                 <field name="date_naissance" attrs="{'invisible': [('company_type','!=','person')]}"/>
                 <field name="adresse_postale" attrs="{'invisible': [('company_type','!=','person')]}"/>
+                <field name="carte_identite" attrs="{'invisible': [('company_type','!=','person')]}"/>
                 <field name="poids" attrs="{'invisible': [('company_type','!=','person')]}"/>
                 <field name="taille" attrs="{'invisible': [('company_type','!=','person')]}"/>
                 <field name="antecedent_medical" attrs="{'invisible': [('company_type','!=','person')]}"/>
