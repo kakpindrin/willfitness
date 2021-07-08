@@ -611,6 +611,7 @@
                 <field name="active"/>
                 <field name="card_type"/>
                 <field name="cloud_card"/>
+                <field name="activation_temp_date"/>
               </group>
               <group string="Date Début">
                 <field name="activate_on"/>

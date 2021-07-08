@@ -33,7 +33,7 @@ class HrRfidCard(models.Model):
         track_visibility='onchange',
     )
 
-    activation_temp_date = fields.Datetime()
+    activation_temp_date = fields.Datetime(string='Date Temporaire')
 
     card_type = fields.Many2one(
         'hr.rfid.card.type',
