@@ -54,7 +54,7 @@ class sale_subscription(models.Model):
         return result
 
     @api.onchange('recurring_next_date')
-    def _onchange_recurring_next_date(self):
+    def _onchange_my_recurring_next_date(self):
         for this in self:
             if this.recurring_next_date:
                 the_cards_domain = [('contact_id','=',this.partner_id.id)]
