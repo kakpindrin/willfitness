@@ -33,7 +33,7 @@
                     </table>
 
                     <t t-foreach="impress.recurring_invoice_line_ids" t-as="line">
-                        <p><strong>Formule choisie :<strong></p>
+                        <p><strong>Formule choisie :</strong></p>
                         <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt">
                             <tr style="width:100%;" valign="center">
                                 <th>ABONNEMENT SPORT ACCESS</th>
