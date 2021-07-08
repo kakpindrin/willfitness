@@ -94,7 +94,7 @@
                             <tr style="width:100%;" valign="center">
                                 <td>
                                     <t t-if="line.product_id.default_code == 'ASPM' ">
-                                        <p><input type="checkbox" id="aspm" checked="true"> <label for="aspm">MENSUEL 130 000 F CFA</label></p>
+                                        <p><input type="checkbox" id="aspm" checked="true" /> <label for="aspm">MENSUEL 130 000 F CFA</label></p>
                                     </t>
                                     <t t-elif="line.product_id.default_code != 'ASPM' ">
                                         <p><input type="checkbox" id="aspm" /> <label for="aspm">MENSUEL 130 000 F CFA</label></p>
