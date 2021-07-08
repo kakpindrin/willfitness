@@ -55,10 +55,12 @@ class sale_subscription(models.Model):
 
     @api.onchange('recurring_next_date')
     def _onchange_recurring_next_date(self):
-        the_cards_domain = [('contact_id','=',self.partner_id.id)]
-        the_all_cards = self.env['hr.rfid.card'].search(the_cards_domain, order='id desc')
+        for this in self:
+            if this.recurring_next_date:
+                the_cards_domain = [('contact_id','=',this.partner_id.id)]
+                the_all_cards = this.env['hr.rfid.card'].search(the_cards_domain, order='id desc')
 
-        if len(the_all_cards) > 0:
-            the_all_cards[0].write({
-                'activation_temp_date': self.recurring_next_date,
-            })
+                if len(the_all_cards) > 0:
+                    the_all_cards[0].write({
+                        'activation_temp_date': this.recurring_next_date,
+                    })
