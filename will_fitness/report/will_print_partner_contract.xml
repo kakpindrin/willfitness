@@ -131,7 +131,7 @@
                         <tr style="width:100%;" valign="center">
                             <td>
                                 <t t-if="impress.mode_reglement == 'especes' ">
-                                    <input type="checkbox" id="especes" checked="true"> <label for="especes">ESPÈCES </label>
+                                    <input type="checkbox" id="especes" checked="true" /> <label for="especes">ESPÈCES </label>
                                 </t>
                                 <t t-elif="impress.mode_reglement != 'especes'">
                                     <input type="checkbox" id="especes" /> <label for="especes">ESPÈCES </label>
