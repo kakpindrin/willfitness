@@ -202,7 +202,7 @@
     <template id="report_print_partner_contract">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="impress">
-                <t t-call="sale_subscription.report_print_partner_contract_document" t-lang="impress.partner_id.lang"/>
+                <t t-call="will_fitness.report_print_partner_contract_document" t-lang="impress.partner_id.lang"/>
             </t>
         </t>
     </template>
