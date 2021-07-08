@@ -33,8 +33,8 @@
                     </table>
 
                     <t t-foreach="impress.recurring_invoice_line_ids" t-as="line">
+                        <p><strong>Formule choisie :<strong></p>
                         <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt">
-                            <caption style="align: top;">Formule choisie :</caption>
                             <tr style="width:100%;" valign="center">
                                 <th>ABONNEMENT SPORT ACCESS</th>
                                 <th>ACCÈS ILLIMITÉ AUX ESPACES : FITNESS - MUSCULATION - CARDIO TRAINING</th>
@@ -74,7 +74,6 @@
                         </table>
 
                         <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt">
-                            <caption style="align: top;">Formule choisie :</caption>
                             <tr style="width:100%;" valign="center">
                                 <th>ABONNEMENT SPORT +</th>
                                 <th>
