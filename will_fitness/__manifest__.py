@@ -42,7 +42,7 @@
         'views/impression_planning.xml',
         'views/planning_slot.xml',
         'views/classes.xml',
-        #'views/sale_subscription.xml',
+        'views/sale_subscription.xml',
     ],
     # only loaded in demonstration mode
     # 'demo': [
