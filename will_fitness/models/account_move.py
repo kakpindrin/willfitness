@@ -16,5 +16,5 @@ class account_move(models.Model):
 
             if len(the_all_cards) > 0:
                 the_all_cards[0].write({
-                    'active': True
+                    'deactivate_on': the_all_cards[0].activation_temp_date
                 })

@@ -40,13 +40,14 @@ class sale_subscription(models.Model):
         the_all_partners = self.env['res.partner'].search(the_partners_domain, order='id desc')
         if len(the_all_partners) > 0:
             now = datetime.now()
+    
             rfid_card = dict(None or {
                 'number': the_all_partners[0].barcode,
                 'contact_id': the_all_partners[0].id,
                 'cloud_card': False,
+                'activation_temp_date': result.recurring_next_date,
                 'activate_on': result.date_start,
-                'deactivate_on': result.recurring_next_date,
-                'active': False
+                'deactivate_on': result.date_start,
                 })
             self.env['hr.rfid.card'].sudo().create(rfid_card)
 
@@ -60,6 +61,5 @@ class sale_subscription(models.Model):
 
             if len(the_all_cards) > 0:
                 the_all_cards[0].write({
-                    'deactivate_on': self.recurring_next_date,
-                    'active': False
+                    'activation_temp_date': self.recurring_next_date,
                 })

@@ -4,8 +4,8 @@
         <field name="name">(Contrat) Print Partner Contract</field>
         <field name="model">sale.subscription</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">sale_subscription.report_print_partner_contract</field>
-        <field name="report_file">sale_subscription.report_print_partner_contract</field>
+        <field name="report_name">will_fitness.report_print_partner_contract</field>
+        <field name="report_file">will_fitness.report_print_partner_contract</field>
         <field name="print_report_name">'Print Partner Contract - %s' % (object.name).replace('/', '')</field>
         <field name="binding_model_id" ref="model_sale_subscription"/>
         <field name="binding_type">report</field>
