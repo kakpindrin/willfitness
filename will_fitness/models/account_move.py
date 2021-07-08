@@ -13,7 +13,7 @@ class account_move(models.Model):
             state_of_payment = ['paid', 'in_payment']
             if this.payment_state in state_of_payment:
                 the_cards_domain = [('contact_id','=',this.partner_id.id)]
-                the_all_cards = self.env['hr.rfid.card'].search(the_cards_domain, order='id desc')
+                the_all_cards = this.env['hr.rfid.card'].search(the_cards_domain, order='id desc')
 
                 if len(the_all_cards) > 0:
                     the_all_cards[0].write({
