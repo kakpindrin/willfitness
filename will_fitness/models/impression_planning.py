@@ -35,7 +35,6 @@ class will_fitness_planning(models.Model):
             'state': 'new'
         })
 
-
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):

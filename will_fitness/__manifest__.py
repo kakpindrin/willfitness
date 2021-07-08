@@ -25,7 +25,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'planning'],
+    'depends': ['base', 'planning', 'sale_subscription', 'account_move'],
 
     # always loaded
     'data': [
@@ -33,6 +33,7 @@
         'report/will_this_week_print_coach_planning.xml',
         'report/will_next_week_print_coach_planning.xml',
         'report/will_specific_print_coach_planning.xml',
+        'report/will_print_partner_contract.xml',
         'report/res_partner_badge.xml',
         'data/ir_sequence_data.xml',
         'views/menu.xml',
@@ -41,6 +42,7 @@
         'views/impression_planning.xml',
         'views/planning_slot.xml',
         'views/classes.xml',
+        'views/sale_subscription.xml',
     ],
     # only loaded in demonstration mode
     # 'demo': [

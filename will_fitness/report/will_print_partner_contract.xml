@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="will_print_partner_contract" model="ir.actions.report">
+        <field name="name">(Contrat) Print Partner Contract</field>
+        <field name="model">sale.subscription</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sale_subscription.report_print_partner_contract</field>
+        <field name="report_file">sale_subscription.report_print_partner_contract</field>
+        <field name="print_report_name">'Print Partner Contract - %s' % (object.name).replace('/', '')</field>
+        <field name="binding_model_id" ref="model_sale_subscription"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_print_partner_contract_document">
+        <t t-set="impress" t-value="impress.with_context(lang=impress.partner_id.lang)"/>
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="col-md-6">
+                    <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt">
+                        <tr style="width:100%;" valign="center">
+                            <td>
+                                <p><strong>NOM : </strong><t t-esc="impress.partner_id.name"/></p>
+                                <p><strong>DATE DE NAISSANCE : </strong><t t-esc="impress.partner_id.date_naissance"/></p>
+                                <p><strong>TÉLÉPHONE : </strong><t t-esc="impress.partner_id.phone"/></p>
+                                <p><strong>CNI/Pass./C.C : </strong><t t-esc="impress.partner_id.carte_identite"/></p>
+                            </td>
+                            <td>
+                                <p><strong>PRÉNOM : </strong><t t-esc="impress.partner_id.prenom"/></p>
+                                <p><strong>ADRESSE : </strong><t t-esc="impress.partner_id.adresse_postale"/></p>
+                                <p><strong>EMAIL : </strong><t t-esc="impress.partner_id.email"/></p>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <t t-foreach="impress.recurring_invoice_line_ids" t-as="line">
+                        <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt">
+                            <caption style="align: top;">Formule choisie :</caption>
+                            <tr style="width:100%;" valign="center">
+                                <th>ABONNEMENT SPORT ACCESS</th>
+                                <th>ACCÈS ILLIMITÉ AUX ESPACES : FITNESS - MUSCULATION - CARDIO TRAINING</th>
+                            </tr>
+                            <tr style="width:100%;" valign="center">
+                                <td>
+                                    <t t-if="line.product_id.default_code == 'ASAM' ">
+                                        <p><input type="checkbox" id="asam" checked> <label for="asam">MENSUEL 50 000 F CFA</label></p>
+                                    </t>
+                                    <t t-elif="line.product_id.default_code != 'ASAM' ">
+                                        <p><input type="checkbox" id="asam" > <label for="asam">MENSUEL 50 000 F CFA</label></p>
+                                    </t>
+
+                                    <t t-if="line.product_id.default_code == 'ASAS' ">
+                                        <p><input type="checkbox" id="asas" checked> <label for="asas">SEMESTRIEL 280 000 F CFA</label></p>
+                                    </t>
+                                    <t t-elif="line.product_id.default_code != 'ASAS' ">
+                                        <p><input type="checkbox" id="asas" > <label for="asas">SEMESTRIEL 280 000 F CFA</label></p>
+                                    </t>
+                                </td>
+                                <td>
+                                    <t t-if="line.product_id.default_code == 'ASAT' ">
+                                        <p><input type="checkbox" id="asat" checked> <label for="asat">TRIMESTRIEL 140 000 F CFA</label></p>
+                                    </t>
+                                    <t t-elif="line.product_id.default_code != 'ASAT' ">
+                                        <p><input type="checkbox" id="asat" > <label for="asat">TRIMESTRIEL 140 000 F CFA</label></p>
+                                    </t>
+
+                                    <t t-if="line.product_id.default_code == 'ASAA' ">
+                                        <p><input type="checkbox" id="asaa" checked> <label for="asaa">ANNUEL 500 000 F CFA</label></p>
+                                    </t>
+                                    <t t-elif="line.product_id.default_code != 'ASAA' ">
+                                        <p><input type="checkbox" id="asaa" > <label for="asaa">ANNUEL 500 000 F CFA</label></p>
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt">
+                            <caption style="align: top;">Formule choisie :</caption>
+                            <tr style="width:100%;" valign="center">
+                                <th>ABONNEMENT SPORT +</th>
+                                <th>
+                                    <p>ACCÈS ILLIMITÉ AUX ESPACES : FITNESS - MUSCULATION - CARDIO TRAINING</p>
+                                    <p>
+                                        <ul>
+                                            <li>1 ACCÈS SPA / MOIS</li>
+                                            <li>1 COACHING PRIVÉ / SEMAINE</li>
+                                            <li>1 BILAN INBODY / MOIS</li>
+                                            <li>1 BOUTEILLE D'EAU / ACCÈS</li>
+                                            <li>1 SERVIETTE OFFERTE</li>
+                                            <li>1 TEE-SHIRT OFFERT</li>
+                                        </ul>
+                                    </p>
+                                </th>
+                            </tr>
+                            <tr style="width:100%;" valign="center">
+                                <td>
+                                    <t t-if="line.product_id.default_code == 'ASPM' ">
+                                        <p><input type="checkbox" id="aspm" checked> <label for="aspm">MENSUEL 130 000 F CFA</label></p>
+                                    </t>
+                                    <t t-elif="line.product_id.default_code != 'ASPM' ">
+                                        <p><input type="checkbox" id="aspm" > <label for="aspm">MENSUEL 130 000 F CFA</label></p>
+                                    </t>
+                                    
+                                    <t t-if="line.product_id.default_code == 'ASPT' ">
+                                        <p><input type="checkbox" id="aspt" checked> <label for="aspt">TRIMESTRIEL 350 000 F CFA</label></p>
+                                    </t>
+                                    <t t-elif="line.product_id.default_code != 'ASPT' ">
+                                        <p><input type="checkbox" id="aspt" > <label for="aspt">TRIMESTRIEL 350 000 F CFA</label></p>
+                                    </t>
+
+                                    <t t-if="line.product_id.default_code == 'ASPS' ">
+                                        <p><input type="checkbox" id="asps" checked> <label for="asps">SEMESTRIEL 700 000 F CFA</label></p>
+                                    </t>
+                                    <t t-elif="line.product_id.default_code != 'ASPS' ">
+                                        <p><input type="checkbox" id="asps" > <label for="asps">SEMESTRIEL 700 000 F CFA</label></p>
+                                    </t>
+                                </td>
+                                <td>
+                                    <t t-if="line.product_id.default_code == 'ASPA' ">
+                                        <p><input type="checkbox" id="aspa" checked> <label for="aspa">ANNUEL 1 300 000 F CFA</label></p>
+                                    </t>
+                                    <t t-elif="line.product_id.default_code != 'ASPA' ">
+                                        <p><input type="checkbox" id="aspa" > <label for="aspa">ANNUEL 1 300 000 F CFA</label></p>
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+                    </t>
+
+                    <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt">
+                        <caption style="align: top;">MODE DE RÈGLEMENT :</caption>
+                        <tr style="width:100%;" valign="center">
+                            <td>
+                                <t t-if="impress.mode_reglement == 'especes' ">
+                                    <input type="checkbox" id="especes" checked> <label for="especes">ESPÈCES </label>
+                                </t>
+                                <t t-elif="impress.mode_reglement != 'especes'">
+                                    <input type="checkbox" id="especes" > <label for="especes">ESPÈCES </label>
+                                </t>
+                            </td>
+                            <td>
+                                <t t-if="impress.mode_reglement == 'cartebancaire' ">
+                                    <input type="checkbox" id="cartebancaire" checked> <label for="cartebancaire">CARTE BANCAIRE</label>
+                                </t>
+                                <t t-elif="impress.mode_reglement != 'cartebancaire'">
+                                    <input type="checkbox" id="cartebancaire" > <label for="cartebancaire">CARTE BANCAIRE</label>
+                                </t>
+                            </td>
+                            <td>
+                                <t t-if="impress.mode_reglement == 'virement' ">
+                                    <input type="checkbox" id="virement" checked> <label for="virement">VIREMENT <sm>(à partir d'un abonnement de 3 mois)</sm> </label>
+                                </t>
+                                <t t-elif="impress.mode_reglement != 'virement'">
+                                    <input type="checkbox" id="virement" > <label for="virement">VIREMENT <sm>(à partir d'un abonnement de 3 mois)</sm> </label>
+                                </t>
+                            </td>
+                            <td>
+                                <t t-if="impress.mode_reglement == 'cheque'">
+                                    <input type="checkbox" id="cheque" checked> <label for="cheque">CHÈQUE <sm>(à l'ordre de WILL FITNESS)</sm></label>
+                                </t>
+                                <t t-elif="impress.mode_reglement != 'cheque'">
+                                    <input type="checkbox" id="cheque" > <label for="cheque">CHÈQUE <sm>(à l'ordre de WILL FITNESS)</sm></label>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr style="width:100%;" valign="center">
+                            <td colspan="4">
+                                <em>NB: En cas de paiement partiel, le client est invité à la solde sur une durée d'un mois à compter de la date du premier paiement.</em>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; height:100%; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt">
+                        <tr style="width:100%;" valign="center">
+                            <th colspan="2">
+                                <p>
+                                    <strong>
+                                        En signant ce formulaire, j'accepte les conditions générales de vente et le règlement intérieur du club Will Fitness. <br />
+                                        Ce formulaire est valable pour tout renouvellement d'abonnement.
+                                    </strong>
+                                <p>
+                            </th>
+                        </tr>
+                        <tr style="width:100%;" valign="center">
+                            <td>
+                                <p><strong>SIGNATURE CLIENT :</strong><p>
+                                <p><br /><p>
+                                <p><br /><p>
+                                <p><br /><p>
+                            </td>
+                            <td>
+                                <p><strong>DATE :</strong><p>
+                                <p><br /><p>
+                                <p><br /><p>
+                                <p><br /><p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="report_print_partner_contract">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="impress">
+                <t t-call="sale_subscription.report_print_partner_contract_document" t-lang="impress.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

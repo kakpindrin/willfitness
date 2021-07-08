@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sale_subscription_inherit_form_will_fitness_fields_view" model="ir.ui.view">
+        <field name="name">sale.subscription.inherit.form.will.fitness.view</field>
+        <field name="model">sale.subscription</field>
+        <field name="inherit_id" ref="sale_subscription.sale_subscription_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(will_print_partner_contract)d" string="Imprimer Contrat" states="draft" attrs="{'invisible': [('stage_category','=','draft')]}"  class="oe_highlight" type="action"/>
+            </xpath>
+
+            <field name="partner_id" position="after">
+                <field name="mode_reglement" />
+            </field>
+        </field>
+    </record>
+
+    <!-- <record model="ir.actions.act_window" id="action_will_fitness_sale__window">
+        <field name="name">Clients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">tree,form</field>
+    </record> -->
+    <!-- <menuitem name="Clients" id="will_fitness.clients" parent="will_fitness.client" action="will_fitness.action_will_fitness_clients_window"/> -->
+</odoo>
